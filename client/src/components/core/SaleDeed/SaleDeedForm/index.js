@@ -18,24 +18,24 @@ const SDform = () => {
               id="outlined-basic"
               label="Seller ID"
               variant="outlined"
-              sx={{ marginTop: '0.37rem', width: "60%" }}
+              sx={{ marginTop: '2.5rem', width: "60%" }}
         />
 
         <TextField
               id="outlined-basic"
               label="Buyer ID"
               variant="outlined"
-              sx={{ marginTop: '0.37rem', width: "60%" }}
+              sx={{ marginTop: '2.5rem', width: "60%" }}
         />
 
         <TextField
               id="outlined-basic"
               label="Property ID"
               variant="outlined"
-              sx={{ marginTop: '0.37rem', marginBottom: '0.5rem', width: "60%" }}
+              sx={{ marginTop: '2.5rem', marginBottom: '4rem', width: "60%" }}
         />
         </Container>
-        <Button variant="contained" sx={{ paddingLeft: '0.5rem', paddingRight: '0.5rem', marginBottom: '0.25rem' }}>
+        <Button variant="contained" sx={{ paddingLeft: '2rem', paddingRight: '2rem', marginBottom: '1rem' }}>
           Sign and Send Sale Deed
         </Button>
     </Box>

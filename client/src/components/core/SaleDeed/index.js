@@ -1,7 +1,7 @@
 import React from 'react'
 import { styled, Container } from '@mui/material'
 import SDheader from './SDheader'
-import SaleDeedForm from './SaleDeedForm'
+import SaleDeedForm from './saleDeedForm'
 
 
 const SaleDeed = () => {
