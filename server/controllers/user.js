@@ -47,7 +47,7 @@ export const logout = async (res, req) => {
 export const uploadUserInfo = async (req, res) => {
   const userId = req.params.id;
   const { id, name, email, age, phone, gender, aadhar } = req.body;
-  // console.log("inininininin");
+  console.log("inininininin");
   console.log(userId);
   User.findOne({ _id: userId }, (err, user) => {
     if (err || !user) {
