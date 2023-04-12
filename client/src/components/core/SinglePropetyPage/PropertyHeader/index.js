@@ -3,8 +3,8 @@ import { styled } from "@mui/material";
 import { Typography } from "@mui/material";
 
 const PropHeader = styled("div")({
-  fontSize: 48,
-  padding: 5,
+  fontSize: '3rem',
+  padding: '0.3rem',
 });
 
 const PropertyHeader = () => {

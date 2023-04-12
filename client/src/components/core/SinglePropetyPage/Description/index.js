@@ -2,15 +2,16 @@ import React from "react";
 import { styled, Typography } from "@mui/material";
 
 const DescriptionContainer = styled("div")({
-  marginTop: 85,
-  borderRadius: 20,
+  marginTop: "5rem",
+  borderRadius: "1.25rem",
   borderStyle: "solid",
-  borderWidth: 1,
+  borderWidth: "0.06rem",
   borderColor: "#B2BEB5",
-  paddingTop: 50,
-  paddingLeft: 80,
-  paddingRight: 80,
-  paddingBottom: 50,
+  paddingTop: "3.1rem",
+  paddingLeft: "5rem",
+  paddingRight: "5rem",
+  paddingBottom: "3.1rem",
+  marginBottom: "5rem"
 });
 
 const Description = () => {
