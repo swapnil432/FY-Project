@@ -6,7 +6,7 @@ import SaleDeedForm from './saleDeedForm'
 
 const SaleDeed = () => {
   return (
-    <Container sx={{ marginTop: '8rem'}}>
+    <Container sx={{ marginTop: '10rem', marginBottom: "10rem"}}>
         <SDheader />
         <SaleDeedForm />
     </Container>

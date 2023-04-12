@@ -35,7 +35,7 @@ const SDform = () => {
               sx={{ marginTop: '2.5rem', marginBottom: '4rem', width: "60%" }}
         />
         </Container>
-        <Button variant="contained" sx={{ paddingLeft: '2rem', paddingRight: '2rem', marginBottom: '1rem' }}>
+        <Button variant="contained" sx={{ paddingLeft: '2rem', paddingRight: '2rem'}}>
           Sign and Send Sale Deed
         </Button>
     </Box>

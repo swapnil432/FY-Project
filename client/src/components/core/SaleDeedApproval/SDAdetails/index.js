@@ -30,10 +30,10 @@ const Details = () => {
             </SubInfo>
         </Info>
 
-        <Button variant="contained" color="success" sx={{ paddingLeft: '2rem', paddingRight: '2rem', marginBottom: '1rem', marginTop: "2.5rem", marginRight: "2rem" }}>
+        <Button variant="contained" color="success" sx={{ paddingLeft: '2rem', paddingRight: '2rem', marginTop: "2.5rem", marginRight: "2rem" }}>
             Approve
         </Button>
-        <Button variant="contained" color="error" sx={{ paddingLeft: '2rem', paddingRight: '2rem', marginBottom: '1rem', marginTop: "2.5rem" }}>
+        <Button variant="contained" color="error" sx={{ paddingLeft: '2rem', paddingRight: '2rem', marginTop: "2.5rem" }}>
             Reject
         </Button>
     </Box>

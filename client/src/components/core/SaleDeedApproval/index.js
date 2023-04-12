@@ -12,7 +12,7 @@ const InfoContainer = styled('div')({
 
 const SaleDeedApproval = () => {
   return (
-    <Container sx={{ marginTop: '10rem', display: 'flex'}} >
+    <Container sx={{ marginTop: '12rem', marginBottom: "12rem", display: 'flex'}} >
         <InfoContainer>
             <SDAheader />
             <SDAdetails />

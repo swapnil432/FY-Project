@@ -6,7 +6,6 @@ const PropImg = styled('div')({
     width: '36rem',
     height: '26rem',
     marginTop: "1.5rem",
-    marginBottom: "5rem"
 })
 
 const PropertyImg = () => {
