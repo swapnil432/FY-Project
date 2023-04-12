@@ -1,17 +1,24 @@
 import React from "react";
 import { styled, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid";
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
+import SecurityIcon from '@mui/icons-material/Security';
+import SquareFootIcon from '@mui/icons-material/SquareFoot';
+import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
+import BathtubOutlinedIcon from '@mui/icons-material/BathtubOutlined';
+import OpacityOutlinedIcon from '@mui/icons-material/OpacityOutlined';
+
 
 const OverView = styled("div")({
-  marginTop: 85,
-  width: "100%",
-  borderRadius: 20,
+  marginTop: '5.3rem',
+  width: "60%",
+  borderRadius: '1.25rem',
   borderStyle: "solid",
-  borderWidth: 1,
+  borderWidth: "0.06rem",
   borderColor: "#B2BEB5",
-  paddingTop: 50,
-  paddingLeft: 80,
-  paddingRight: 80,
+  paddingTop: '3.1rem',
+  paddingLeft: '5rem',
+  paddingRight: "5rem",
 });
 
 const OverViewSingle = styled("div")({
@@ -22,9 +29,9 @@ const OverViewSingle = styled("div")({
 });
 
 const IconImage = styled("div")({
-  marginRight: 15,
-  height: 70,
-  width: 70,
+  marginRight: "0.9rem",
+  height: '4.3rem',
+  width: "4.3rem",
 });
 
 const Overview = () => {
@@ -37,11 +44,12 @@ const Overview = () => {
         <Grid item xs={6}>
           <OverViewSingle>
             <IconImage>
-              <img
+              {/* <img
                 src="/home-work.svg"
                 alt="bathtub"
                 style={{ height: "100%", width: "100%" }}
-              />
+              /> */}
+              <HomeOutlinedIcon sx={{color: "#3859F7", height: "100%", width: "100%" }} />
             </IconImage>
             <Typography variant="h5">Apartment</Typography>
           </OverViewSingle>
@@ -49,11 +57,12 @@ const Overview = () => {
         <Grid item xs={6}>
           <OverViewSingle>
             <IconImage>
-              <img
+              {/* <img
                 src="/distance.svg"
                 alt="bathtub"
                 style={{ height: "100%", width: "100%" }}
-              />
+              /> */}
+              <LocationOnOutlinedIcon sx={{color: "#3859F7", height: "100%", width: "100%" }} />
             </IconImage>
             <Typography variant="h5">Ponda, Goa</Typography>
           </OverViewSingle>
@@ -64,11 +73,12 @@ const Overview = () => {
         <Grid item xs={6}>
           <OverViewSingle>
             <IconImage>
-              <img
+              {/* <img
                 src="/local-police.svg"
                 alt="bathtub"
                 style={{ height: "100%", width: "100%" }}
-              />
+              /> */}
+              <SecurityIcon sx={{color: "#3859F7", height: "100%", width: "100%" }} />
             </IconImage>
             <Typography variant="h5">Gated Security</Typography>
           </OverViewSingle>
@@ -76,11 +86,12 @@ const Overview = () => {
         <Grid item xs={6}>
           <OverViewSingle>
             <IconImage>
-              <img
+              {/* <img
                 src="/bathtub.svg"
                 alt="bathtub"
                 style={{ height: "100%", width: "100%" }}
-              />
+              /> */}
+              <BathtubOutlinedIcon sx={{color: "#3859F7", height: "100%", width: "100%" }} />
             </IconImage>
             <Typography variant="h5">Bathroom</Typography>
           </OverViewSingle>
@@ -91,11 +102,12 @@ const Overview = () => {
         <Grid item xs={6}>
           <OverViewSingle>
             <IconImage>
-              <img
+              {/* <img
                 src="/door-sliding.svg"
                 alt="bathtub"
                 style={{ height: "100%", width: "100%" }}
-              />
+              /> */}
+              <SquareFootIcon sx={{color: "#3859F7", height: "100%", width: "100%" }} />
             </IconImage>
             <Typography variant="h5">224 m2</Typography>
           </OverViewSingle>
@@ -103,13 +115,14 @@ const Overview = () => {
         <Grid item xs={6}>
           <OverViewSingle>
             <IconImage>
-              <img
+              {/* <img
                 src="/home-work.svg"
                 alt="bathtub"
                 style={{ height: "100%", width: "100%" }}
-              />
+              /> */}
+              <OpacityOutlinedIcon sx={{color: "#3859F7", height: "100%", width: "100%" }} />
             </IconImage>
-            <Typography variant="h5">Gated Security</Typography>
+            <Typography variant="h5">Water Supply</Typography>
           </OverViewSingle>
         </Grid>
       </Grid>

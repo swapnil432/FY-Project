@@ -3,20 +3,20 @@ import { styled, Typography, Button } from "@mui/material";
 import BtnButton from "@/components/common/BtnButton/BtnButton";
 
 const PriceCardContainer = styled("div")({
-  marginTop: 85,
-  width: 400,
-  height: 420,
+  marginTop: '5.3rem',
+  width: '26rem',
+  height: "26.8rem",
   backgroundColor: "#E9ECFE",
-  paddingTop: 50,
-  paddingLeft: 40,
-  paddingRight: 40,
-  borderRadius: 20,
+  paddingTop: '3rem',
+  paddingLeft: '2.5rem',
+  paddingRight: '2.5rem',
+  borderRadius: '1.25rem',
 });
 
 const ButtonContainer = styled("div")({
   display: "flex",
   flexDirection: "column",
-  marginTop: 30,
+  marginTop: '1.8rem',
 });
 
 const PriceCard = () => {
