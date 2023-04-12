@@ -20,6 +20,9 @@ const UserDetail = () => {
   const { state, dispatch } = useContext(Context);
   const { user } = state;
   const [userId, setUserId] = useState("");
+
+  const [profileImage, setProfileImage] = useState("");
+  const [adhaarImage, setAdhaarImage] = useState("");
   // const { user } = user;
   const handelchange = (text) => (e) => {
     setValues({ ...values, [text]: e.target.value });
@@ -70,6 +73,7 @@ const UserDetail = () => {
     <Box>
       <Container sx={{ marginTop: "8rem" }}>
         <h3>User Details</h3>
+        <form onSubmit={submitform}>
         <Grid
           container
           sx={{ marginTop: "2rem", width: "100%" }}
@@ -80,67 +84,80 @@ const UserDetail = () => {
             <TextField
               id="outlined-basic"
               label="Name"
+              type="text"
+              required
               variant="outlined"
               onChange={handelchange("name")}
-              sx={{ m: 1, width: "100%" }}
+              sx={{ m: 1, ml: 0, width: "100%" }}
             />
             <TextField
               id="outlined-basic"
               label="Age"
+              required
+              type="number"
+              InputProps={{
+                inputProps: { 
+                    min: 1 
+                }
+            }}
               onChange={handelchange("age")}
               variant="outlined"
-              sx={{ m: 1, width: "100%" }}
+              sx={{ m: 1, ml: 0, width: "100%" }}
             />
             <TextField
               id="outlined-basic"
+              type="text"
               label="Gender"
+              required
               onChange={handelchange("gender")}
               variant="outlined"
-              sx={{ m: 1, width: "100%" }}
-            />
-            <input
-              accept="image/*"
-              onChange={(e) => {
-                console.log(e.target.files[0]);
-              }}
-              type="file"
+              sx={{ m: 1, ml: 0, width: "100%" }}
             />
             <UploadFile
-              onChange={(e) => {
-                console.log(e.target.files[0]);
-              }}
-            >
-              Upload Aadhar Card
-            </UploadFile>
+              text={"Upload Aadhar Card"}
+              setState={setAdhaarImage}
+              srcUrl={adhaarImage}
+            />
           </Grid>
           <Grid item xs={6}>
             <TextField
               id="outlined-basic"
               label="Email id"
+              type="Email"
+              required
               onChange={handelchange("email")}
               variant="outlined"
-              sx={{ m: 1, width: "100%" }}
+              sx={{ m: 1, ml: 0, width: "100%" }}
             />
             <TextField
               id="outlined-basic"
               label="Phone"
+              type="number"
+              required
               onChange={handelchange("phone")}
               variant="outlined"
-              sx={{ m: 1, width: "100%" }}
+              sx={{ m: 1, ml: 0, width: "100%" }}
             />
             <TextField
               id="outlined-basic"
               label="Aadhar Card Number"
+              required
+              type="number"
               onChange={handelchange("aadhar")}
               variant="outlined"
-              sx={{ m: 1, width: "100%" }}
+              sx={{ m: 1, ml: 0, width: "100%" }}
             />
-            <UploadFile onChange={onSelectFile}>Upload your Photo</UploadFile>
+            <UploadFile
+              text={"Upload your Photo"}
+              setState={setProfileImage}
+              srcUrl={profileImage}
+            />
           </Grid>
         </Grid>
-        <Button variant="contained" onClick={submitform}>
+        <Button variant="contained" type="submit">
           Submit
         </Button>
+        </form>
         {/* <BtnButton color={"primary"}>Submit</BtnButton> */}
       </Container>
     </Box>
