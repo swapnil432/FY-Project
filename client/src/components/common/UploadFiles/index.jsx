@@ -35,22 +35,4 @@ const UploadFile = ({ text, srcUrl, setState }) => {
 };
 
 export default UploadFile;
-{
-  /*
-      <Button variant="contained" color="primary" component="span">
-      {children}
-      <input
-        accept="image/*"
-        type="file"
-        id="select-image"
-        style={{ display: "none" }}
-      />
-    </Button>
-  <UploadBox component="label">
-        <Stack sx={{ alignItems: "center" }}>
-          <CloudUploadIcon sx={{ fontSize: "4rem" }} />
-          {children}
-        </Stack>
-        <input hidden accept="image/*"  type="file" />
-      </UploadBox> */
-}
+
