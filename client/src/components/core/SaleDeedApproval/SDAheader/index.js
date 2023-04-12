@@ -1,19 +1,11 @@
 import { styled } from '@mui/material';
-
-const Header = styled("div")({
-    fontSize: '3rem',
-    // padding: '0.3rem',
-});
-
-const User = styled("div")({
-    marginBottom: '1rem'
-})
+import Typography from '@mui/material/Typography';
 
 const SaleDeedHeader = () => {
   return (
     <>
-        <User>HELLO JOHN DOE</User>
-        <Header>Sale Deed Creation</Header>
+        <Typography variant='subtitle1' sx={{ marginBottom: '1rem'}}>HELLO JOE DOE</Typography>
+        <Typography variant='h3'>Sale Deed Approval</Typography>
     </>
   )
 }
