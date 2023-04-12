@@ -4,7 +4,7 @@ import React from 'react'
 const notification = () => {
   return (
     <div>
-        <NotificationCard type="offer" status="success"/>
+        <NotificationCard type="document" status="success"/>
     </div>
   )
 }
