@@ -47,8 +47,9 @@ export const logout = async (res, req) => {
 export const uploadUserInfo = async (req, res) => {
   const userId = req.params.id;
   const { id, name, email, age, phone, gender, aadhar } = req.body;
-  // console.log("inininininin");
-  console.log(userId);
+  console.log(userId, req.body, req.file);
+  console.log(req.files["image1"][0]);
+
   User.findOne({ _id: userId }, (err, user) => {
     if (err || !user) {
       return res.status(400).json({
@@ -61,6 +62,8 @@ export const uploadUserInfo = async (req, res) => {
     user.phone = phone;
     user.gender = gender;
     user.aadhar = aadhar;
+    user.user_photo = req.files["image1"][0].filename;
+    user.user_aadhar_photo = req.files["image2"][0].filename;
     user.is_complete = true;
     user.save((err, updatedUser) => {
       if (err) {

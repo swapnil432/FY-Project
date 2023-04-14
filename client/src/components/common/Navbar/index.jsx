@@ -8,7 +8,7 @@ import {
   IconButton,
   Menu,
 } from "@mui/material";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import mypic from "@/images/Logo/Vector.png";
 import Image from "next/image";
 import Link from "next/link";
@@ -37,7 +37,9 @@ const NavItem = styled(Button)({
 const Navbar = () => {
   const { state, dispatch } = useContext(Context);
   // const [anchorEl, setAnchorEl] =
-
+  // useEffect(() => {
+  //   console.log(state.user._id);
+  // }, []);
   const router = useRouter();
   const handleClose = () => {
     setAnchorEl(null);
@@ -88,6 +90,15 @@ const Navbar = () => {
                 </NavItem>
                 <NavItem>About</NavItem>
                 <NavItem>Contact</NavItem>
+                {state.user !== null ? (
+                  <NavItem>
+                    <Link href="/propertyinfo">Sell Property</Link>
+                  </NavItem>
+                ) : (
+                  <NavItem>
+                    <Link href="/"></Link>
+                  </NavItem>
+                )}
               </Stack>
 
               {state.user !== null ? (
@@ -104,25 +115,6 @@ const Navbar = () => {
                     </IconButton>
                     Logout
                   </Button>
-
-                  {/* <Menu
-                    id="menu-appbar"
-                    anchorEl={anchorEl}
-                    anchorOrigin={{
-                      vertical: "top",
-                      horizontal: "right",
-                    }}
-                    keepMounted
-                    transformOrigin={{
-                      vertical: "top",
-                      horizontal: "right",
-                    }}
-                    open={Boolean(anchorEl)}
-                    onClose={handleClose}
-                  >
-                    <MenuItem onClick={handleClose}>Profile</MenuItem>
-                    <MenuItem onClick={handleClose}>My account</MenuItem>
-                  </Menu> */}
                 </div>
               ) : (
                 <Link href="login">
