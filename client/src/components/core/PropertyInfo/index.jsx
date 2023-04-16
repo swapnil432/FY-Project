@@ -84,23 +84,23 @@ const PropertyInfo = () => {
             alert(response.data.message);
           })
           .catch((err) => {
-            console.log("documents", err);
+            console.log(err);
             alert("something wrong");
           });
-         setValues({
-           ...values,
-           name: "",
-           email: "",
-           age: "",
-           phone: "",
-           gender: "",
-           aadhar: "",
-           image1: "",
-           image2: "",
-         });
+        setValues({
+          ...values,
+          name: "",
+          email: "",
+          age: "",
+          phone: "",
+          gender: "",
+          aadhar: "",
+          image1: "",
+          image2: "",
+        });
       })
       .catch((err) => {
-        console.log("documents", err);
+        console.log(err);
         setValues({
           ...values,
           name: "",

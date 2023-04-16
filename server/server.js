@@ -57,4 +57,4 @@ async function seedUser() {
   console.log("User created successfully");
 }
 
-seedUser();
+// seedUser();

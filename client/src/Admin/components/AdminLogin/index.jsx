@@ -1,8 +1,42 @@
 import { Container, Stack, Box, TextField, Button } from "@mui/material";
+import axios from "axios";
 import Image from "next/image";
-import React from "react";
+import { useRouter } from "next/router";
+import React, { useState } from "react";
 
 const AdminLogin = () => {
+  const router = useRouter();
+  const [values, setValues] = useState({
+    email: "",
+    password: "",
+  });
+  const { email, password } = values;
+  const handelchange = (text) => (e) => {
+    setValues({ ...values, [text]: e.target.value });
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    axios({
+      method: "POST",
+      url: "/api/adminlogin/",
+      data: values,
+    })
+      .then((response) => {
+        // window.localStorage.setItem("token", response.data.token);
+        console.log(response);
+        window.localStorage.setItem(
+          "token",
+          JSON.stringify(response.data.token)
+        );
+        alert("Hello");
+        // router.push("/admin/dashboard");
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("something wrong");
+      });
+  };
   return (
     <Container
       sx={{
@@ -12,7 +46,7 @@ const AdminLogin = () => {
         height: "100vh",
       }}
     >
-      <form>
+      <form onSubmit={handleSubmit}>
         <Box
           sx={{
             mt: 1,
@@ -45,6 +79,7 @@ const AdminLogin = () => {
             required
             fullWidth
             id="email"
+            onChange={handelchange("email")}
             label="Email Address"
             name="email"
             autoComplete="email"
@@ -55,6 +90,7 @@ const AdminLogin = () => {
             required
             fullWidth
             name="password"
+            onChange={handelchange("password")}
             label="Password"
             type="password"
             id="password"
@@ -66,7 +102,7 @@ const AdminLogin = () => {
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
           >
-            Sign In
+            Log In
           </Button>
         </Box>
       </form>
