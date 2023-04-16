@@ -1,4 +1,4 @@
-const Admin = require("./models/admin");
+const Admin = require("../models/admin");
 
 async function seedUser() {
   const username = "Admin";
