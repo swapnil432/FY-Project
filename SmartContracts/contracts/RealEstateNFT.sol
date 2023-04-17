@@ -14,6 +14,7 @@ contract RealEstateNFT {
         uint256 tax;
         address approvedBuyer;
         bool isValid;
+        uint256 id;
         // Transaction[] transactions;
     }
 
@@ -30,7 +31,8 @@ contract RealEstateNFT {
         uint256 price,
         uint256 tax,
         address approvedBuyer,
-        bool isValid
+        bool isValid,
+        uint256 id
     );
 
     event change_Price (
@@ -38,7 +40,9 @@ contract RealEstateNFT {
         uint256 price,
         uint256 tax,
         address approvedBuyer,
-        bool isValid
+        bool isValid,
+        uint256 id
+
     );
 
     event buy_Property (
@@ -46,7 +50,8 @@ contract RealEstateNFT {
         uint256 price,
         uint256 tax,
         address approvedBuyer,
-        bool isValid
+        bool isValid,
+        uint256 id
     );
 
     mapping(uint256 => Transaction[]) public transactions;
@@ -83,7 +88,8 @@ contract RealEstateNFT {
             price: 0,
             tax: 0,
             approvedBuyer: address(0),
-            isValid: true
+            isValid: true,
+            id:propertyCounter
             // transactions: new Transaction[]
             
         });
@@ -103,7 +109,7 @@ contract RealEstateNFT {
         Property storage property = properties[_propertyId];
         require(property.owner == msg.sender, "Only the owner can approve sale.");
         property.approvedBuyer = _buyer;
-        emit approve_Property(property.owner, property.price, property.tax, property.approvedBuyer, property.isValid);
+        emit approve_Property(property.owner, property.price, property.tax, property.approvedBuyer, property.isValid, property.id);
     }
 
     function transfer(uint256 _propertyId) public payable onlyValid(_propertyId){
@@ -122,7 +128,7 @@ contract RealEstateNFT {
         }));
         property.owner = payable(msg.sender);
 
-        emit buy_Property(property.owner, property.price, property.tax, property.approvedBuyer, property.isValid);
+        emit buy_Property(property.owner, property.price, property.tax, property.approvedBuyer, property.isValid, property.id);
         // emit sell_Transaction(transactions[_propertyId][0].previousOwner, transactions[_propertyId][1].newOwner, transactions[_propertyId][2].price, transactions[_propertyId][3].timestamp);
 
         property.approvedBuyer = address(0);
@@ -141,7 +147,7 @@ contract RealEstateNFT {
     function changePrice(uint256 _propertyId, uint256 newPrice) public onlyValid(_propertyId){
         require(msg.sender == properties[_propertyId].owner, "you have to own the property");
         properties[_propertyId].price = newPrice;
-        emit change_Price(properties[_propertyId].owner, properties[_propertyId].price, properties[_propertyId].tax, properties[_propertyId].approvedBuyer, properties[_propertyId].isValid);
+        emit change_Price(properties[_propertyId].owner, properties[_propertyId].price, properties[_propertyId].tax, properties[_propertyId].approvedBuyer, properties[_propertyId].isValid, properties[_propertyId].id);
         
     }
 
