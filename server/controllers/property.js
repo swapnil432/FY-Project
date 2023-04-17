@@ -62,3 +62,57 @@ export const uploadPropertyImages = (req, res) => {
     });
   });
 };
+
+export const getPropertyData = (req, res) => {
+  const id = req.params.id;
+  Property.findOne({ _id: id, is_verified: true }).exec((err, property) => {
+    if (property) {
+      return res.status(200).json({
+        property,
+      });
+    }
+    if (err || !property) {
+      return res.status(400).json({
+        error: "Property not found",
+      });
+    }
+  });
+};
+
+export const getProperty = (req, res) => {
+  Property.find({ is_verified: true }, (err, properties) => {
+    if (err) {
+      return res.status(400).json({
+        error: "Some Error",
+      });
+    }
+    if (err || !property) {
+      return res.status(400).json({
+        error: "No Properties found",
+      });
+    }
+    return res.status(200).json(properties);
+  });
+};
+
+// export const statusReject = (req, res) => {
+//   const id = req.params.id;
+//   Property.findOne({ _id: id }).exec((err, property) => {
+//     if (err) {
+//       return res.status(400).json({
+//         error: "Some Error",
+//       });
+//     }
+//     if (property) {
+//       property.status = 3;
+//       property.save((err, updateapp) => {
+//         if (err) {
+//           return res.status(400).json({
+//             error: "property update failed",
+//           });
+//         }
+//         return res.status(200).json(updateapp);
+//       });
+//     }
+//   });
+// };
