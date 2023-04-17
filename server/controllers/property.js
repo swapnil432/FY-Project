@@ -95,24 +95,3 @@ export const getProperty = (req, res) => {
   });
 };
 
-// export const statusReject = (req, res) => {
-//   const id = req.params.id;
-//   Property.findOne({ _id: id }).exec((err, property) => {
-//     if (err) {
-//       return res.status(400).json({
-//         error: "Some Error",
-//       });
-//     }
-//     if (property) {
-//       property.status = 3;
-//       property.save((err, updateapp) => {
-//         if (err) {
-//           return res.status(400).json({
-//             error: "property update failed",
-//           });
-//         }
-//         return res.status(200).json(updateapp);
-//       });
-//     }
-//   });
-// };
