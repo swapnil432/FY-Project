@@ -8,6 +8,7 @@ import {
   Drawer,
   List,
   ListItem,
+  ListItemButton,
   ListItemIcon,
   ListItemText,
 } from "@mui/material";
@@ -17,7 +18,11 @@ import GroupIcon from "@mui/icons-material/Group";
 import ApartmentIcon from "@mui/icons-material/Apartment";
 import Image from "next/image";
 import { ChevronLeft } from "@mui/icons-material";
-
+import PropDetailsPage from "../PropDetailsPage";
+import PropertyVerify from "../PropertyVerify";
+import AdminUsers from "@/Admin/components/AdminUsers";
+import Link from "next/link";
+import AdminDocuments from "../AdminDocuments";
 const Nav = styled(Box)({
   boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
   display: "flex",
@@ -35,6 +40,9 @@ const NavItem = styled(Button)({
 const AdminNavbar = () => {
   const [leftDrawer, setLeftDrawer] = useState(false);
   const [navwidth, setNavwidth] = useState(0);
+  const [pageNum, setPageNum] = React.useState(true);
+  const [showProperty,setShowProperty] = React.useState(false);
+  const [showdocument,setShowDocument] = React.useState(false);
 
   const toggleDrawer = (open) => (event) => {
     setLeftDrawer(open);
@@ -50,18 +58,18 @@ const AdminNavbar = () => {
             </ListItemIcon>
           </ListItem>
         </IconButton>
-        <ListItem button>
+        <ListItemButton onClick={()=>{setPageNum(1) ;setShowProperty(false); setShowDocument(false)}}>
           <ListItemIcon>
             <GroupIcon />
           </ListItemIcon>
           <ListItemText primary="Users" />
-        </ListItem>
-        <ListItem button>
+        </ListItemButton>
+        <ListItemButton onClick={()=>{setPageNum(2) ;setShowProperty(false);setShowDocument(false)}}>
           <ListItemIcon>
             <ApartmentIcon />
           </ListItemIcon>
           <ListItemText primary="Property" />
-        </ListItem>
+        </ListItemButton>
       </List>
     </Box>
   );
@@ -97,6 +105,7 @@ const AdminNavbar = () => {
               alt="Logo"
               fill
               objectFit="contain"
+              onClick={()=>{setShowProperty(false); setShowDocument(false)}}
             />
           </div>
           <Typography
@@ -114,6 +123,17 @@ const AdminNavbar = () => {
           {list()}
         </Drawer>
       </Nav>
+      {
+      showProperty===true?
+        (<PropDetailsPage showProperty={showProperty} setShowProperty={setShowProperty}/>):
+          pageNum==1?
+        (
+          showdocument === true ?
+          
+          (<AdminDocuments setShowProperty={setShowProperty}/>):(<AdminUsers  setShowDocument={setShowDocument}/>) )
+          
+          :(<PropertyVerify showProperty={showProperty} setShowProperty={setShowProperty}/>)
+      }
     </AppBar>
   );
 };

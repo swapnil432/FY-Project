@@ -3,6 +3,7 @@ import APDheader from './APDheader'
 import ImageGallery from './ImageGallery'
 import Details from './Details'
 import { styled, Container, Button, Box } from '@mui/material'
+import Carouselpage from './Carouselpage'
 
 const Flex1 = styled('div')({
     display: 'flex',
@@ -12,7 +13,7 @@ const Flex1 = styled('div')({
 
 const AdminPropertyDetails = () => {
   return (
-    <Container sx={{ marginTop: '12rem', marginBottom: '10rem' }}>
+    <Container sx={{ marginTop: '2rem', marginBottom: '10rem' }}>
         <Flex1>
             <APDheader />
             <Box>
@@ -25,7 +26,8 @@ const AdminPropertyDetails = () => {
             </Box>
             
         </Flex1>
-        <ImageGallery />
+        {/* <ImageGallery /> */}
+        <Carouselpage/>
         <Details />
     </Container>
   )

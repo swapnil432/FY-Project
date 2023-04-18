@@ -1,7 +1,7 @@
 import React from 'react'
 import { styled, Box } from '@mui/material'
 import Grid from "@mui/material/Grid";
-
+import Carouselpage from '../Carouselpage';
 
 const MainImg = styled('div')({
     width: '100%',
@@ -17,6 +17,8 @@ const GridImg = styled('div')({
 const ImageGallery = () => {
   return (
     <Box sx={{ marginBottom: '2rem' }}>
+
+        <Carouselpage/>
         <MainImg>
             <img src='/Rectangle116.png' alt='property' style={{ height: '100%', width: '100%'}}/>
         </MainImg>  
@@ -63,13 +65,7 @@ const ImageGallery = () => {
             
       </Grid>
             
-                {/* <Grid item xs={6}>
-                    <img
-                    src="/Rectangle110.png"
-                    alt="property"
-                    style={{ height: "11rem", width: "100%" }}
-                    />
-                </Grid> */}
+                
         </GridImg>
     </Box>
   )
