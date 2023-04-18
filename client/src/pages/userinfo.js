@@ -12,6 +12,9 @@ const userinfo = () => {
     if (!window.localStorage.getItem("user")) {
       router.push("/login");
     }
+    if (state && state?.user?.is_complete) {
+      router.push("/login");
+    }
   }, [state]);
 
   return <UserDetail />;

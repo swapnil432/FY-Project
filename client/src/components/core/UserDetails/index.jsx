@@ -82,7 +82,6 @@ const UserDetail = () => {
         console.log(response);
         alert(response.data.message);
         setValues({
-          ...values,
           name: "",
           email: "",
           age: "",
@@ -96,7 +95,6 @@ const UserDetail = () => {
       .catch((err) => {
         console.log("something wrong");
         setValues({
-          ...values,
           name: "",
           email: "",
           age: "",
