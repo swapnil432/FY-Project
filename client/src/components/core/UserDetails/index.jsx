@@ -81,6 +81,9 @@ const UserDetail = () => {
       .then((response) => {
         console.log(response);
         alert(response.data.message);
+        window.localStorage.removeItem("user");
+        window.localStorage.setItem("user", JSON.stringify(response.data));
+        dispatch("LOGIN", JSON.stringify(response.data.user))
         setValues({
           name: "",
           email: "",

@@ -73,6 +73,7 @@ export const uploadUserInfo = async (req, res) => {
         });
       }
       return res.status(200).json({
+        user,
         message: "User Details Uploaded",
       });
     });
