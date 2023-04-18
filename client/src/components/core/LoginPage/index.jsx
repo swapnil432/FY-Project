@@ -11,9 +11,11 @@ const LoginPage = () => {
   const { state, dispatch } = useContext(Context);
   const { user } = state;
   const router = useRouter();
+
   useEffect(() => {
     if (user !== null) router.push("/");
   }, [user]);
+  
   return (
     <div
       style={{

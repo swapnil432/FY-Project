@@ -8,7 +8,7 @@ import {
   IconButton,
   Menu,
 } from "@mui/material";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import mypic from "@/images/Logo/Vector.png";
 import Image from "next/image";
 import Link from "next/link";
@@ -36,7 +36,12 @@ const NavItem = styled(Button)({
 
 const Navbar = () => {
   const { state, dispatch } = useContext(Context);
-  // const [anchorEl, setAnchorEl] =
+  
+
+  useEffect(()=>{
+    if(state?.user){
+    }
+  },[state])
 
   const router = useRouter();
   const handleClose = () => {
@@ -93,15 +98,15 @@ const Navbar = () => {
               {state.user !== null ? (
                 <div>
                   <Button onClick={() => logout()} variant="contained">
-                    <IconButton
+                    {/* <IconButton
                       size="large"
                       aria-label="account of current user"
                       aria-controls="menu-appbar"
                       aria-haspopup="true"
                       color="inherit"
-                    >
+                    > */}
                       <AccountCircle />
-                    </IconButton>
+                    {/* </IconButton> */}
                     Logout
                   </Button>
 
