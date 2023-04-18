@@ -12,7 +12,7 @@ import {
   ListItemIcon,
   ListItemText,
 } from "@mui/material";
-import React, { useState } from "react";
+import { useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import GroupIcon from "@mui/icons-material/Group";
 import ApartmentIcon from "@mui/icons-material/Apartment";
@@ -40,9 +40,9 @@ const NavItem = styled(Button)({
 const AdminNavbar = () => {
   const [leftDrawer, setLeftDrawer] = useState(false);
   const [navwidth, setNavwidth] = useState(0);
-  const [pageNum, setPageNum] = React.useState(true);
-  const [showProperty,setShowProperty] = React.useState(false);
-  const [showdocument,setShowDocument] = React.useState(false);
+  const [pageNum, setPageNum] = useState(true);
+  const [showProperty,setShowProperty] = useState(false);
+  const [showdocument,setShowDocument] = useState(false);
 
   const toggleDrawer = (open) => (event) => {
     setLeftDrawer(open);

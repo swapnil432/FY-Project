@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Link from '@mui/material/Link';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -12,61 +11,23 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import AdminDocuments from '../AdminDocuments';
-
-// Generate Order Data
-function createData(id, orderid, date, name, shipTo, paymentMethod, status) {
-  return { id, orderid, date, name, shipTo, paymentMethod, status };
-}
-
-const rows = [
-  createData(
-    0,
-    '#0001',
-    '16 Mar, 2019',
-    'Elvis Presley',
-    'Tupelo, MS',
-    'Vasco, Goa',
-    'Approved',
-  ),
-  createData(
-    1,
-    '#00042',
-    '16 Mar, 2019',
-    'Paul McCartney',
-    'House1',
-    'Old Goa, Panaji, Goa',
-    'Rejected',
-  ),
-  createData(2, '#00019', '16 Mar, 2019', 'Tom Scholz', 'Bunglow 2', 'Chicalim, Goa', 'pending'),
-  createData(
-    3,
-    '#00023',
-    '16 Mar, 2019',
-    'Michael Jackson',
-    'Gary, IN',
-    'HeadLand, Sada, Goa',
-    'Pending',
-  ),
-  createData(
-    4,
-    '#00021',
-    '15 Mar, 2019',
-    'Bruce Springsteen',
-    'Long Branch, NJ',
-    'Mangor Hill, Vasco Da-gama, Goa',
-    'Approved',
-  ),
-  createData(2, '#00019', '16 Mar, 2019', 'Tom Scholz', 'Bunglow 2', 'Chicalim, Goa', 'pending'),
-  createData(2, '#00019', '16 Mar, 2019', 'Tom Scholz', 'Bunglow 2', 'Chicalim, Goa', 'pending'),
-];
-
-function preventDefault(event) {
-  event.preventDefault();
-}
+import { useEffect, useState } from 'react';
 
 export default function AdminUsers({setShowDocument}) {
-  const [action, setAction] = React.useState('');
-
+  const [action, setAction] = useState('');
+  const [rows, setRows] = useState([]);
+  useEffect(() => {
+    setRows([{
+      "id": 4,
+      "orderid":'#00021',
+      "date":'15 Mar, 2019',
+      "name":'Bruce Springsteen',
+      "shipTo":'Long Branch, NJ',
+      "paymentMethod":'Mangor Hill, Vasco Da-gama, Goa',
+      "status":'Approved'
+  }])
+  }, [])
+  
   const handleChange = (event) => {
     setAction(event.target.value);
   };
@@ -112,14 +73,12 @@ export default function AdminUsers({setShowDocument}) {
                 </Select>
               </FormControl>
             </TableCell>
-            {/* {showdocument===true?<AdminDocuments/>:null} */}
+
             </TableRow>
           ))}
         </TableBody>
       </Table>
-      <Link color="primary" href="#" onClick={preventDefault} sx={{ mt: 3 }}>
-        See more orders
-      </Link>
+
       </>
   );  
 }

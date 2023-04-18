@@ -13,7 +13,7 @@ export default function App({ Component, pageProps }) {
     <>
       <Provider>
         {!exclude && !excludeAdmin && <Navbar />}
-        {!exclude && excludeAdmin && <AdminNavbar />}
+        {/* {!exclude && excludeAdmin && <AdminNavbar />} */}
         <Component {...pageProps} />
         {!exclude && !excludeAdmin && <Footer />}
       </Provider>

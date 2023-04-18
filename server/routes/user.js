@@ -28,7 +28,7 @@ const upload = multer({
 
 
 router.post("/registerPublicKey", getPublicKey);
-router.post("/logout", logout);
+router.get("/logout", logout);
 router.post(
   "/uploadUserInfo/:id",
   upload.fields([
