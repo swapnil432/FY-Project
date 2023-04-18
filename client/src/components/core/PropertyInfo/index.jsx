@@ -120,7 +120,7 @@ const PropertyInfo = () => {
   return (
     <Container sx={{ marginTop: "8rem" }}>
       <h3>Property Details</h3>
-      <form onSubmit={submitform} enctype="multipart/form-data">
+      <form onSubmit={submitform} encType="multipart/form-data">
         <Grid
           container
           sx={{ marginTop: "2rem", width: "100%" }}

@@ -17,8 +17,7 @@ export default function MetaMaskLogin() {
   const [walletAddress, setWalletAddress] = useState("");
   const router = useRouter();
   const { state, dispatch } = useContext(Context);
-  console.log("STATE" + state);
-
+  
   const sendPublicKey = async (wallet) => {
     await axios({
       method: "POST",

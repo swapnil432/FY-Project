@@ -51,7 +51,7 @@ const Navbar = () => {
     dispatch({
       type: "LOGOUT",
     });
-    window, localStorage.removeItem("user");
+    window.localStorage.removeItem("user");
     await axios({
       method: "GET",
       url: `/api/logout`,

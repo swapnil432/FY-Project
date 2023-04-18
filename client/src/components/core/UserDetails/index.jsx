@@ -117,7 +117,7 @@ const UserDetail = () => {
     <Box>
       <Container sx={{ marginTop: "8rem" }}>
         <h3>User Details</h3>
-        <form onSubmit={submitform} enctype="multipart/form-data">
+        <form onSubmit={submitform} encType="multipart/form-data">
           <Grid
             container
             sx={{ marginTop: "2rem", width: "100%" }}

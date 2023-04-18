@@ -8,12 +8,12 @@ const About = () => {
     <Box sx={{ padding: "3rem 0" }}>
       <Container>
         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-          <Grid xs={6}>
+          <Grid item xs={6}>
             <Box sx={{ marginLeft: "auto" }}>
               <Image src={mypic} alt="Logo" width="500" />
             </Box>
           </Grid>
-          <Grid
+          <Grid item
             xs={6}
             sx={{
               paddingRight: 4,

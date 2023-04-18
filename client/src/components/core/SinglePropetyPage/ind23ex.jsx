@@ -26,7 +26,7 @@ const SinglePropetyPage = () => {
     //     columnSpacing={{ xs: 1, sm: 2, md: 3 }}
     //     height="100%"
     //   >
-    //     <Grid xs={6}>
+    //     <Grid item xs={6}>
     //       <Image src={mypic} alt="Property Image" width="500" />
     //     </Grid>
     //     <Grid
@@ -35,11 +35,11 @@ const SinglePropetyPage = () => {
     //       rowSpacing={1}
     //       columnSpacing={{ xs: 1, sm: 2, md: 3 }}
     //     >
-    //       <Grid xs={6}>
+    //       <Grid item xs={6}>
     //         <Image src={mypic} alt="Property Image" width="500" />
     //         <Image src={mypic} alt="Property Image" width="500" />
     //       </Grid>
-    //       <Grid xs={6}>
+    //       <Grid item xs={6}>
     //         <Image src={mypic} alt="Property Image" width="500" />
     //         <Image src={mypic} alt="Property Image" width="500" />
     //       </Grid>
