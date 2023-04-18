@@ -36,10 +36,13 @@ const NavItem = styled(Button)({
 
 const Navbar = () => {
   const { state, dispatch } = useContext(Context);
-  // const [anchorEl, setAnchorEl] =
-  // useEffect(() => {
-  //   console.log(state.user._id);
-  // }, []);
+  
+
+  useEffect(()=>{
+    if(state?.user){
+    }
+  },[state])
+
   const router = useRouter();
   const handleClose = () => {
     setAnchorEl(null);
@@ -104,15 +107,15 @@ const Navbar = () => {
               {state.user !== null ? (
                 <div>
                   <Button onClick={() => logout()} variant="contained">
-                    <IconButton
+                    {/* <IconButton
                       size="large"
                       aria-label="account of current user"
                       aria-controls="menu-appbar"
                       aria-haspopup="true"
                       color="inherit"
-                    >
+                    > */}
                       <AccountCircle />
-                    </IconButton>
+                    {/* </IconButton> */}
                     Logout
                   </Button>
                 </div>

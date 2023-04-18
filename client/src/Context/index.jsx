@@ -19,6 +19,8 @@ const rootReducer = (state, action) => {
 
 const Provider = ({ children }) => {
   const [state, dispatch] = useReducer(rootReducer, initialState);
+
+
   useEffect(() => {
     // window.onunload = function () {
     //   dispatch({
@@ -26,6 +28,7 @@ const Provider = ({ children }) => {
     //   });
     //   window, localStorage.removeItem("user");
     // };
+
     dispatch({
       type: "LOGIN",
       payload: JSON.parse(window.localStorage.getItem("user")),
