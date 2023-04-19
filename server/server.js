@@ -11,7 +11,8 @@ const port = 8000;
 app.use(cors());
 app.use(express.json());
 // app.use(morgon("dev"));
-
+//for images 
+app.use('/resources',express.static(__dirname + "/public"));
 // //routes
 fs.readdirSync("./routes").map((file) =>
   app.use("/api", require(`./routes/${file}`))
