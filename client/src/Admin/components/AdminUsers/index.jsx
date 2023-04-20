@@ -13,7 +13,6 @@ import Select from "@mui/material/Select";
 import AdminDocuments from "../AdminDocuments";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Image from "next/image";
 
 export default function AdminUsers({ setShowDocument }) {
   const [action, setAction] = useState("");

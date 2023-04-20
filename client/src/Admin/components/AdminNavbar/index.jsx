@@ -5,24 +5,16 @@ import {
   styled,
   Box,
   Typography,
-  Drawer,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
+  Drawer
 } from "@mui/material";
 import { useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
-import GroupIcon from "@mui/icons-material/Group";
-import ApartmentIcon from "@mui/icons-material/Apartment";
 import Image from "next/image";
-import { ChevronLeft } from "@mui/icons-material";
 import PropDetailsPage from "../PropDetailsPage";
 import PropertyVerify from "../PropertyVerify";
 import AdminUsers from "@/Admin/components/AdminUsers";
-import Link from "next/link";
 import AdminDocuments from "../AdminDocuments";
+import ListItems from "../ListItems";
 const Nav = styled(Box)({
   boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
   display: "flex",
@@ -48,31 +40,7 @@ const AdminNavbar = () => {
     setLeftDrawer(open);
     open ? setNavwidth(175) : setNavwidth(0);
   };
-  const list = () => (
-    <Box sx={{ width: 250 }}>
-      <List>
-        <IconButton onClick={toggleDrawer(false)}>
-          <ListItem>
-            <ListItemIcon sx={{ marginLeft: 20 }}>
-              <ChevronLeft />
-            </ListItemIcon>
-          </ListItem>
-        </IconButton>
-        <ListItemButton onClick={()=>{setPageNum(1) ;setShowProperty(false); setShowDocument(false)}}>
-          <ListItemIcon>
-            <GroupIcon />
-          </ListItemIcon>
-          <ListItemText primary="Users" />
-        </ListItemButton>
-        <ListItemButton onClick={()=>{setPageNum(2) ;setShowProperty(false);setShowDocument(false)}}>
-          <ListItemIcon>
-            <ApartmentIcon />
-          </ListItemIcon>
-          <ListItemText primary="Property" />
-        </ListItemButton>
-      </List>
-    </Box>
-  );
+  
   return (
     <AppBar position="static" color="transparent">
       <Nav>
@@ -120,7 +88,7 @@ const AdminNavbar = () => {
         <Button variant="contained">Logout</Button>
 
         <Drawer anchor="left" open={leftDrawer} onClose={toggleDrawer(false)}>
-          {list()}
+          <ListItems setShowProperty={setShowProperty} setPageNum={setPageNum} setShowDocument={setShowDocument}/>
         </Drawer>
       </Nav>
       {

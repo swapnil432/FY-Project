@@ -6,7 +6,6 @@ import Typography from '@mui/material/Typography';
 import { styled, Button, Container } from '@mui/material';
 import Title from '../Title';
 import Link from 'next/link';
-import AdminPropDetails from '@/pages/AdminPropDetails';
 import PropDetailsPage from '../PropDetailsPage';
 import React, { useState, useEffect } from 'react';
 const PropertyVerify = ({showProperty,setShowProperty}) => {
