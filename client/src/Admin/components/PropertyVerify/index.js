@@ -13,8 +13,9 @@ import Link from "next/link";
 import PropDetailsPage from "../PropDetailsPage";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-const PropertyVerify = ({ showProperty, setShowProperty }) => {
+const PropertyVerify = ({ setPropertyID,showProperty, setShowProperty }) => {
   const [rows, setRows] = useState([]);
+
   const getproperty = () => {
     const allproperties = [];
     axios({
@@ -82,6 +83,7 @@ const PropertyVerify = ({ showProperty, setShowProperty }) => {
                 <Button
                   onClick={() => {
                     setShowProperty(true);
+                    setPropertyID(row.userId)
                   }}
                   variant="contained"
                   sx={{

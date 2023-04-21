@@ -11,10 +11,11 @@ const Flex1 = styled('div')({
     marginBottom: '1rem'
 })
 
-const AdminPropertyDetails = () => {
+const AdminPropertyDetails = ({propertyID,showProperty,setShowProperty}) => {
   return (
     <Container sx={{ marginTop: '2rem', marginBottom: '10rem' }}>
         <Flex1>
+        propertyID: {propertyID}
             <APDheader />
             <Box>
                 <Button variant="contained" color="success" sx={{ paddingLeft: '2rem', paddingRight: '2rem', marginTop: "2.5rem", marginRight: "2rem" }}>

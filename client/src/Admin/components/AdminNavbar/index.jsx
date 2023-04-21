@@ -35,6 +35,7 @@ const AdminNavbar = () => {
   const [pageNum, setPageNum] = useState(true);
   const [showProperty,setShowProperty] = useState(false);
   const [showdocument,setShowDocument] = useState(false);
+  const [propertyID,setPropertyID] = useState(null);
 
   const toggleDrawer = (open) => (event) => {
     setLeftDrawer(open);
@@ -93,14 +94,14 @@ const AdminNavbar = () => {
       </Nav>
       {
       showProperty===true?
-        (<PropDetailsPage showProperty={showProperty} setShowProperty={setShowProperty}/>):
+        (<PropDetailsPage propertyID={propertyID} showProperty={showProperty} setShowProperty={setShowProperty}/>):
           pageNum==1?
         (
           showdocument === true ?
           
           (<AdminDocuments setShowProperty={setShowProperty}/>):(<AdminUsers  setShowDocument={setShowDocument}/>) )
           
-          :(<PropertyVerify showProperty={showProperty} setShowProperty={setShowProperty}/>)
+          :(<PropertyVerify setPropertyID={setPropertyID}  showProperty={showProperty} setShowProperty={setShowProperty}/>)
       }
     </AppBar>
   );
