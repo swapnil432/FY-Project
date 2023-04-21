@@ -4,7 +4,13 @@ import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import { RaisedButton, Avatar, Typography, Button } from "@mui/material";
+import {
+  RaisedButton,
+  Avatar,
+  Typography,
+  Button,
+  Container,
+} from "@mui/material";
 import Title from "../Title";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
@@ -55,79 +61,95 @@ export default function AdminUsers({ setShowDocument }) {
   return (
     <>
       <Title>Documents Verification</Title>
-      <Table sx={{ width: "95%", marginLeft: "2rem", marginTop: "2.5rem" }}>
-        <TableHead>
-          <TableRow>
-            <TableCell sx={{ fontWeight: "bold", textTransform: "uppercase" }}>
-              Users
-            </TableCell>
-            <TableCell sx={{ fontWeight: "bold", textTransform: "uppercase" }}>
-              ID
-            </TableCell>
-            <TableCell sx={{ fontWeight: "bold", textTransform: "uppercase" }}>
-              Name
-            </TableCell>
-            <TableCell sx={{ fontWeight: "bold", textTransform: "uppercase" }}>
-              Phone
-            </TableCell>
-            <TableCell sx={{ fontWeight: "bold", textTransform: "uppercase" }}>
-              Aadhar Number
-            </TableCell>
-            <TableCell sx={{ fontWeight: "bold", textTransform: "uppercase" }}>
-              Document
-            </TableCell>
-            <TableCell sx={{ fontWeight: "bold", textTransform: "uppercase" }}>
-              Status
-            </TableCell>
-            <TableCell
-              sx={{ fontWeight: "bold", textTransform: "uppercase" }}
-              align="center"
-            >
-              Actions
-            </TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.id}>
-              <Avatar
-                sx={{ marginTop: "0.5rem", marginLeft: "1rem" }}
-                src={row.photo}
-              />
-              <TableCell>{row.userId}</TableCell>
-              <TableCell>{row.name}</TableCell>
-              <TableCell>{row.phone}</TableCell>
-              <TableCell>{row.aadhar}</TableCell>
-              <TableCell>
-                <Button
-                  variant="contained"
-                  onClick={() => {
-                    setShowDocument(true);
-                  }}
-                >
-                  Documents
-                </Button>
+      <Container>
+        <Table sx={{ width: "95%", marginLeft: "2rem", marginTop: "2.5rem" }}>
+          <TableHead>
+            <TableRow>
+              <TableCell
+                sx={{ fontWeight: "bold", textTransform: "uppercase" }}
+              >
+                Users
               </TableCell>
-              <TableCell>{row.status}</TableCell>
-              <TableCell align="right">
-                <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-                  <InputLabel id="demo-select-small">Status</InputLabel>
-                  <Select
-                    labelId="demo-select-small"
-                    id="demo-select-small"
-                    value={action}
-                    label="pending"
-                    onChange={handleChange}
-                  >
-                    <MenuItem value={1}>Approved</MenuItem>
-                    <MenuItem value={2}>Rejected</MenuItem>
-                  </Select>
-                </FormControl>
+              <TableCell
+                sx={{ fontWeight: "bold", textTransform: "uppercase" }}
+              >
+                ID
+              </TableCell>
+              <TableCell
+                sx={{ fontWeight: "bold", textTransform: "uppercase" }}
+              >
+                Name
+              </TableCell>
+              <TableCell
+                sx={{ fontWeight: "bold", textTransform: "uppercase" }}
+              >
+                Phone
+              </TableCell>
+              <TableCell
+                sx={{ fontWeight: "bold", textTransform: "uppercase" }}
+              >
+                Aadhar Number
+              </TableCell>
+              <TableCell
+                sx={{ fontWeight: "bold", textTransform: "uppercase" }}
+              >
+                Document
+              </TableCell>
+              <TableCell
+                sx={{ fontWeight: "bold", textTransform: "uppercase" }}
+              >
+                Status
+              </TableCell>
+              <TableCell
+                sx={{ fontWeight: "bold", textTransform: "uppercase" }}
+                align="center"
+              >
+                Actions
               </TableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+          </TableHead>
+          <TableBody>
+            {rows.map((row) => (
+              <TableRow key={row.id}>
+                <Avatar
+                  sx={{ marginTop: "0.5rem", marginLeft: "1rem" }}
+                  src={row.photo}
+                />
+                <TableCell>{row.userId}</TableCell>
+                <TableCell>{row.name}</TableCell>
+                <TableCell>{row.phone}</TableCell>
+                <TableCell>{row.aadhar}</TableCell>
+                <TableCell>
+                  <Button
+                    variant="contained"
+                    onClick={() => {
+                      setShowDocument(true);
+                    }}
+                  >
+                    Documents
+                  </Button>
+                </TableCell>
+                <TableCell>{row.status}</TableCell>
+                <TableCell align="right">
+                  <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+                    <InputLabel id="demo-select-small">Status</InputLabel>
+                    <Select
+                      labelId="demo-select-small"
+                      id="demo-select-small"
+                      value={action}
+                      label="pending"
+                      onChange={handleChange}
+                    >
+                      <MenuItem value={1}>Approved</MenuItem>
+                      <MenuItem value={2}>Rejected</MenuItem>
+                    </Select>
+                  </FormControl>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </Container>
     </>
   );
 }
