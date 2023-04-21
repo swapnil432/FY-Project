@@ -10,3 +10,15 @@ const notification = () => {
 }
 
 export default notification
+
+
+
+// userNotifications = [{
+//     viewed:"true/false",
+//     type:"offer/propertyDoc/UserDoc,
+//     status:"reject/accepted",
+
+//     metaData:{
+//        propID: "" 
+//     }
+// }]
