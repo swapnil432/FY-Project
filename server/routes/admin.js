@@ -10,11 +10,15 @@ import {
   verifyUser,
   getAllProperty,
   login,
+  getProperty,
+  downloadDocuments,
 } from "../controllers/admin";
 const router = express.Router();
 
 router.post("/adminlogin", login);
+router.get("/createZipFile/:id", downloadDocuments);
 router.get("/getallproperties", getAllProperty);
+router.get("/getproperty/:id", getProperty);
 router.get("/getallusers", getAllUsers);
 router.get("/getcompleteusers", getCompleteUsers);
 router.get("/verifyproperty/:id", verifyProperty);

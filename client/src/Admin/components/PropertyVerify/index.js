@@ -13,7 +13,7 @@ import Link from "next/link";
 import PropDetailsPage from "../PropDetailsPage";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-const PropertyVerify = ({ setPropertyID,showProperty, setShowProperty }) => {
+const PropertyVerify = ({ setPropertyID, showProperty, setShowProperty }) => {
   const [rows, setRows] = useState([]);
 
   const getproperty = () => {
@@ -27,7 +27,7 @@ const PropertyVerify = ({ setPropertyID,showProperty, setShowProperty }) => {
         response.data.map((properties, index) => {
           allproperties.push({
             id: index + 1,
-            userId: properties._id,
+            propId: properties._id,
             name: properties.name,
             address: properties.address,
             price: properties.price,
@@ -83,7 +83,7 @@ const PropertyVerify = ({ setPropertyID,showProperty, setShowProperty }) => {
                 <Button
                   onClick={() => {
                     setShowProperty(true);
-                    setPropertyID(row.userId)
+                    setPropertyID(row.propId);
                   }}
                   variant="contained"
                   sx={{

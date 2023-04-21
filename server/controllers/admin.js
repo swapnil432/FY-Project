@@ -2,6 +2,9 @@ import jwt from "jsonwebtoken";
 import Admin from "../models/admin";
 import Property from "../models/property";
 import User from "../models/user";
+const fs = require("fs");
+const archiver = require("archiver");
+const path = require("path");
 
 const JWT_SECRET = "34513HJKK34IJKBKHN9429GBJUND3JDQLL";
 
@@ -35,6 +38,17 @@ export const getAllProperty = (req, res) => {
       });
     }
     return res.status(200).json(properties);
+  });
+};
+export const getProperty = (req, res) => {
+  const id = req.params.id;
+  Property.findOne({ _id: id }, (err, property) => {
+    if (err || !property) {
+      return res.status(400).json({
+        error: "No Properties found",
+      });
+    }
+    return res.status(200).json(property);
   });
 };
 export const verifyProperty = (req, res) => {
@@ -83,7 +97,7 @@ export const getPropertyImages = (req, res) => {
       });
     }
     const image = property.images.map(({ destination, filename }) => ({
-      path: `${destination}/${filename}`,
+      path: `http://localhost:8000/resources/images/property/${filename}`,
     }));
 
     return res.status(200).json(image);
@@ -129,6 +143,43 @@ export const statusReject = (req, res) => {
         return res.status(200).json(updatedProperty);
       });
     }
+  });
+};
+
+export const downloadDocuments = (req, res) => {
+  const id = req.params.id;
+  const pdfs = [];
+  Property.findOne({ _id: id }, (err, property) => {
+    if (err || !property) {
+      return res.status(400).json({
+        error: "No Properties found",
+      });
+    }
+    property.pdf.map(({ destination, filename }) =>
+      pdfs.push(`${filename}`)
+    );
+    const zipFilename = "pdfs.zip";
+
+    const output = fs.createWriteStream(zipFilename);
+    const archive = archiver("zip", { zlib: { level: 9 } });
+
+    output.on("close", () => {
+      res.setHeader("Content-type", "application/zip");
+      res.download(zipFilename); // download the zip file
+    });
+    archive.on("error", (err) => {
+      throw err;
+    });
+
+    archive.pipe(output);
+
+    pdfs.forEach((filename) => {
+      const filepath = path.join(__dirname, "../public/doc/", filename);
+      console.log("file : ", filepath);
+      archive.append(fs.createReadStream(filepath), { name: filename });
+    });
+
+    archive.finalize();
   });
 };
 
