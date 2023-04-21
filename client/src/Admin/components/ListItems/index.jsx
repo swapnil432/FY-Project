@@ -13,9 +13,8 @@ import ApartmentIcon from "@mui/icons-material/Apartment";
 import { ChevronLeft } from "@mui/icons-material";
 import { useState } from "react";
 
-const ListItems = ({setPageNum, setShowProperty, setShowDocument}) => {
-    const [leftDrawer, setLeftDrawer] = useState(false);
-    const [navwidth, setNavwidth] = useState(0);
+const ListItems = ({setPageNum, setShowProperty, setShowDocument, setLeftDrawer, setNavwidth}) => {
+
     const toggleDrawer = (open) => (event) => {
         setLeftDrawer(open);
         open ? setNavwidth(175) : setNavwidth(0);

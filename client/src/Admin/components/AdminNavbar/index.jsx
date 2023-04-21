@@ -88,7 +88,7 @@ const AdminNavbar = () => {
         <Button variant="contained">Logout</Button>
 
         <Drawer anchor="left" open={leftDrawer} onClose={toggleDrawer(false)}>
-          <ListItems setShowProperty={setShowProperty} setPageNum={setPageNum} setShowDocument={setShowDocument}/>
+          <ListItems setShowProperty={setShowProperty} setPageNum={setPageNum} setShowDocument={setShowDocument} setLeftDrawer={setLeftDrawer} setNavwidth={setNavwidth} />
         </Drawer>
       </Nav>
       {

@@ -17,6 +17,7 @@ import axios from "axios";
 export default function AdminUsers({ setShowDocument }) {
   const [action, setAction] = useState("");
   const [rows, setRows] = useState([]);
+  
   const getUsers = () => {
     const allUsers = [];
     axios({
