@@ -134,14 +134,14 @@ contract RealEstateNFT {
         property.approvedBuyer = address(0);
     }
 
-    function getProperty(uint256 _propertyId) public view onlyValid(_propertyId) returns(address, uint256, uint256, address) {
-        Property storage property = properties[_propertyId];
-        return (property.owner, property.price, property.tax, property.approvedBuyer);
+    function getProperty(uint256 _propertyId) public view onlyValid(_propertyId) returns( Property memory) {
+        Property memory property = properties[_propertyId];
+        return property;
     }
 
-    function getTransaction(uint256 _propertyId) public view returns (address, address, uint256, uint256) {
+    function getTransaction(uint256 _propertyId) public view returns (Transaction[] memory) {
         Transaction[] memory transaction = transactions[_propertyId];
-        return (transaction[1].newOwner, transaction[1].previousOwner,transaction[1].price,transaction[1].timestamp);
+        return transaction;
     }
 
     function changePrice(uint256 _propertyId, uint256 newPrice) public onlyValid(_propertyId){
