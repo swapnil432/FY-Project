@@ -1,15 +1,13 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import Typography from '@mui/material/Typography';
-
+import * as React from "react";
+import PropTypes from "prop-types";
+import Typography from "@mui/material/Typography";
+import { Container } from "@mui/material";
 
 function Title(props) {
   return (
-    <>
-    <Typography marginTop="2rem"  marginLeft="6rem" component="h1"  variant="h5" fontWeight="bold" color="#212121" gutterBottom>
-      {props.children}
-    </Typography>
-    </>
+    <Container sx={{ marginTop: "3rem", marginBottom: "2rem" }}>
+      <h4>{props.children}</h4>
+    </Container>
   );
 }
 
@@ -17,4 +15,4 @@ Title.propTypes = {
   children: PropTypes.node,
 };
 
-export default Title;   
+export default Title;
