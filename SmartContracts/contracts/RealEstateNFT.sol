@@ -6,6 +6,10 @@ contract RealEstateNFT {
     string public name;
     address payable public government;
     mapping (uint256 => Property) public properties;
+
+    // mapping (unit256 => properties) public ownerOf;
+    //onwerOf(X983nd) => [prop1, prop2];
+    
     uint256 public propertyCounter;
 
     struct Property {

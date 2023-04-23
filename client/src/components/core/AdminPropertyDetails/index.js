@@ -5,6 +5,7 @@ import Details from "./Details";
 import { styled, Container, Button, Box } from "@mui/material";
 import Carouselpage from "./Carouselpage";
 import axios from "axios";
+import { mint, getProperty } from "../../../SmartContractFunctions";
 
 const Flex1 = styled("div")({
   display: "flex",
@@ -12,12 +13,12 @@ const Flex1 = styled("div")({
   marginBottom: "1rem",
 });
 
-const AdminPropertyDetails = ({
-  propertyID,
-  showProperty,
-  setShowProperty,
-}) => {
+const AdminPropertyDetails = ({propertyID,showProperty,setShowProperty}) => {
   const [rows, setRows] = useState([]);
+  let seller = "0x819828c80f9843D2E9835F3c485Aa9c768FCa434";
+  let gov = window.localStorage.getItem("government");
+  gov =  JSON.parse(gov)
+
   const getproperty = () => {
     axios({
       method: "GET",
@@ -32,6 +33,26 @@ const AdminPropertyDetails = ({
         alert("something wrong");
       });
   };
+  
+  const mintNFT = async ()=>{
+    let {error, propID} = await mint(seller, gov.public_key);
+    console.log(propID)
+    if(error){
+      alert(error)
+    }
+    else{
+      alert("NFT minted successfully")
+      let {nft, error} = await getProperty(propID);
+
+      if(error){
+        alert("error get prop", error)
+      }
+      else{
+        alert("nft minted is: ", JSON.stringify(nft))
+      }
+      
+    }
+  }
   useEffect(() => {
     getproperty();
   }, []);
@@ -41,6 +62,7 @@ const AdminPropertyDetails = ({
         <APDheader>{rows.name}</APDheader>
         <Box>
           <Button
+            onClick={mintNFT}
             variant="contained"
             color="success"
             sx={{

@@ -13,6 +13,7 @@ import Link from "next/link";
 import PropDetailsPage from "../PropDetailsPage";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+
 const PropertyVerify = ({ setPropertyID, showProperty, setShowProperty }) => {
   const [rows, setRows] = useState([]);
 
@@ -44,6 +45,7 @@ const PropertyVerify = ({ setPropertyID, showProperty, setShowProperty }) => {
   useEffect(() => {
     getproperty();
   }, []);
+
   return (
     <div style={{ width: "100%" }}>
       <Title>Property Verification</Title>

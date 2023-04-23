@@ -7,7 +7,7 @@ import {
   Typography,
   Drawer
 } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import Image from "next/image";
 import PropDetailsPage from "../PropDetailsPage";
@@ -15,6 +15,11 @@ import PropertyVerify from "../PropertyVerify";
 import AdminUsers from "@/Admin/components/AdminUsers";
 import AdminDocuments from "../AdminDocuments";
 import ListItems from "../ListItems";
+import MetaMaskLogin from "@/components/core/MetaMaskLogin";
+import MetaMaskAdmin from "@/components/core/MetaMaskAdmin";
+
+import { loadData } from "../../../SmartContractFunctions";
+
 const Nav = styled(Box)({
   boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
   display: "flex",
@@ -36,6 +41,21 @@ const AdminNavbar = () => {
   const [showProperty,setShowProperty] = useState(false);
   const [showdocument,setShowDocument] = useState(false);
   const [propertyID,setPropertyID] = useState(null);
+  const [gov, setGov] = useState(null);
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      let { account, error } = await loadData();
+      if (error) {
+        alert("Error occured: ", error);
+      } else {
+        setGov(account);
+      }
+    };
+  
+    fetchData();
+    }, []);
 
   const toggleDrawer = (open) => (event) => {
     setLeftDrawer(open);
@@ -86,7 +106,8 @@ const AdminNavbar = () => {
             Dashboard
           </Typography>
         </div>
-        <Button variant="contained">Logout</Button>
+        {/* <Button variant="contained">Logout</Button> */}
+        <MetaMaskAdmin>Login</MetaMaskAdmin>
 
         <Drawer anchor="left" open={leftDrawer} onClose={toggleDrawer(false)}>
           <ListItems setShowProperty={setShowProperty} setPageNum={setPageNum} setShowDocument={setShowDocument} setLeftDrawer={setLeftDrawer} setNavwidth={setNavwidth} />

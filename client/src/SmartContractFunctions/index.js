@@ -1,3 +1,8 @@
+import RealEstateNFT from "../../../SmartContracts/build/contracts/RealEstateNFT";
+import Web3 from "web3";
+
+let realEstateNFT;
+
 const loadData = async () => {
   window.web3 = new Web3(window.ethereum);
   let account, error;
@@ -17,7 +22,6 @@ const loadData = async () => {
         RealEstateNFT.abi,
         networkData.address
       );
-      console.log(gov);
     }
   } catch (e) {
     error = e;
@@ -25,121 +29,124 @@ const loadData = async () => {
   return { account, error };
 };
 
-
 const mint = async (seller, gov) => {
   let error;
-    try {
-      const result = await realEstateNFT.methods
-        .mint(seller)
-        .send({ from: gov });
-      console.log(result);
-      const propertyCount = await realEstateNFT.methods
-        .propertyCounter()
-        .call();
+  let propID;
+  try {
+    const result = await realEstateNFT.methods.mint(seller).send({ from: gov });
+    console.log(result);
+    const propertyCount = await realEstateNFT.methods.propertyCounter().call();
 
-      console.log(property);
-    } catch (e) {
-      error = e;
-      console.log(err);
-    }
-    return error;
-  };
+    propID = parseInt(propertyCount);
+    propID = propID - 1;
 
-  const changePrice = async (propertyId, price, seller) => {
+  } catch (e) {
+    error = e;
+    console.log(e);
+  }
+  return { error, propID };
+};
+
+const changePrice = async (propertyId, price, seller) => {
   let error;
-    try {
-      const result = await realEstateNFT.methods
-        .changePrice(propertyId, price)
-        .send({ from: seller });
-      console.log(result);
-    } catch (err) {
-      setErrorMessage(err);
-      console.log(err);
-    }
-    return error;
+  try {
+    const result = await realEstateNFT.methods
+      .changePrice(propertyId, price)
+      .send({ from: seller });
+    console.log(result);
+  } catch (e) {
+    error = e;
+    console.log(e);
+  }
+  return error;
+};
 
-  };
+let approveSale = async (propertyId, buyer, seller) => {
+  let error;
+  try {
+    const result = await realEstateNFT.methods
+      .approveSale(propertyId, buyer)
+      .send({ from: seller });
+    console.log(result);
+  } catch (e) {
+    error = e;
+    console.log(e);
+  }
+  return error;
+};
 
-  let approveSale = async (propertyId, buyer, seller) => {
-    let error
-    try {
-      const result = await realEstateNFT.methods
-        .approveSale(propertyId, buyer)
-        .send({ from: seller });
-      console.log(result);
-    } catch (e) {
-      error = e;
-      console.log(err);
-    }
-    return error
-  };
-  
-  const transfer = async (propertyId, buyer, price) => {
-    let error
-    try {
-      const result = await realEstateNFT.methods
-        .transfer(propertyId)
-        .send({ from: buyer, value: price });
-      console.log(result);
-    } catch (err) {
-      error = e
-      console.log(err);
-    }
-    return error
-  };
+const transfer = async (propertyId, buyer, price) => {
+  let error;
+  try {
+    const result = await realEstateNFT.methods
+      .transfer(propertyId)
+      .send({ from: buyer, value: price });
+    console.log(result);
+  } catch (e) {
+    error = e;
+    console.log(e);
+  }
+  return error;
+};
 
-  const getProperty = async (propertyId) => {
-    let error
-    try {
-      const result = await realEstateNFT.methods
-        .getProperty(propertyId)
-        .call();
-      console.log(result);
-    } catch (e) {
-      error = e
-      console.log(err);
-    }
-    return {result, error}
-  };
+const getProperty = async (propertyId) => {
+  let error, result;
+  try {
+    result = await realEstateNFT.methods.getProperty(propertyId).call();
+    console.log(result);
+  } catch (e) {
+    error = e;
+    console.log(e);
+  }
+  return { result, error };
+};
 
-  const getTransaction = async (propertyId) => {
-    let error
-    try {
-      const result = await realEstateNFT.methods
-        .getTransaction(propertyId)
-        .call();
-      console.log(result);
-    } catch (e) {
-      error = e
-      console.log(err);
-    }
-    return {result, error}
-  };
+const getTransaction = async (propertyId) => {
+  let error, result;
+  try {
+    result = await realEstateNFT.methods.getTransaction(propertyId).call();
+    console.log(result);
+  } catch (e) {
+    error = e;
+    console.log(e);
+  }
+  return { result, error };
+};
 
-  const MakePropertyInvalid = async (propertyId) => {
-    let error
-    try {
-      const result = await realEstateNFT.methods
-        .destroyProperty(propertyId)
-        .call();
-      console.log(result);
-    } catch (e) {
-      error = e
-      console.log(err);
-    }
-    return  error
-  };
+const MakePropertyInvalid = async (propertyId) => {
+  let error;
+  try {
+    const result = await realEstateNFT.methods
+      .destroyProperty(propertyId)
+      .call();
+    console.log(result);
+  } catch (e) {
+    error = e;
+    console.log(e);
+  }
+  return error;
+};
 
-  const MakePropertyValid = async (propertyId) => {
-    let error
-    try {
-      const result = await realEstateNFT.methods
-        .destroyProperty(propertyId)
-        .call();
-      console.log(result);
-    } catch (e) {
-      error = e
-      console.log(err);
-    }
-    return  error
-  };
+const MakePropertyValid = async (propertyId) => {
+  let error;
+  try {
+    const result = await realEstateNFT.methods.makeValid(propertyId).call();
+    console.log(result);
+  } catch (e) {
+    error = e;
+    console.log(e);
+  }
+  return error;
+};
+
+export {
+  loadData,
+  mint,
+  changePrice,
+  approveSale,
+  transfer,
+  getProperty,
+  getTransaction,
+  MakePropertyValid,
+  MakePropertyInvalid,
+};
