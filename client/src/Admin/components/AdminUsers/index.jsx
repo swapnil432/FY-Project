@@ -5,9 +5,8 @@ import TableCell from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import {
-  RaisedButton,
   Avatar,
-  Typography,
+  Box,
   Button,
   Container,
 } from "@mui/material";
@@ -59,10 +58,10 @@ export default function AdminUsers({ setShowDocument }) {
     setAction(event.target.value);
   };
   return (
-    <>
+    <div >
       <Title>Documents Verification</Title>
       <Container>
-        <Table sx={{ width: "95%", marginLeft: "2rem", marginTop: "2.5rem" }}>
+        <Table sx={{ width: "100%"}}>
           <TableHead>
             <TableRow>
               <TableCell
@@ -150,6 +149,6 @@ export default function AdminUsers({ setShowDocument }) {
           </TableBody>
         </Table>
       </Container>
-    </>
+    </div>
   );
 }

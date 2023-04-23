@@ -23,13 +23,7 @@ const ListItems = ({setPageNum, setShowProperty, setShowDocument, setLeftDrawer,
     <div>
       <Box sx={{ width: 250 }}>
     <List>
-      <IconButton onClick={toggleDrawer(false)}>
-        <ListItem>
-          <ListItemIcon sx={{ marginLeft: 20 }}>
-            <ChevronLeft/>
-          </ListItemIcon>
-        </ListItem>
-      </IconButton>
+      
       <ListItemButton onClick={()=>{setPageNum(1) ;setShowProperty(false); setShowDocument(false)}}>
         <ListItemIcon>
           <GroupIcon />
