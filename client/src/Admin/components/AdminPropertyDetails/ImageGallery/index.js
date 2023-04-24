@@ -30,7 +30,7 @@ const ImageGallery = () => {
                     <img
                         src="/Rectangle110.png"
                         alt="property"
-                        style={{ height: "11rem", width: "100%" }}
+                        style={{ height: "10rem", width: "100%" }}
                     />
                 </Grid>
             </Grid>
@@ -39,7 +39,7 @@ const ImageGallery = () => {
                     <img
                         src="/Rectangle111.png"
                         alt="property"
-                        style={{ height: "11rem", width: "100%" }}
+                        style={{ height: "10rem", width: "100%" }}
                     />
                 </Grid>
             </Grid>

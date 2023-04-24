@@ -10,7 +10,6 @@ import {
 } from "@mui/material";
 import Title from "../Title";
 import Link from "next/link";
-import PropDetailsPage from "../PropDetailsPage";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 

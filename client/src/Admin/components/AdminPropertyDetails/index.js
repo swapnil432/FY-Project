@@ -66,7 +66,7 @@ const AdminPropertyDetails = ({
     getproperty();
   }, []);
   return (
-    <Container sx={{ marginTop: "2rem", marginBottom: "10rem" }}>
+    <Container sx={{ marginTop: "5rem", marginBottom: "4rem", width:"85%"}}>
       <Flex1>
         <APDheader>{rows.name}</APDheader>
         <Box>
