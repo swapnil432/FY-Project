@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import APDheader from "./APDheader";
 import ImageGallery from "./ImageGallery";
 import Details from "./Details";
-import { styled, Container, Button, Box } from "@mui/material";
+import { styled, Container, Button, Box, TextField } from "@mui/material";
 import Carouselpage from "./Carouselpage";
 import axios from "axios";
 import { mint, getProperty } from "../../../SmartContractFunctions";
@@ -13,11 +13,21 @@ const Flex1 = styled("div")({
   marginBottom: "1rem",
 });
 
-const AdminPropertyDetails = ({propertyID,showProperty,setShowProperty}) => {
+const RejectMessage = styled(Box)({
+  width: "100%",
+  marginTop: "1rem",
+});
+
+const AdminPropertyDetails = ({
+  propertyID,
+  showProperty,
+  setShowProperty,
+}) => {
   const [rows, setRows] = useState([]);
-  let seller = "0x819828c80f9843D2E9835F3c485Aa9c768FCa434";
+  const [seller, setSeller] = useState("");
+  const [rejected, setRejected] = useState(false);
   let gov = window.localStorage.getItem("government");
-  gov =  JSON.parse(gov)
+  gov = JSON.parse(gov);
 
   const getproperty = () => {
     axios({
@@ -27,32 +37,31 @@ const AdminPropertyDetails = ({propertyID,showProperty,setShowProperty}) => {
       .then((response) => {
         // console.log("khohohoho", response.data);
         setRows(response.data);
+        setSeller(response.data.owner_public_key);
       })
       .catch((err) => {
         console.log(err);
         alert("something wrong");
       });
   };
-  
-  const mintNFT = async ()=>{
-    let {error, propID} = await mint(seller, gov.public_key);
-    console.log(propID)
-    if(error){
-      alert(error)
-    }
-    else{
-      alert("NFT minted successfully")
-      let {nft, error} = await getProperty(propID);
 
-      if(error){
-        alert("error get prop", error)
+  const mintNFT = async () => {
+    setRejected(false);
+    let { error, propID } = await mint(seller, gov.public_key);
+    console.log(propID);
+    if (error) {
+      alert(error);
+    } else {
+      alert("NFT minted successfully");
+      let { nft, error } = await getProperty(propID);
+
+      if (error) {
+        alert("error get prop", error);
+      } else {
+        alert("nft minted is: ", JSON.stringify(nft));
       }
-      else{
-        alert("nft minted is: ", JSON.stringify(nft))
-      }
-      
     }
-  }
+  };
   useEffect(() => {
     getproperty();
   }, []);
@@ -75,6 +84,7 @@ const AdminPropertyDetails = ({propertyID,showProperty,setShowProperty}) => {
             Approve
           </Button>
           <Button
+            onClick={() => setRejected(true)}
             variant="contained"
             color="error"
             sx={{
@@ -87,6 +97,16 @@ const AdminPropertyDetails = ({propertyID,showProperty,setShowProperty}) => {
           </Button>
         </Box>
       </Flex1>
+      <RejectMessage>
+        {rejected && (
+          <TextField
+            multiline={true}
+            rows={3}
+            fullWidth
+            placeholder="Write reason for rejection"
+          />
+        )}
+      </RejectMessage>
       {/* <ImageGallery /> */}
       <Carouselpage propId={propertyID} />
       <Details info={rows} />
