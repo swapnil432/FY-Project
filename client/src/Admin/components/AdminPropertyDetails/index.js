@@ -15,7 +15,9 @@ const Flex1 = styled("div")({
 
 const RejectMessage = styled(Box)({
   width: "100%",
-  marginTop: "1rem",
+  margin: "1rem 0",
+  border: "1px solid red",
+  borderRadius: "8px",
 });
 
 const AdminPropertyDetails = ({
@@ -66,7 +68,7 @@ const AdminPropertyDetails = ({
     getproperty();
   }, []);
   return (
-    <Container sx={{ marginTop: "5rem", marginBottom: "4rem", width:"85%"}}>
+    <Container sx={{ marginTop: "5rem", marginBottom: "4rem", width: "85%" }}>
       <Flex1>
         <APDheader>{rows.name}</APDheader>
         <Box>
@@ -97,16 +99,16 @@ const AdminPropertyDetails = ({
           </Button>
         </Box>
       </Flex1>
-      <RejectMessage>
-        {rejected && (
+      {rejected && (
+        <RejectMessage>
           <TextField
             multiline={true}
             rows={3}
             fullWidth
             placeholder="Write reason for rejection"
           />
-        )}
-      </RejectMessage>
+        </RejectMessage>
+      )}
       {/* <ImageGallery /> */}
       <Carouselpage propId={propertyID} />
       <Details info={rows} />

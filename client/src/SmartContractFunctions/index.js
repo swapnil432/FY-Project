@@ -29,7 +29,7 @@ const loadData = async () => {
   return { account, error };
 };
 
-const mint = async (seller, gov) => {
+const mint = async (seller, gov, id) => {
   let error;
   let propID;
   try {

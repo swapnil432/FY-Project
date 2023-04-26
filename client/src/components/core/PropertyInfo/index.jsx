@@ -68,7 +68,7 @@ const PropertyInfo = () => {
     // formData.append("images", images);
     axios({
       method: "POST",
-git       url: `/api/uploadPropertyInfo/${user.public_key}`,
+       url: `/api/uploadPropertyInfo/${user.public_key}`,
       data: formData,
     })
       .then((response) => {
