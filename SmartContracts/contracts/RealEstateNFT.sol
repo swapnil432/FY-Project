@@ -7,7 +7,7 @@ contract RealEstateNFT {
     address payable public government;
     mapping (uint256 => Property) public properties;
 
-    // mapping (unit256 => properties) public ownerOf;
+    // mapping (address => Property[]) public ownerOf;
     //onwerOf(X983nd) => [prop1, prop2];
     
     uint256 public propertyCounter;
@@ -86,20 +86,20 @@ contract RealEstateNFT {
         name = "Web3 MarketPlace";
     }
 
-    function mint(address seller) public onlyGovernment{
-        properties[propertyCounter] = Property({
-            owner: payable(seller),
+    function mint(address _seller, uint256 _propertyId) public onlyGovernment{
+        properties[_propertyId] = Property({
+            owner: payable(_seller),
             price: 0,
             tax: 0,
             approvedBuyer: address(0),
             isValid: true,
-            id:propertyCounter
+            id:_propertyId
             // transactions: new Transaction[]
             
         });
         transactions[propertyCounter].push(Transaction({
                 previousOwner: address(0),
-                newOwner: seller,
+                newOwner: _seller,
                 price: 0,
                 timestamp: block.timestamp
             }));
@@ -112,6 +112,7 @@ contract RealEstateNFT {
     function approveSale(uint256 _propertyId, address _buyer) public onlyValid(_propertyId){
         Property storage property = properties[_propertyId];
         require(property.owner == msg.sender, "Only the owner can approve sale.");
+        require(property.owner != _buyer, "seller cannot sell to themselves");
         property.approvedBuyer = _buyer;
         emit approve_Property(property.owner, property.price, property.tax, property.approvedBuyer, property.isValid, property.id);
     }
