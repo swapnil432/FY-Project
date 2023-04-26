@@ -50,20 +50,20 @@ const AdminPropertyDetails = ({
   const mintNFT = async () => {
     setRejected(false);
     let error = await mint(seller, propertyID, gov.public_key);
-    console.log(propertyID);
     if (error) {
       alert(error);
     } else {
       alert("NFT minted successfully");
-      let { nft, error } = await getProperty(propertyID);
-
+      let { result, error } = await getProperty(propertyID);
       if (error) {
         alert("error get prop", error);
       } else {
-        alert("nft minted is: ", JSON.stringify(nft));
+        alert("nft minted is: ", result);
+        console.log("Nft is", JSON.stringify(result.id))
       }
     }
   };
+
   useEffect(() => {
     getproperty();
   }, []);

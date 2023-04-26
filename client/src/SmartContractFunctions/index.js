@@ -29,22 +29,17 @@ const loadData = async () => {
   return { account, error };
 };
 
-const mint = async (seller, propertyId, gov, id) => {
+const mint = async (seller, propertyId, gov) => {
   let error;
-  let propID;
   try {
     const result = await realEstateNFT.methods.mint(seller, propertyId).send({ from: gov });
-    console.log(result);
-    const propertyCount = await realEstateNFT.methods.propertyCounter().call();
-
-    propID = parseInt(propertyCount);
-    propID = propID - 1;
+    console.log("NFT minted Result",result);
 
   } catch (e) {
     error = e;
     console.log(e);
   }
-  return { error, propID };
+  return error;
 };
 
 const changePrice = async (propertyId, price, seller) => {
@@ -93,7 +88,7 @@ const getProperty = async (propertyId) => {
   let error, result;
   try {
     result = await realEstateNFT.methods.getProperty(propertyId).call();
-    console.log(result);
+    console.log("Get Property Result",result);
   } catch (e) {
     error = e;
     console.log(e);
