@@ -94,7 +94,8 @@ const PropertyVerify = ({ setPropertyID, showProperty, setShowProperty }) => {
                     marginTop: "1.5rem",
                   }}
                 >
-                  View Offer
+                  {/* View Offer */}
+                  {row.propId}
                 </Button>
               </CardContent>
             </Box>

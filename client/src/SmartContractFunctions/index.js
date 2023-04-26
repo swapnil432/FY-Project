@@ -29,11 +29,11 @@ const loadData = async () => {
   return { account, error };
 };
 
-const mint = async (seller, gov, id) => {
+const mint = async (seller, propertyId, gov, id) => {
   let error;
   let propID;
   try {
-    const result = await realEstateNFT.methods.mint(seller).send({ from: gov });
+    const result = await realEstateNFT.methods.mint(seller, propertyId).send({ from: gov });
     console.log(result);
     const propertyCount = await realEstateNFT.methods.propertyCounter().call();
 

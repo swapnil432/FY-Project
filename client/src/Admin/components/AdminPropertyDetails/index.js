@@ -49,13 +49,13 @@ const AdminPropertyDetails = ({
 
   const mintNFT = async () => {
     setRejected(false);
-    let { error, propID } = await mint(seller, gov.public_key);
-    console.log(propID);
+    let error = await mint(seller, propertyID, gov.public_key);
+    console.log(propertyID);
     if (error) {
       alert(error);
     } else {
       alert("NFT minted successfully");
-      let { nft, error } = await getProperty(propID);
+      let { nft, error } = await getProperty(propertyID);
 
       if (error) {
         alert("error get prop", error);
