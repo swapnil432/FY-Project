@@ -4,12 +4,7 @@ import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import {
-  Avatar,
-  Box,
-  Button,
-  Container,
-} from "@mui/material";
+import { Avatar, Box, Button, Container } from "@mui/material";
 import Title from "../Title";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
@@ -22,7 +17,7 @@ import axios from "axios";
 export default function AdminUsers({ setShowDocument }) {
   const [action, setAction] = useState("");
   const [rows, setRows] = useState([]);
-  
+
   const getUsers = () => {
     const allUsers = [];
     axios({
@@ -49,7 +44,34 @@ export default function AdminUsers({ setShowDocument }) {
         alert("something wrong");
       });
   };
-
+  const verifyUser = (id) => {
+    axios({
+      method: "POST",
+      url: `/api/verifyuser/${id}`,
+    })
+      .then((response) => {
+        console.log(response.data);
+        getUsers();
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("something wrong");
+      });
+  };
+  const rejectUser = (id) => {
+    axios({
+      method: "POST",
+      url: `/api/rejectuser/${id}`,
+    })
+      .then((response) => {
+        console.log(response.data);
+        getUsers();
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("something wrong");
+      });
+  };
   useEffect(() => {
     getUsers();
   }, []);
@@ -58,10 +80,10 @@ export default function AdminUsers({ setShowDocument }) {
     setAction(event.target.value);
   };
   return (
-    <div >
+    <div>
       <Title>Documents Verification</Title>
       <Container>
-        <Table sx={{ width: "100%"}}>
+        <Table sx={{ width: "100%" }}>
           <TableHead>
             <TableRow>
               <TableCell
@@ -128,8 +150,30 @@ export default function AdminUsers({ setShowDocument }) {
                     Documents
                   </Button>
                 </TableCell>
-                <TableCell>{row.status}</TableCell>
+                <TableCell>
+                  {row.is_verified === true ? "Not Verified" : "Verified"}
+                </TableCell>
                 <TableCell align="right">
+                  <Button
+                    variant="contained"
+                    color="success"
+                    onClick={() => {
+                      verifyUser(row.userId);
+                    }}
+                    style={{ marginRight: 2 }}
+                  >
+                    Verify
+                  </Button>
+                  <Button
+                    variant="contained"
+                    color="error"
+                    onClick={() => {
+                      rejectUser(row.userId);
+                    }}
+                  >
+                    Reject
+                  </Button>
+                  {/* <Button></Button>
                   <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
                     <InputLabel id="demo-select-small">Status</InputLabel>
                     <Select
@@ -142,7 +186,7 @@ export default function AdminUsers({ setShowDocument }) {
                       <MenuItem value={1}>Approved</MenuItem>
                       <MenuItem value={2}>Rejected</MenuItem>
                     </Select>
-                  </FormControl>
+                  </FormControl> */}
                 </TableCell>
               </TableRow>
             ))}

@@ -155,9 +155,7 @@ export const downloadDocuments = (req, res) => {
         error: "No Properties found",
       });
     }
-    property.pdf.map(({ destination, filename }) =>
-      pdfs.push(`${filename}`)
-    );
+    property.pdf.map(({ destination, filename }) => pdfs.push(`${filename}`));
     const zipFilename = "pdfs.zip";
 
     const output = fs.createWriteStream(zipFilename);
@@ -213,6 +211,7 @@ export const verifyUser = (req, res) => {
         error: "Users not found",
       });
     }
+
     user.is_verified = true;
 
     user.save((err, success) => {
@@ -223,6 +222,29 @@ export const verifyUser = (req, res) => {
       }
       return res.status(200).json({
         message: "User Verified!",
+      });
+    });
+  });
+};
+export const rejectUser = (req, res) => {
+  const id = req.params.id;
+  User.findOne({ _id: id }, (err, user) => {
+    if (err || !user) {
+      return res.status(400).json({
+        error: "Users not found",
+      });
+    }
+
+    user.is_verified = false;
+
+    user.save((err, success) => {
+      if (err) {
+        return res.status(400).json({
+          error: err,
+        });
+      }
+      return res.status(200).json({
+        message: "User rejected!",
       });
     });
   });
