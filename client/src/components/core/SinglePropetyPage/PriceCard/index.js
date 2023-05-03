@@ -30,7 +30,7 @@ const PriceCard = () => {
         Current Price
       </Typography>
       <Typography variant="h3" sx={{ marginTop: 1 }}>
-        60.00 ETH
+        40,00,000 Rs
       </Typography>
       <ButtonContainer>
         <BtnButton color={"primary"}>Buy Now</BtnButton>

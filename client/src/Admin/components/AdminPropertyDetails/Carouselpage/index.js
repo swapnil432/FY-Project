@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Carousel from "react-material-ui-carousel";
-import Itempage from "../Itempage";
-import slider from "../slider/slider.json";
+// import Itempage from "../Itempage";
+// import slider from "../slider/slider.json";
 import axios from "axios";
 
 const Carouselpage = (props) => {

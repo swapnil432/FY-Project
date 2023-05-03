@@ -46,19 +46,35 @@ const AdminPropertyDetails = ({
         alert("something wrong");
       });
   };
-
+ const approveProperty =() =>{
+  axios({
+    method: "POST",
+    url: `/api/statusApprove/${propertyID}`,
+  })
+    .then((response) => {
+      console.log("approved");
+    })
+    .catch((err) => {
+      console.log(err);
+      alert("something wrong");
+    });
+ }
   const mintNFT = async () => {
     setRejected(false);
+    console.log(seller, propertyID, gov.public_key)
     let error = await mint(seller, propertyID, gov.public_key);
     if (error) {
+      console.log("error in mint",error)
       alert(error);
     } else {
-      alert("NFT minted successfully");
+      approveProperty();
+      alert("NFT minted successfully");   
+      
       let { result, error } = await getProperty(propertyID);
       if (error) {
         alert("error get prop", error);
       } else {
-        alert("nft minted is: ", result);
+        // alert("nft minted is: ", result);
         console.log("Nft is", JSON.stringify(result.id))
       }
     }
