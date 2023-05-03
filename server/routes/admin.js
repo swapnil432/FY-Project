@@ -12,6 +12,7 @@ import {
   login,
   getProperty,
   downloadDocuments,
+  rejectUser,
 } from "../controllers/admin";
 const router = express.Router();
 
@@ -22,7 +23,8 @@ router.get("/getproperty/:id", getProperty);
 router.get("/getallusers", getAllUsers);
 router.get("/getcompleteusers", getCompleteUsers);
 router.get("/verifyproperty/:id", verifyProperty);
-router.get("/verifyuser/:id", verifyUser);
+router.post("/verifyuser/:id", verifyUser);
+router.post("/rejectuser/:id", rejectUser);
 router.get("/statusApprove/:id", statusApprove);
 router.get("/statusreject/:id", statusReject);
 router.get("/getpropertydocs/:id", getPropertyDocuments);
