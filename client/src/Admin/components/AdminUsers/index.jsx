@@ -34,6 +34,7 @@ export default function AdminUsers({ setShowDocument }) {
             name: user.name,
             phone: user.phone,
             aadhar: user.aadhar,
+            is_verified: user.is_verified,
             status: "Approved",
           });
         });
