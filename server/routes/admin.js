@@ -25,7 +25,7 @@ router.get("/getcompleteusers", getCompleteUsers);
 router.get("/verifyproperty/:id", verifyProperty);
 router.post("/verifyuser/:id", verifyUser);
 router.post("/rejectuser/:id", rejectUser);
-router.get("/statusApprove/:id", statusApprove);
+router.post("/statusApprove/:id", statusApprove);
 router.get("/statusreject/:id", statusReject);
 router.get("/getpropertydocs/:id", getPropertyDocuments);
 router.get("/getpropertyimages/:id", getPropertyImages);

@@ -14,7 +14,7 @@ const loadData = async () => {
     const accounts = await web3.eth.getAccounts();
     const networkId = await web3.eth.net.getId();
     const networkData = RealEstateNFT.networks[networkId];
-
+    console.log("/////////////////////", networkData)
     account = accounts[0];
 
     if (networkData) {
@@ -96,6 +96,18 @@ const getProperty = async (propertyId) => {
   return { result, error };
 };
 
+const getAllProperties = async () => {
+  let error, result;
+  try {
+    result = await realEstateNFT.methods.showAllProperties().call();
+    console.log("Get All Property Result",result);
+  } catch (e) {
+    error = e;
+    console.log("getallprops error ",e);
+  }
+  return { result, error };
+};
+
 const getTransaction = async (propertyId) => {
   let error, result;
   try {
@@ -141,6 +153,7 @@ export {
   approveSale,
   transfer,
   getProperty,
+  getAllProperties,
   getTransaction,
   MakePropertyValid,
   MakePropertyInvalid,

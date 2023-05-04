@@ -20,13 +20,13 @@ import ShareIcon from "@mui/icons-material/Share";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import PlaceIcon from "@mui/icons-material/Place";
-const PropertyCard = () => {
+const PropertyCard = (props) => {
   return (
     <Card sx={{ maxWidth: "100%" }}>
       <CardMedia
         component="img"
         height="194"
-        image="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1400&q=80"
+        image={props.img}
         alt="Apartment"
       />
       <CardContent>
@@ -35,7 +35,7 @@ const PropertyCard = () => {
           together with your guests. Add 1 cup of frozen peas along with the
           mussels, if you like.
         </Typography> */}
-        <p className="p-h6">Large 4-room apartment with a beautiful terrace</p>
+        <p className="p-h6">{props.name}</p>
       </CardContent>
       <CardActions
         disableSpacing
@@ -54,7 +54,7 @@ const PropertyCard = () => {
           <IconButton aria-label="location">
             <PlaceIcon />
           </IconButton>
-          <p sx={{ margin: 0 }}>Ponda, Goa</p>
+          <p sx={{ margin: 0 }}>{props.state}</p>
         </Box>
 
         <IconButton aria-label="add to favorites">

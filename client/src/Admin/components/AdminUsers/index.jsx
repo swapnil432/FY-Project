@@ -17,7 +17,8 @@ import axios from "axios";
 export default function AdminUsers({ setShowDocument }) {
   const [action, setAction] = useState("");
   const [rows, setRows] = useState([]);
-
+  const [verify, setVerify] = useState(false);
+  const [reject, setReject] = useState(false);
   const getUsers = () => {
     const allUsers = [];
     axios({
@@ -45,28 +46,32 @@ export default function AdminUsers({ setShowDocument }) {
         alert("something wrong");
       });
   };
-  const verifyUser = (id) => {
-    axios({
+  const verifyUser = async(id) => {
+    await axios({
       method: "POST",
       url: `/api/verifyuser/${id}`,
     })
       .then((response) => {
         console.log(response.data);
-        getUsers();
+        alert("User Verified")
+         setVerify(true)
+        // getUsers();
       })
       .catch((err) => {
         console.log(err);
         alert("something wrong");
       });
   };
-  const rejectUser = (id) => {
-    axios({
+  const rejectUser = async(id) => {
+    await axios({
       method: "POST",
       url: `/api/rejectuser/${id}`,
     })
       .then((response) => {
         console.log(response.data);
-        getUsers();
+        // getUsers();
+        alert("User Rejected")
+        setReject(true)
       })
       .catch((err) => {
         console.log(err);
@@ -76,6 +81,9 @@ export default function AdminUsers({ setShowDocument }) {
   useEffect(() => {
     getUsers();
   }, []);
+  useEffect(() => {
+    getUsers();
+  }, [verify]);
 
   const handleChange = (event) => {
     setAction(event.target.value);
@@ -112,16 +120,16 @@ export default function AdminUsers({ setShowDocument }) {
               >
                 Aadhar Number
               </TableCell>
-              <TableCell
+              {/* <TableCell
                 sx={{ fontWeight: "bold", textTransform: "uppercase" }}
               >
                 Document
-              </TableCell>
-              <TableCell
+              </TableCell> */}
+              {/* <TableCell
                 sx={{ fontWeight: "bold", textTransform: "uppercase" }}
               >
                 Status
-              </TableCell>
+              </TableCell> */}
               <TableCell
                 sx={{ fontWeight: "bold", textTransform: "uppercase" }}
                 align="center"
@@ -141,7 +149,7 @@ export default function AdminUsers({ setShowDocument }) {
                 <TableCell>{row.name}</TableCell>
                 <TableCell>{row.phone}</TableCell>
                 <TableCell>{row.aadhar}</TableCell>
-                <TableCell>
+                {/* <TableCell>
                   <Button
                     variant="contained"
                     onClick={() => {
@@ -150,10 +158,10 @@ export default function AdminUsers({ setShowDocument }) {
                   >
                     Documents
                   </Button>
-                </TableCell>
-                <TableCell>
-                  {row.is_verified === true ? "Not Verified" : "Verified"}
-                </TableCell>
+                </TableCell> */}
+                {/* <TableCell>
+                  {row.is_verified === true ? " Verified" : " Not Verified"}
+                </TableCell> */}
                 <TableCell align="right">
                   <Button
                     variant="contained"

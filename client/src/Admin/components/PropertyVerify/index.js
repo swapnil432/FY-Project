@@ -31,6 +31,7 @@ const PropertyVerify = ({ setPropertyID, showProperty, setShowProperty }) => {
             name: properties.name,
             address: properties.address,
             price: properties.price,
+            images: properties.images,
           });
         });
         setRows(allproperties);
@@ -50,6 +51,7 @@ const PropertyVerify = ({ setPropertyID, showProperty, setShowProperty }) => {
       <Title>Property Verification</Title>
       {rows.map((row) => (
         <Container sx={{ marginTop: "2rem", width: "100% " }}>
+          {console.log(`${row.images[0].destination}/${row.images[0].filename}`)}
           <Card
             sx={{ display: "flex", minHeight: "12rem", width: "100%" }}
             key={row.id}
@@ -57,7 +59,7 @@ const PropertyVerify = ({ setPropertyID, showProperty, setShowProperty }) => {
             <CardMedia
               component="img"
               sx={{ width: "20rem", marginRight: "3rem" }}
-              image="/rectangle114.png"
+              image={`http://localhost:8000/resources/Images/property/${row.images[0].filename}`}
               alt="property"
             />
             <Box
@@ -94,8 +96,8 @@ const PropertyVerify = ({ setPropertyID, showProperty, setShowProperty }) => {
                     marginTop: "1.5rem",
                   }}
                 >
-                  {/* View Offer */}
-                  {row.propId}
+                  View Offer
+                  {/* {row.propId} */}
                 </Button>
               </CardContent>
             </Box>

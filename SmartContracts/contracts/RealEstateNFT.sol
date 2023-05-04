@@ -7,6 +7,8 @@ contract RealEstateNFT {
     address payable public government;
     mapping (string => Property) public properties;
 
+    string[] public propertyIDs;
+
     // mapping (address => Property[]) public ownerOf;
     //onwerOf(X983nd) => [prop1, prop2];
     
@@ -107,6 +109,8 @@ contract RealEstateNFT {
                 timestamp: block.timestamp,
                 id: _propertyId
             }));
+
+        propertyIDs.push(_propertyId);
         
         emit sell_Property(properties[_propertyId].owner, properties[_propertyId].price, properties[_propertyId].tax, properties[_propertyId].approvedBuyer, properties[_propertyId].isValid, properties[_propertyId].id);
         // emit mint_Transaction(transactions[propertyCounter][0].previousOwner, transactions[propertyCounter][1].newOwner, transactions[propertyCounter][2].price, transactions[propertyCounter][3].timestamp);
@@ -169,6 +173,16 @@ contract RealEstateNFT {
         properties[_propertyId].isValid = true;
     }
 
+    function showAllProperties() public view returns(Property[] memory){
+        Property[] memory allProperties = new Property[](propertyIDs.length);
+        for (uint i = 0; i < propertyIDs.length; i++) {
+            string memory id = propertyIDs[i];
+            allProperties[i] = properties[id];
+        }
+        return allProperties;
+
+}
+
     modifier onlyGovernment() {
         require(msg.sender == government, "Only the government can perform this action.");
         _;
@@ -181,3 +195,5 @@ contract RealEstateNFT {
 
 
 }
+
+
