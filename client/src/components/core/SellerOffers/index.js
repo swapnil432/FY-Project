@@ -5,7 +5,7 @@ import SOcard from './SOcard'
 
 const SellerOffer = () => {
   return (
-    <Container sx={{ marginTop: '12rem', marginBottom: "12rem" }} >
+    <Container sx={{ marginTop: '8rem', marginBottom: "12rem" }} >
         <SOheader />
         <SOcard />
     </Container>

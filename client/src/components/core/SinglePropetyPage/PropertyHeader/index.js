@@ -7,10 +7,10 @@ const PropHeader = styled("div")({
   padding: '0.3rem',
 });
 
-const PropertyHeader = () => {
+const PropertyHeader = ({name}) => {
   return (
     <PropHeader>
-      <h3> Large 4-Room Apartment with a beautiful terrace and garden</h3>
+      <h3>{name}</h3>
     </PropHeader>
   );
 };

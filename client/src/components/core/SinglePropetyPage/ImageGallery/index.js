@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { styled } from "@mui/material";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import Image from "next/image";
 import mypic from "@/images/images/image1.jpg";
+import axios from "axios";
 
 const GalleryImageMain = styled("div")({
   marginTop: "4rem",
@@ -17,53 +18,81 @@ const GalleryImageMain = styled("div")({
 //   width: 545
 // });
 
-const ImageGallery = () => {
+const ImageGallery = ({ propertyID }) => {
+  const [newImages, setnewImages] = useState([]);
+
+  const getpropertyImage = () => {
+    axios({
+      method: "GET",
+      url: `/api/getpropertyimages/${propertyID}`,
+    })
+      .then((response) => {
+        console.log("images", response.data);
+        setnewImages(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("something wrong");
+      });
+  };
+
+  useEffect(() => {
+    getpropertyImage();
+  }, []);
+
   return (
-    <GalleryImageMain>
-      <Grid container spacing={3}>
-        <Grid item xs={6}>
-          {/* <Image
+    <>
+      {newImages.length>0 ? (
+        <GalleryImageMain>
+          <Grid container spacing={3}>
+            <Grid item xs={6}>
+              {/* <Image
             src={"../../../../images/propertyimages/"}
             relative
             height={"500px"}
             width={"100%"}
           /> */}
-          <img
-            src="/rectangle-105@2x.jpeg"
-            alt="gallery1"
-            style={{ height: "31.2rem", width: "100%", padding: "0" }}
-          />
-        </Grid>
-        <Grid item xs={3}>
-          <Grid item>
-            <img
-              src="/rectangle-106@2x.jpeg"
-              alt="gallery1"
-              style={{ height: "15rem", width: "100%" }}
-            />
-            <img
-              src="/rectangle-107@2x.jpeg"
-              alt="gallery1"
-              style={{ height: "15rem", width: "100%", marginTop: "15px" }}
-            />
+              {console.log(newImages)}
+              <img
+                src={newImages[0].path}
+                alt="gallery1"
+                style={{ height: "31.2rem", width: "100%", padding: "0", borderRadius:"16px" }}
+              />
+            </Grid>
+            <Grid item xs={3}>
+              <Grid item>
+                <img
+                  src={newImages[1].path}
+                  alt="gallery1"
+                  style={{ height: "15rem", width: "100%", borderRadius:"16px" }}
+                />
+                <img
+                  src={newImages[2].path}
+                  alt="gallery1"
+                  style={{ height: "15rem", width: "100%", marginTop: "15px", borderRadius:"16px" }}
+                />
+              </Grid>
+            </Grid>
+            <Grid item xs={3}>
+              <Grid item>
+                <img
+                  src={newImages[3].path}
+                  alt="gallery1"
+                  style={{ height: "15rem", width: "100%" , borderRadius:"16px"}}
+                />
+                <img
+                  src={newImages[4]?.path}
+                  alt="gallery1"
+                  style={{ height: "15rem", width: "100%", marginTop: "15px", borderRadius:"16px" }}
+                />
+              </Grid>
+            </Grid>
           </Grid>
-        </Grid>
-        <Grid item xs={3}>
-          <Grid item>
-            <img
-              src="/rectangle-108@2x.jpeg"
-              alt="gallery1"
-              style={{ height: "15rem", width: "100%" }}
-            />
-            <img
-              src="/rectangle-109@2x.jpeg"
-              alt="gallery1"
-              style={{ height: "15rem", width: "100%", marginTop: "15px" }}
-            />
-          </Grid>
-        </Grid>
-      </Grid>
-    </GalleryImageMain>
+        </GalleryImageMain>
+      ) : (
+        <>Loading</>
+      )}
+    </>
   );
 };
 

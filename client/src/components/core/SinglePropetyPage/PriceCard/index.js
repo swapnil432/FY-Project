@@ -4,7 +4,7 @@ import BtnButton from "@/components/common/BtnButton/BtnButton";
 
 const PriceCardContainer = styled("div")({
   marginTop: '5.3rem',
-  width: '26rem',
+  width: "50%",
   height: "26.8rem",
   backgroundColor: "#E9ECFE",
   paddingTop: '3rem',
@@ -19,21 +19,21 @@ const ButtonContainer = styled("div")({
   marginTop: '1.8rem',
 });
 
-const PriceCard = () => {
+const PriceCard = ({propertyID, price, owner}) => {
   return (
     <PriceCardContainer>
-      <Typography variant="h4">Apartment#2890</Typography>
+      <Typography variant="h4">ID: {propertyID}</Typography>
       <Typography variant="h6" sx={{ marginTop: 1 }}>
-        Owned By: User#1234
+        Owner: {owner}
       </Typography>
       <Typography variant="h6" sx={{ marginTop: 4 }}>
-        Current Price
+         Price
       </Typography>
       <Typography variant="h3" sx={{ marginTop: 1 }}>
-        40,00,000 Rs
+        {price} ETH
       </Typography>
       <ButtonContainer>
-        <BtnButton color={"primary"}>Buy Now</BtnButton>
+        <BtnButton color={"primary"}>Buy</BtnButton>
         <BtnButton color={"secondary"}>Request Documents</BtnButton>
       </ButtonContainer>
     </PriceCardContainer>

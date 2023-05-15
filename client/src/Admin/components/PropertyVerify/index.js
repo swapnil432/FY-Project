@@ -80,7 +80,11 @@ const PropertyVerify = ({ setPropertyID, showProperty, setShowProperty }) => {
                     alignItems: "flex-end",
                   }}
                 >
-                  <div className="n-h4">{row.price}</div>ETH
+                  <div  style={{
+                    fontFamily:"roboto",
+                    fontSize: "34px",
+                    fontWeight: "600",
+                  }}>₹ {row.price}/-</div>
                 </div>
 
                 <Button

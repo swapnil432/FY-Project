@@ -91,31 +91,18 @@ const Navbar = () => {
                 <NavItem sx={{ marginLeft: 2 }}>
                   <Link href="/">Home</Link>
                 </NavItem>
-                <NavItem>About</NavItem>
-                <NavItem>Contact</NavItem>
-                {state.user !== null ? (
-                  <NavItem>
-                    <Link href="/propertyinfo">Sell Property</Link>
-                  </NavItem>
-                ) : (
-                  <NavItem>
-                    <Link href="/"></Link>
-                  </NavItem>
-                )}
+                <NavItem>
+                <Link href="/sellerOffer">Offers</Link>
+                </NavItem>
+                <NavItem>My Properties</NavItem>
+
               </Stack>
 
               {state.user !== null ? (
                 <div>
                   <Button onClick={() => logout()} variant="contained">
-                    {/* <IconButton
-                      size="large"
-                      aria-label="account of current user"
-                      aria-controls="menu-appbar"
-                      aria-haspopup="true"
-                      color="inherit"
-                    > */}
+
                       <AccountCircle />
-                    {/* </IconButton> */}
                     Logout
                   </Button>
                 </div>

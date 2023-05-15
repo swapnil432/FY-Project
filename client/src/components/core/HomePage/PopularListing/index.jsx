@@ -50,7 +50,7 @@ const Popularlisting = () => {
             >
                 {rows.map((row) => (
                                 <Grid item xs={4} key={row.id}>
-                                  <Link href={`/propertydetail/`}  >
+                                  <Link href={`/propertydetail/${row.propId}`}  >
                                 <PropertyCard
                                   name={row.name}
                                   img={`http://localhost:8000/resources/Images/property/${row.images[0].filename}`}
