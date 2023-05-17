@@ -20,6 +20,30 @@ const ButtonContainer = styled("div")({
 });
 
 const PriceCard = ({propertyID, price, owner}) => {
+
+  const user = window.localStorage.getItem("user")
+  user = JSON.parse(user);
+
+   const sellProperty = () => {
+    axios({
+      method: "POST",
+      url: `/api/sellproperty/${propertyID}`,
+      data: {
+        seller_id: owner,
+        buyer_id: user.public_key,
+        current_price: price,
+      },
+    })
+      .then((response) => {
+        console.log(response);
+        alert(response.data.message);
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("something wrong");
+      });
+  };
+
   return (
     <PriceCardContainer>
       <Typography variant="h4">ID: {propertyID}</Typography>

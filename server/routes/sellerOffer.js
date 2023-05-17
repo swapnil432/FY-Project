@@ -3,3 +3,7 @@ import { sellProperty } from "../controllers/sellerOffer";
 const router = express.Router();
 
 router.post("/sellproperty/:id",sellProperty);
+
+module.exports = router;
+
+

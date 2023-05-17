@@ -4,41 +4,20 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { styled, Button, Container } from '@mui/material';
+import {Button, Container } from '@mui/material';
 import { approveSale } from '@/SmartContractFunctions';
 
 const SellerOfferCard = () => {
   const [offerDetail, setofferDetail] = useState([])
-  //get seller from local storage
   let seller;
-
-  const sellProperty = () => {
-    axios({
-      method: "POST",
-      url: `/api/sellproperty/${property_id}`,
-      data: {
-        seller_id: seller_id,
-        buyer_id: buyer_id,
-        current_price: current_price,
-      },
-    })
-      .then((response) => {
-        console.log(response);
-        alert(response.data.message);
-      })
-      .catch((err) => {
-        console.log(err);
-        alert("something wrong");
-      });
-  };
-
+  //get seller from local storage
 
   const approveBuyer = async (buyer, propertyId)=>{
     let response = await approveSale(propertyId,buyer, seller)
   }
   return (
     <Container sx={{ marginTop: '3rem' }}>
-      <Card sx={{ display: 'flex', height: '16rem', width: '70%'}}>
+      <Card sx={{ display: 'flex', height: '16rem', width: '70%', borderRadius:"8px"}}>
         <CardMedia
           component="img"
           sx={{ width: "20rem", marginRight: "3rem" }}

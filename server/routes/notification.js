@@ -7,3 +7,5 @@ const router = express.Router();
 
 router.post("/notification", createNotification);
 router.post("/notificationviewed/:id", notificationViewed);
+
+module.exports = router;
