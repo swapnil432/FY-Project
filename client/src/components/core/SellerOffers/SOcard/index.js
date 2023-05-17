@@ -12,6 +12,27 @@ const SellerOfferCard = () => {
   //get seller from local storage
   let seller;
 
+  const sellProperty = () => {
+    axios({
+      method: "POST",
+      url: `/api/sellproperty/${property_id}`,
+      data: {
+        seller_id: seller_id,
+        buyer_id: buyer_id,
+        current_price: current_price,
+      },
+    })
+      .then((response) => {
+        console.log(response);
+        alert(response.data.message);
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("something wrong");
+      });
+  };
+
+
   const approveBuyer = async (buyer, propertyId)=>{
     let response = await approveSale(propertyId,buyer, seller)
   }
