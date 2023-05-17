@@ -9,12 +9,51 @@ import { approveSale } from '@/SmartContractFunctions';
 
 const SellerOfferCard = () => {
   const [offerDetail, setofferDetail] = useState([])
-  let seller;
+  let seller = window.localStorage.getItem("user");
+  seller = JSON.parse(seller)
   //get seller from local storage
+
+  const getselleroffer= () => {
+    axios({
+      method: "GET",
+      url: `/api/getselloffer/${seller.public_key}`,
+    })
+      .then((response) => {
+        console.log(response);
+        alert(response.data.message);
+        setofferDetail(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("something wrong");
+      });
+  };
+  
+
+  const createNotification = () =>{
+    axios({
+      method: "POST",
+      url: `/api/notification`,
+      data: {
+        property_id: offerDetail.property_id,
+        buyer_id: offerDetail.buyer_id,
+      },
+    })
+      .then((response) => {
+        console.log(response);
+        alert(response.data.message);
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("something wrong");
+      });
+  }
 
   const approveBuyer = async (buyer, propertyId)=>{
     let response = await approveSale(propertyId,buyer, seller)
+    createNotification();
   }
+  
   return (
     <Container sx={{ marginTop: '3rem' }}>
       <Card sx={{ display: 'flex', height: '16rem', width: '70%', borderRadius:"8px"}}>
