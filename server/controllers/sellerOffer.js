@@ -6,11 +6,13 @@ export const sellProperty = async (req, res) => {
 
   SellerOffer.findOne({ property_id: propId }, (err, seller) => {
     if (err || !seller) {
-      let newUSeller = new SellerOffer();
-      newUSeller.seller_id = seller_id;
-      newUSeller.buyer_id = buyer_id;
-      newUSeller.current_price = current_price;
-      newUSeller.property_id = propId;
+      let newUSeller = new SellerOffer({
+        seller_id: seller_id,
+        buyer_id: buyer_idseller_id,
+        current_price: current_priceseller_id,
+        property_id: propIdseller_id,
+      });
+
       newUSeller.save((err, updatedSeller) => {
         if (err) {
           return res.status(400).json({
