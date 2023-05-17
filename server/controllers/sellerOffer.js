@@ -3,45 +3,62 @@ import SellerOffer from "../models/sellerOffer";
 export const sellProperty = async (req, res) => {
   const propId = req.params.id;
   const { seller_id, buyer_id, current_price } = req.body;
-  
-  SellerOffer.findOne({ property_id: propId }, (err, seller) => {
-    if (err || !seller) {
-      let newUSeller = new SellerOffer({
-        seller_id: seller_id,
-        buyer_id: buyer_idseller_id,
-        current_price: current_priceseller_id,
-        property_id: propIdseller_id,
-      });
+  let newUSeller = new SellerOffer({
+    seller_id: seller_id,
+    buyer_id: buyer_idseller_id,
+    current_price: current_priceseller_id,
+    property_id: propIdseller_id,
+  });
 
-      newUSeller.save((err, updatedSeller) => {
-        if (err) {
-          return res.status(400).json({
-            error: "Seller offer creation failed",
-          });
-        }
-        return res.status(200).json({
-          updatedSeller,
-          message: "Seller offer Uploaded",
-        });
+  newUSeller.save((err, updatedSeller) => {
+    if (err) {
+      return res.status(400).json({
+        error: "Seller offer creation failed",
       });
     }
-    seller.seller_id = seller_id;
-    seller.buyer_id = buyer_id;
-    seller.current_price = current_price;
-    seller.property_id = propId;
-
-    seller.save((err, updatedSeller) => {
-      if (err) {
-        return res.status(400).json({
-          error: "Seller offer creation failed",
-        });
-      }
-      return res.status(200).json({
-        updatedSeller,
-        message: "Seller offer Uploaded",
-      });
+    return res.status(200).json({
+      updatedSeller,
+      message: "Seller offer Uploaded",
     });
   });
+  // SellerOffer.findOne({ property_id: propId }, (err, seller) => {
+  //   if (err || !seller) {
+  //     let newUSeller = new SellerOffer({
+  //       seller_id: seller_id,
+  //       buyer_id: buyer_idseller_id,
+  //       current_price: current_priceseller_id,
+  //       property_id: propIdseller_id,
+  //     });
+
+  //     newUSeller.save((err, updatedSeller) => {
+  //       if (err) {
+  //         return res.status(400).json({
+  //           error: "Seller offer creation failed",
+  //         });
+  //       }
+  //       return res.status(200).json({
+  //         updatedSeller,
+  //         message: "Seller offer Uploaded",
+  //       });
+  //     });
+  //   }
+  //   seller.seller_id = seller_id;
+  //   seller.buyer_id = buyer_id;
+  //   seller.current_price = current_price;
+  //   seller.property_id = propId;
+
+  //   seller.save((err, updatedSeller) => {
+  //     if (err) {
+  //       return res.status(400).json({
+  //         error: "Seller offer creation failed",
+  //       });
+  //     }
+  //     return res.status(200).json({
+  //       updatedSeller,
+  //       message: "Seller offer Uploaded",
+  //     });
+  //   });
+  // });
 };
 
 export const getSellOffer = async (req, res) => {
