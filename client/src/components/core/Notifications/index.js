@@ -8,7 +8,7 @@ const Flex1 = styled("div")({
 
 const Notifications = () => {
   return (
-    <div style={{ marginTop: "7rem",width: "100%" }}>
+    <div style={{ marginTop: "7rem",width: "100%", height:"60vh" }}>
         <Container sx={{ marginTop: "2rem", width: "100% "}}>
           <Card sx={{ display: "flex", height: "7rem", width: "100%" }}>
               <CardMedia
@@ -21,26 +21,9 @@ const Notifications = () => {
                   <h5>Propery1</h5>
                   <div className="p-h6" style={{ margin: "1rem 0" }}>0x323904203473203283232</div>
                   <Flex1>
+                  <div className="p-h5" style={{margin:"1.5rem"}}>10ETH</div>
+                    <Button sx={{margin:"1rem", color:"red"}}>Reject</Button>
                     <Button variant="contained"  sx={{margin:"1rem"}}>Make Payment</Button>
-                    <Button variant="contained"  sx={{margin:"1rem"}}>Reject</Button>
-                  </Flex1>
-              </CardContent>
-          </Card>
-        </Container>
-        <Container sx={{ marginTop: "2rem", width: "100% "}}>
-          <Card sx={{ display: "flex", height: "7rem", width: "100%" }}>
-              <CardMedia
-                  component="img"
-                  sx={{ width: "10rem", marginRight: "1rem", padding:"0.5rem" }}
-                  image='https://picsum.photos/200/300'
-                  alt="property"
-              />
-              <CardContent sx={{ display:"flex", flex: "1 0 auto",flexDirection:"column"}}>
-                  <h5>User1</h5>
-                  <div className="p-h6" style={{ margin: "1rem 0" }}>0x323904203473203283232</div>
-                  <Flex1>
-                    <Button variant="contained"  sx={{margin:"1rem"}}></Button>
-                    <Button variant="contained"  sx={{margin:"1rem"}}>Verify</Button>
                   </Flex1>
               </CardContent>
           </Card>

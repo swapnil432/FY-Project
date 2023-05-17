@@ -41,3 +41,31 @@ export const sellProperty = async (req, res) => {
     });
   });
 };
+
+export const getSellOffer = async (req, res) => {
+  const buyId = req.params.id;
+  SellerOffer.find({ buyer_id: buyId }, (err, swll) => {
+    if (err) {
+      return res.status(400).json({
+        error: "Notification not found",
+      });
+    }
+    return res.status(200).json({
+      sell,
+    });
+  });
+};
+
+export const deleteSellOffer = async (req, res) => {
+  const propId = req.params.id;
+  SellerOffer.deleteMany({ property_id: propId }, (err, sell) => {
+    if (err) {
+      return res.status(400).json({
+        error: "Notification not found",
+      });
+    }
+    return res.status(200).json({
+      message: "Notification deleted Successfully ",
+    });
+  });
+};
