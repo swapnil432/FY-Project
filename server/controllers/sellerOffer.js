@@ -3,7 +3,7 @@ import SellerOffer from "../models/sellerOffer";
 export const sellProperty = async (req, res) => {
   const propId = req.params.id;
   const { seller_id, buyer_id, current_price } = req.body;
-
+  
   SellerOffer.findOne({ property_id: propId }, (err, seller) => {
     if (err || !seller) {
       let newUSeller = new SellerOffer({

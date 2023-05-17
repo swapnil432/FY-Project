@@ -4,22 +4,39 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { styled, Button, Container } from '@mui/material';
+import {Button, Container } from '@mui/material';
 import { approveSale } from '@/SmartContractFunctions';
 
 const SellerOfferCard = () => {
   const [offerDetail, setofferDetail] = useState([])
+  let seller = window.localStorage.getItem("user");
+  seller = JSON.parse(seller)
   //get seller from local storage
-  let seller;
 
-  const sellProperty = () => {
+  const getselleroffer= () => {
+    axios({
+      method: "GET",
+      url: `/api/getselloffer/${seller.public_key}`,
+    })
+      .then((response) => {
+        console.log(response);
+        alert(response.data.message);
+        setofferDetail(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("something wrong");
+      });
+  };
+  
+
+  const createNotification = () =>{
     axios({
       method: "POST",
-      url: `/api/sellproperty/${property_id}`,
+      url: `/api/notification`,
       data: {
-        seller_id: seller_id,
-        buyer_id: buyer_id,
-        current_price: current_price,
+        property_id: offerDetail.property_id,
+        buyer_id: offerDetail.buyer_id,
       },
     })
       .then((response) => {
@@ -29,16 +46,17 @@ const SellerOfferCard = () => {
       .catch((err) => {
         console.log(err);
         alert("something wrong");
-      });
-  };
-
+      });
+  }
 
   const approveBuyer = async (buyer, propertyId)=>{
     let response = await approveSale(propertyId,buyer, seller)
+    createNotification();
   }
+  
   return (
     <Container sx={{ marginTop: '3rem' }}>
-      <Card sx={{ display: 'flex', height: '16rem', width: '70%'}}>
+      <Card sx={{ display: 'flex', height: '16rem', width: '70%', borderRadius:"8px"}}>
         <CardMedia
           component="img"
           sx={{ width: "20rem", marginRight: "3rem" }}
