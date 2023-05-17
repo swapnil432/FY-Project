@@ -94,7 +94,9 @@ const Navbar = () => {
                 <NavItem>
                 <Link href="/sellerOffer">Offers</Link>
                 </NavItem>
-                <NavItem>My Properties</NavItem>
+                <NavItem>
+                <Link href="/notifications">Notifications</Link>
+                </NavItem>
 
               </Stack>
 
