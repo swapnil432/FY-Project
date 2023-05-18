@@ -2,6 +2,7 @@ import { AppBar, Container, styled, Box, Button, Stack } from "@mui/material";
 import React from "react";
 import mypic from "@/images/Logo/Vectorwhite.png";
 import Image from "next/image";
+import Link from "next/link";
 
 const NavItem = styled(Button)({
   fontSize: "15px",
@@ -32,7 +33,9 @@ const Footer = () => {
         >
           <Image src={mypic} alt="Logo" width="50" />
           <div>
-            <NavItem>Home</NavItem>
+            <NavItem>
+              <Link href="/">Home</Link>
+            </NavItem>
             <NavItem>About</NavItem>
             <NavItem>Contact</NavItem>
           </div>
