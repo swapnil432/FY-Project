@@ -36,7 +36,7 @@ const Footer = () => {
             <NavItem>
               <Link href="/">Home</Link>
             </NavItem>
-            <NavIem>About</NavIem>
+            <NavItem>About</NavItem>
             <NavItem>Contact</NavItem>
           </div>
         </Stack>
