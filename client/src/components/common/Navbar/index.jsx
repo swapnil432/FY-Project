@@ -5,17 +5,11 @@ import {
   Box,
   Button,
   Stack,
-  IconButton,
-  Menu,
 } from "@mui/material";
 import React, { useContext, useEffect } from "react";
 import mypic from "@/images/Logo/Vector.png";
 import Image from "next/image";
 import Link from "next/link";
-import WebButton from "../BtnButton/WebButton";
-import BtnButton from "../BtnButton/BtnButton";
-import MetaMaskLogin from "@/components/core/MetaMaskLogin";
-import MenuIcon from "@mui/icons-material/Menu";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import { Context } from "@/Context";
 import { useRouter } from "next/router";
@@ -109,6 +103,9 @@ const Navbar = () => {
                 </NavItem>
                 <NavItem>
                 <Link href="/notifications">Notifications</Link>
+                </NavItem>
+                <NavItem>
+                <Link href="/myproperties">My Properties</Link>
                 </NavItem>
 
               </Stack>
