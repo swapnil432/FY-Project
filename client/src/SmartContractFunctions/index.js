@@ -29,10 +29,10 @@ const loadData = async () => {
   return { account, error };
 };
 
-const mint = async (seller, propertyId, gov) => {
+const mint = async (price, seller, propertyId, gov) => {
   let error;
   try {
-    const result = await realEstateNFT.methods.mint(seller, propertyId).send({ from: gov });
+    const result = await realEstateNFT.methods.mint(seller, propertyId, price).send({ from: gov });
     console.log("NFT minted Result",result);
 
   } catch (e) {

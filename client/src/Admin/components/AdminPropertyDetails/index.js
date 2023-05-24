@@ -7,6 +7,7 @@ import Carouselpage from "./Carouselpage";
 import axios from "axios";
 import { mint, getProperty } from "../../../SmartContractFunctions";
 
+
 const Flex1 = styled("div")({
   display: "flex",
   justifyContent: "space-between",
@@ -60,9 +61,14 @@ const AdminPropertyDetails = ({
     });
  }
   const mintNFT = async () => {
+
+
+ 
+  const weiAmount = web3.utils.toWei(rows.price.toString(), 'ether');
+
     setRejected(false);
     console.log(seller, propertyID, gov.public_key)
-    let error = await mint(seller, propertyID, gov.public_key);
+    let error = await mint(weiAmount, seller, propertyID, gov.public_key);
     if (error) {
       console.log("error in mint",error)
       alert(error);

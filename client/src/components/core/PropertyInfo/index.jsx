@@ -68,7 +68,7 @@ const PropertyInfo = () => {
     // formData.append("images", images);
     axios({
       method: "POST",
-       url: `/api/uploadPropertyInfo/${user.public_key}`,
+      url: `/api/uploadPropertyInfo/${user.public_key}`,
       data: formData,
     })
       .then((response) => {
@@ -89,34 +89,40 @@ const PropertyInfo = () => {
           });
         setValues({
           ...values,
-          name: "",
-          email: "",
-          age: "",
-          phone: "",
-          gender: "",
-          aadhar: "",
-          image1: "",
-          image2: "",
+          name:"",
+          p_state:"",
+          bedroom:"",
+          kitchen:"",
+          type:"",
+          address:"",
+          pincode:"",
+          area:"",
+          bathroom:"",
+          price:"",
         });
       })
       .catch((err) => {
         console.log(err);
         setValues({
           ...values,
-          name: "",
-          email: "",
-          age: "",
-          phone: "",
-          gender: "",
-          aadhar: "",
-          image1: "",
-          image2: "",
+          name:"",
+          p_state:"",
+          bedroom:"",
+          kitchen:"",
+          type:"",
+          address:"",
+          pincode:"",
+          area:"",
+          bathroom:"",
+          price:"",
         });
         alert("something wrong");
       });
 
     // console.log(images);
   };
+  // name,
+
   return (
     <Container sx={{ marginTop: "8rem" }}>
       <h3>Property Details</h3>
@@ -130,6 +136,7 @@ const PropertyInfo = () => {
           <Grid item xs={6}>
             <TextField
               id="Property Name"
+              value={values.name}
               label="Property Name"
               type="text"
               required
@@ -139,6 +146,7 @@ const PropertyInfo = () => {
             />
             <TextField
               id="State"
+              value={values.p_state}
               label="State"
               type="text"
               required
@@ -148,6 +156,7 @@ const PropertyInfo = () => {
             />
             <TextField
               id="Number of Bedroom"
+              value={values.bedroom}
               label="Number of Bedroom"
               type="number"
               required
@@ -157,6 +166,7 @@ const PropertyInfo = () => {
             />
             <TextField
               id="Number of Kitchen"
+              value={values.kitchen}
               label="Number of Kitchen"
               type="number"
               required
@@ -166,6 +176,7 @@ const PropertyInfo = () => {
             />
             <TextField
               id="Property  type"
+              value={values.type}
               label="Property  type"
               type="type"
               required
@@ -179,6 +190,7 @@ const PropertyInfo = () => {
           <Grid item xs={6}>
             <TextField
               id="Property Address"
+              value={values.address}
               label="Property Address"
               type="text"
               required
@@ -188,6 +200,7 @@ const PropertyInfo = () => {
             />
             <TextField
               id="Pin Code"
+              value={values.pincode}
               label="Pin Code"
               type="number"
               required
@@ -197,6 +210,7 @@ const PropertyInfo = () => {
             />
             <TextField
               id="Property  Area"
+              value={values.area}
               label="Property  Area"
               type="number"
               required
@@ -206,6 +220,7 @@ const PropertyInfo = () => {
             />
             <TextField
               id="Number of Bathroom"
+              value={values.bathroom}
               label="Number of Bathroom"
               type="number"
               required
@@ -216,6 +231,7 @@ const PropertyInfo = () => {
             <TextField
               hidden
               id="Property  Price"
+              value={values.price}
               type="number"
               required
               onChange={handelchange("price")}

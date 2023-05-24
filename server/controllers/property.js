@@ -95,7 +95,6 @@ export const getProperty = (req, res) => {
   });
 };
 
-
 export const getHomeProperties = (req, res) => {
   Property.find({ status: 1 }, (err, properties) => {
     if (err) {
@@ -109,5 +108,57 @@ export const getHomeProperties = (req, res) => {
       });
     }
     return res.status(200).json(properties);
+  });
+};
+
+export const changePropertyPrice = (req, res) => {
+  const id = req.params.id;
+  const price = req.body.price;
+  Property.findOne({ _id: id }).exec((err, property) => {
+    if (property) {
+      property.price = price;
+      property.save((err, success) => {
+        if (err) {
+          return res.status(400).json({
+            error: err,
+          });
+        }
+        return res.status(200).json({
+          message: "Price Updated Successfully",
+        });
+      });
+    }
+
+    if (err || !property) {
+      return res.status(400).json({
+        error: "Property not found",
+      });
+    }
+  });
+};
+
+export const changePropertyOwner = (req, res) => {
+  const id = req.params.id;
+  const owner = req.body.owner_public_key;
+  Property.findOne({ _id: id }).exec((err, property) => {
+    if (property) {
+      property.owner_public_key = owner;
+      property.save((err, success) => {
+        if (err) {
+          return res.status(400).json({
+            error: err,
+          });
+        }
+        return res.status(200).json({
+          message: "Owner Updated Successfully",
+        });
+      });
+    }
+
+    if (err || !property) {
+      return res.status(400).json({
+        error: "Property not found",
+      });
+    }
   });
 };

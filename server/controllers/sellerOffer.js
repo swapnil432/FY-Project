@@ -1,50 +1,70 @@
 import SellerOffer from "../models/sellerOffer";
 
+// export const sellProperty = async (req, res) => {
+//   const propId = req.params.id;
+//   const { seller_id, buyer_id, current_price } = req.body;
+
+//   SellerOffer.findOne({ property_id: propId }, (err, seller) => {
+//     if (err || !seller) {
+//       let newUSeller = new SellerOffer({
+//         seller_id: seller_id,
+//         buyer_id: buyer_id,
+//         current_price: current_price,
+//         property_id: propId,
+//       });
+
+
+//       newUSeller.save((err, updatedSeller) => {
+//         if (err) {
+//           return res.status(400).json({
+//             error: "Seller offer creation failed",
+//           });
+//         }
+//         return res.status(200).json({
+//           updatedSeller,
+//           message: "Seller offer Uploaded",
+//         });
+//       });
+//     }
+
+
+//   });
+// };
+
 export const sellProperty = async (req, res) => {
   const propId = req.params.id;
   const { seller_id, buyer_id, current_price } = req.body;
-  
-  SellerOffer.findOne({ property_id: propId }, (err, seller) => {
-    if (err || !seller) {
-      let newUSeller = new SellerOffer();
-      newUSeller.seller_id = seller_id;
-      newUSeller.buyer_id = buyer_id;
-      newUSeller.current_price = current_price;
-      newUSeller.property_id = propId;
-      newUSeller.save((err, updatedSeller) => {
-        if (err) {
-          return res.status(400).json({
-            error: "Seller offer creation failed",
-          });
-        }
-        return res.status(200).json({
-          updatedSeller,
-          message: "Seller offer Uploaded",
-        });
-      });
-    }
-    seller.seller_id = seller_id;
-    seller.buyer_id = buyer_id;
-    seller.current_price = current_price;
-    seller.property_id = propId;
 
-    seller.save((err, updatedSeller) => {
-      if (err) {
-        return res.status(400).json({
-          error: "Seller offer creation failed",
-        });
-      }
+  try {
+    const seller = await SellerOffer.findOne({ property_id: propId });
+
+    if (!seller) {
+      const newSeller = new SellerOffer({
+        seller_id: seller_id,
+        buyer_id: buyer_id,
+        current_price: current_price,
+        property_id: propId,
+      });
+
+      const updatedSeller = await newSeller.save();
+
       return res.status(200).json({
         updatedSeller,
         message: "Seller offer Uploaded",
       });
+    }
+  } catch (err) {
+    return res.status(400).json({
+      error: "Seller offer creation failed",
     });
-  });
+  }
 };
+
 
 export const getSellOffer = async (req, res) => {
   const buyId = req.params.id;
-  SellerOffer.find({ buyer_id: buyId }, (err, swll) => {
+  // console.log(buyId)
+  SellerOffer.find({ seller_id: buyId }, (err, sell) => {
     if (err) {
       return res.status(400).json({
         error: "Notification not found",

@@ -8,5 +8,5 @@ const router = express.Router();
 
 router.post("/sellproperty/:id", sellProperty);
 router.get("/getselloffer/:id", getSellOffer);
-router.post("/deleteselloffer/:id", deleteSellOffer);
+router.delete("/deleteselloffer/:id", deleteSellOffer);
 module.exports = router;

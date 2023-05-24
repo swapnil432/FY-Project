@@ -4,19 +4,19 @@ const sellerOfferSchema = new mongoose.Schema(
   {
     seller_id: {
       type: String,
-      required: true,
+      required: false,
     },
     buyer_id: {
       type: String,
-      required: true,
+      required: false,
     },
     current_price: {
       type: Number,
-      required: true,
+      required: false,
     },
     property_id: {
       type: String,
-      required: true,
+      required: false,
     },
 
   },

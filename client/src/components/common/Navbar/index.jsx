@@ -20,6 +20,7 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import { Context } from "@/Context";
 import { useRouter } from "next/router";
 import axios from "axios";
+import { loadData } from "@/SmartContractFunctions";
 
 const Nav = styled(Box)({
   boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
@@ -42,6 +43,18 @@ const Navbar = () => {
     if(state?.user){
     }
   },[state])
+
+  useEffect(() => {
+    const fetchData = async () => {
+      let { account, error } = await loadData();
+      if (error) {
+        alert("Error occured: ", error);
+      } else {
+      }
+    };
+  
+    fetchData();
+    }, []);
 
   const router = useRouter();
   const handleClose = () => {

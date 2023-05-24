@@ -38,7 +38,6 @@ const DetailOffer = ({ propertyID }) => {
     <>
       {propertyData ? (
         <Container sx={{ marginTop: "8rem" }}>
-          <p>{propertyID}</p>
           <PropertyHeader name={propertyData.name} />
           <ImageGallery propertyID={propertyID} />
           <CardsContainer>
