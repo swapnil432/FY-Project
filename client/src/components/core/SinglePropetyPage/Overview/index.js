@@ -10,14 +10,14 @@ import OpacityOutlinedIcon from "@mui/icons-material/OpacityOutlined";
 
 const OverView = styled("div")({
   marginTop: "5.3rem",
-  width: "47%",
+  width: "45%",
   borderRadius: "1.25rem",
   borderStyle: "solid",
   borderWidth: "0.06rem",
   borderColor: "#B2BEB5",
   paddingTop: "3.1rem",
-  paddingLeft: "5rem",
-  paddingRight: "5rem",
+  paddingLeft: "2rem",
+  paddingRight: "2rem",
 });
 
 const OverViewSingle = styled("div")({

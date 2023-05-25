@@ -4,12 +4,12 @@ import axios from "axios";
 
 const PriceCardContainer = styled("div")({
   marginTop: "5.3rem",
-  width: "50%",
+  width: "53%",
   height: "26.8rem",
   backgroundColor: "#E9ECFE",
   paddingTop: "3rem",
-  paddingLeft: "2.5rem",
-  paddingRight: "2.5rem",
+  paddingLeft: "1.5rem",
+  paddingRight: "1.5rem",
   borderRadius: "1.25rem",
 });
 
@@ -35,7 +35,7 @@ const PriceCard = ({ propertyID, price, owner }) => {
       },
     })
       .then((response) => {
-        console.log(response);
+        console.log("hello");
         alert(response.data.message);
       })
       .catch((err) => {
@@ -46,18 +46,18 @@ const PriceCard = ({ propertyID, price, owner }) => {
 
   return (
     <PriceCardContainer>
-      <Typography variant="h4">ID: {propertyID}</Typography>
-      <Typography variant="h6" sx={{ marginTop: 1 }}>
-        Owner: {owner}
+      <Typography variant="h5"><b>ID:</b> {propertyID}</Typography>
+      <Typography variant="h5" sx={{ marginTop: 1 }}>
+        <b>Owner:</b> {owner}
       </Typography>
       <Typography variant="h6" sx={{ marginTop: 4 }}>
-        Price
+        <b>Price</b>
       </Typography>
-      <Typography variant="h3" sx={{ marginTop: 1 }}>
+      <Typography variant="h4" sx={{ marginTop: 1 }}>
         {price} ETH
       </Typography>
       <ButtonContainer>
-        <Button variant="contained" onClick={sendOffer}>Buy</Button>
+        <Button onClick={sendOffer} variant="contained">Buy</Button>
         <Button  variant="outlined">Request Documents</Button>
       </ButtonContainer>
     </PriceCardContainer>

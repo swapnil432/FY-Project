@@ -4,6 +4,8 @@ import {
   uploadPropertyImages,
   uploadPropertyInfo,
   getHomeProperties,
+  changePropertyPrice,
+  changePropertyOwner,
 } from "../controllers/property";
 const router = express.Router();
 
@@ -64,6 +66,11 @@ router.post(
 );
 
 router.get("/getallpropertieshome", getHomeProperties);
+
+router.put("/changePropertyPrice/:id", changePropertyPrice);
+
+router.put("/changePropertyOwner/:id", changePropertyOwner);
+
 // router.post("/uploadPropertyInfo/:id", (req, res) => {
 //   // Handle image upload
 //   upload(req, res, (err) => {

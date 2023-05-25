@@ -91,10 +91,10 @@ contract RealEstateNFT {
         name = "Web3 MarketPlace";
     }
 
-    function mint(address _seller, string memory _propertyId) public onlyGovernment{
+    function mint(address _seller, string memory _propertyId, uint256 _price) public onlyGovernment{
         properties[_propertyId] = Property({
             owner: payable(_seller),
-            price: 0,
+            price: _price,
             tax: 0,
             approvedBuyer: address(0),
             isValid: true,
