@@ -74,8 +74,7 @@ const Details = (props) => {
         <SubInfo sx={{ marginBottom: "2rem" }}>
           <b>Address:</b> {props.info.address}
         </SubInfo>
-      </Info>
-
+      </Info>    
       <Button
         variant="contained"
         onClick={() => {

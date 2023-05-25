@@ -1,5 +1,6 @@
 import React from "react";
 import { styled, Typography } from "@mui/material";
+import ChainofTitle from "../../ChainOfTitle";
 
 
 const DescriptionContainer = styled("div")({
@@ -24,8 +25,12 @@ const Description = () => {
         Description
       </Typography>
       <Typography variant="body1">
-      It's a new launch property where you can have 2 bhk or 3 bhk with 3 club house
+      It's a new launch property where you can have 2 bhk or 3 bhk with 3 club house. 
       </Typography>
+      <Typography variant="h6" sx={{ marginTop: 2 , fontWeight: 'bold'}}>
+        Chain Of Title
+      </Typography>
+      <ChainofTitle/>
     </DescriptionContainer>
   );
 };
