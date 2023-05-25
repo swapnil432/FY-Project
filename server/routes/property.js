@@ -6,6 +6,7 @@ import {
   getHomeProperties,
   changePropertyPrice,
   changePropertyOwner,
+  getUserProperties,
 } from "../controllers/property";
 const router = express.Router();
 
@@ -66,6 +67,8 @@ router.post(
 );
 
 router.get("/getallpropertieshome", getHomeProperties);
+
+router.get("/getuserproperties/:id", getUserProperties);
 
 router.put("/changePropertyPrice/:id", changePropertyPrice);
 

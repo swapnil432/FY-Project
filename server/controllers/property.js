@@ -111,6 +111,23 @@ export const getHomeProperties = (req, res) => {
   });
 };
 
+export const getUserProperties = (req, res) => {
+  let userid = req.params.id;
+  Property.find({ owner_public_key: userid, status : 1 }, (err, properties) => {
+    if (err) {
+      return res.status(400).json({
+        error: "Some Error",
+      });
+    }
+    if (err || !properties) {
+      return res.status(400).json({
+        error: "No Properties found",
+      });
+    }
+    return res.status(200).json(properties);
+  });
+};
+
 export const changePropertyPrice = (req, res) => {
   const id = req.params.id;
   const price = req.body.price;
