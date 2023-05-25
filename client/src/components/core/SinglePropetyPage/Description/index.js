@@ -1,6 +1,7 @@
 import React from "react";
 import { styled, Typography } from "@mui/material";
 
+
 const DescriptionContainer = styled("div")({
   marginTop: "5rem",
   borderRadius: "1.25rem",
@@ -13,6 +14,8 @@ const DescriptionContainer = styled("div")({
   paddingBottom: "3.1rem",
   marginBottom: "5rem"
 });
+
+
 
 const Description = () => {
   return (
