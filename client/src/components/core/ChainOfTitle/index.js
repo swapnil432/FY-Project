@@ -1,16 +1,17 @@
-import * as React from 'react';
-import { 
+import { getTransaction } from "@/SmartContractFunctions";
+import {
   styled,
-  Table, 
+  Table,
   TableBody,
   tableCellClasses,
   TableCell,
   TableContainer,
   TableHead,
   TableRow,
-  Paper 
+  Paper,
+  Typography,
 } from "@mui/material";
-
+import { useEffect, useState } from "react";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -24,49 +25,108 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 }));
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  '&:nth-of-type(odd)': {
+  "&:nth-of-type(odd)": {
     backgroundColor: theme.palette.action.hover,
   },
-  '&:last-child td, &:last-child th': {
+  "&:last-child td, &:last-child th": {
     border: 0,
   },
 }));
 
-function createData(date, currentownername, previousownername, price) {
-  return { date, currentownername, previousownername, price};
+const MainContainer = styled("div")({
+  marginTop: "5rem",
+  borderRadius: "1.25rem",
+  borderStyle: "solid",
+  borderWidth: "0.06rem",
+  borderColor: "#B2BEB5",
+  paddingTop: "3.1rem",
+  paddingLeft: "2rem",
+  paddingRight: "2rem",
+  paddingBottom: "3.1rem",
+  marginBottom: "5rem",
+});
+
+
+function unixTimeToDate(unixTime) {
+  // Create a new Date object with the Unix time in milliseconds
+  unixTime = parseInt(unixTime);
+  console.log("unix time: ", unixTime)
+  var date = new Date(unixTime * 1000);
+
+  // Extract the components of the date
+  var year = date.getFullYear();
+  var month = date.getMonth() + 1; // Months are zero-based
+  var day = date.getDate();
+  var hours = date.getHours();
+  var minutes = date.getMinutes();
+  var seconds = date.getSeconds();
+
+  // Format the date components
+  var formattedDate = year + '-' + addLeadingZero(month) + '-' + addLeadingZero(day);
+  var formattedTime = addLeadingZero(hours) + ':' + addLeadingZero(minutes) + ':' + addLeadingZero(seconds);
+
+  // Return the formatted date and time
+  return formattedDate + ' ' + formattedTime;
 }
 
-const rows = [
-  createData('20/01/2014', 'Riya Naik', 'Sameer S', '11 ETH'),
-  createData('20/01/2014', 'Sameer S', 'Siya Shet', '10 ETH'),
-  createData('20/01/2014', 'Siya Shet', '' , '9 ETH'),
-];
+function addLeadingZero(number) {
+  // Add a leading zero if the number is less than 10
+  return number < 10 ? '0' + number : number;
+}
 
-export default function ChainofTitle() {
+
+export default function ChainofTitle({propertyID}) {
+  const [transactions, setTransactions] = useState([]);
+
+  const getPropertyTransaction = async ()=>{
+    let {result:TransactionData, error} = await getTransaction(propertyID);
+    if(error){
+      alert("Error occured while gettting transactions");
+      return;
+    }
+    console.log("transactions" ,TransactionData)
+    setTransactions(TransactionData)
+  }
+
+  useEffect(() => {
+    getPropertyTransaction()
+  }, [propertyID])
+  
   return (
-    <div>
-    <TableContainer component={Paper}  sx={{marginTop: 2}}>
-      <Table sx={{ minWidth: 700 }} aria-label="customized table">
-        <TableHead>
-          <TableRow>
-          <StyledTableCell align="center">Date of Purchase</StyledTableCell>
-            <StyledTableCell align="center">Current Owner's Name</StyledTableCell>
-            <StyledTableCell align="center">Previous Owner's Name</StyledTableCell>
-            <StyledTableCell align="center">Price</StyledTableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <StyledTableRow key={row.date}>
-              <StyledTableCell align="center">{row.date}</StyledTableCell>
-              <StyledTableCell align="center">{row.currentownername}</StyledTableCell>
-              <StyledTableCell align="center">{row.previousownername}</StyledTableCell>
-              <StyledTableCell align="center">{row.price}</StyledTableCell>
-            </StyledTableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-    </div>
+    <MainContainer>
+      <Typography variant="h6" sx={{ marginTop: 2, fontWeight: "bold" }}>
+        Chain Of Title
+      </Typography>
+      <TableContainer component={Paper} sx={{ marginTop: 2 }}>
+        <Table sx={{ minWidth: 700 }} aria-label="customized table">
+          <TableHead>
+            <TableRow>
+              <StyledTableCell align="center">Time of Purchase</StyledTableCell>
+              <StyledTableCell align="center">
+                Current Owner
+              </StyledTableCell>
+              <StyledTableCell align="center">
+                Previous Owner
+              </StyledTableCell>
+              <StyledTableCell align="center">Price</StyledTableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {transactions && transactions.map((row) => (
+              <StyledTableRow key={row.date}>
+                <StyledTableCell align="center">{unixTimeToDate(row[3])}</StyledTableCell>
+                <StyledTableCell align="center">
+                  {row[1]}
+                </StyledTableCell>
+                <StyledTableCell align="center">
+                  {row[0]}
+                </StyledTableCell>
+                <StyledTableCell align="center">{web3.utils.fromWei(row[2], 'ether')}</StyledTableCell>
+              </StyledTableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </MainContainer>
   );
 }

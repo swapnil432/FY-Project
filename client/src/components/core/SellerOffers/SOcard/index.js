@@ -107,7 +107,7 @@ const SellerOfferCard = () => {
             sx={{
               display: "flex",
               height: "16rem",
-              width: "70%",
+              width: "100%",
               borderRadius: "8px",
             }}
           >

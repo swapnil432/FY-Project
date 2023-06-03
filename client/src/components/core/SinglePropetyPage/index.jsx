@@ -1,4 +1,4 @@
-import { styled, Container } from "@mui/material";
+import { styled, Container, Typography } from "@mui/material";
 import ImageGallery from "./ImageGallery";
 import Description from "./Description";
 import Overview from "./Overview";
@@ -6,6 +6,8 @@ import PriceCard from "./PriceCard";
 import PropertyHeader from "./PropertyHeader";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import ChainofTitle from "../ChainOfTitle";
+
 
 const CardsContainer = styled("div")({
   display: "flex",
@@ -30,6 +32,8 @@ const DetailOffer = ({ propertyID }) => {
       });
   };
 
+ 
+
   useEffect(() => {
     getproperty();
   }, []);
@@ -41,10 +45,20 @@ const DetailOffer = ({ propertyID }) => {
           <PropertyHeader name={propertyData.name} />
           <ImageGallery propertyID={propertyID} />
           <CardsContainer>
-            <Overview area={propertyData.area} bathroom={propertyData.bathroom} bedroom={propertyData.bedroom} state={propertyData.state}/>
-            <PriceCard propertyID={propertyID} price={propertyData.price} owner={propertyData.owner_public_key}/>
+            <Overview
+              area={propertyData.area}
+              bathroom={propertyData.bathroom}
+              bedroom={propertyData.bedroom}
+              state={propertyData.state}
+            />
+            <PriceCard
+              propertyID={propertyID}
+              price={propertyData.price}
+              owner={propertyData.owner_public_key}
+            />
           </CardsContainer>
-          <Description /*description={propertyData.description}?*//>
+          <Description /*description={propertyData.description}?*/ />
+          <ChainofTitle propertyID={propertyID} />
         </Container>
       ) : (
         <Container sx={{ marginTop: "6 rem" }}>loading...</Container>

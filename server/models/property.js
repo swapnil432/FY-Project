@@ -55,6 +55,10 @@ const propertySchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
+    listProperty: {
+      type: Boolean,
+      default: true,
+    },
 
     images: [],
     pdf: [],

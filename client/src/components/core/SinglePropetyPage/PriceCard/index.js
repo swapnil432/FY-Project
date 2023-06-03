@@ -35,7 +35,6 @@ const PriceCard = ({ propertyID, price, owner }) => {
       },
     })
       .then((response) => {
-        console.log("hello");
         alert(response.data.message);
       })
       .catch((err) => {

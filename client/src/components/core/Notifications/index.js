@@ -74,7 +74,7 @@ const Notifications = () => {
       });
   };
 
-  const changeOwner = (property_id) => {
+  const changeOwner = (property_id, buyer_id) => {
     axios({
       method: "PUT",
       url: `/api/changePropertyOwner/${property_id}`,
@@ -86,13 +86,13 @@ const Notifications = () => {
       alert("Property transfered successfully");
     });
   }
-
+//0x22Ec5e37deE96A659C3BCCacE2ce81B1c452A268
   const transferProperty = (property_id, buyer_id, price) => {
     transfer(property_id, buyer_id, price)
       .then((response) => {
         console.log(response)
         if(!response){
-          changeOwner(property_id);
+          changeOwner(property_id, buyer_id);
           deleteNotification(property_id);
           location.reload()
         }

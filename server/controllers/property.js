@@ -96,7 +96,7 @@ export const getProperty = (req, res) => {
 };
 
 export const getHomeProperties = (req, res) => {
-  Property.find({ status: 1 }, (err, properties) => {
+  Property.find({ status: 1, listProperty: true }, (err, properties) => {
     if (err) {
       return res.status(400).json({
         error: "Some Error",
@@ -160,6 +160,31 @@ export const changePropertyOwner = (req, res) => {
   Property.findOne({ _id: id }).exec((err, property) => {
     if (property) {
       property.owner_public_key = owner;
+      property.save((err, success) => {
+        if (err) {
+          return res.status(400).json({
+            error: err,
+          });
+        }
+        return res.status(200).json({
+          message: "Owner Updated Successfully",
+        });
+      });
+    }
+
+    if (err || !property) {
+      return res.status(400).json({
+        error: "Property not found",
+      });
+    }
+  });
+};
+
+export const changePropertyListing = (req, res) => {
+  const id = req.params.id;
+  Property.findOne({ _id: id }).exec((err, property) => {
+    if (property) {
+      property.listProperty = !property.listProperty;
       property.save((err, success) => {
         if (err) {
           return res.status(400).json({

@@ -27,7 +27,6 @@ const ImageGallery = ({ propertyID }) => {
       url: `/api/getpropertyimages/${propertyID}`,
     })
       .then((response) => {
-        console.log("images", response.data);
         setnewImages(response.data);
       })
       .catch((err) => {

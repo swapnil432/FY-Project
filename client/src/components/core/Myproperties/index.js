@@ -38,6 +38,20 @@ const Myproperties = () => {
       });
   };
 
+  const changePropertyLisiting = (propID) => {
+    axios({
+      method: "PUT",
+      url: `/api/changePropertyListing/${propID}`,
+    })
+      .then(async (response) => {
+        alert("Listing status changed successfully");
+        location.reload();
+      })
+      .catch((err) => {
+        alert("Failed to Change Property Lisiting status");
+      });
+  };
+
   const changePropertyPrice = (propID) => {
     user = window.localStorage.getItem("user");
     user = JSON.parse(user);
@@ -50,14 +64,13 @@ const Myproperties = () => {
     })
       .then(async (response) => {
         let error = await changePrice(propID, price, user.public_key);
-        if(!error){
+        if (!error) {
           location.reload();
         }
       })
-      .catch((err)=>{
-        alert("Failed to Change Property Price")
-      })
-
+      .catch((err) => {
+        alert("Failed to Change Property Price");
+      });
   };
 
   useEffect(() => {
@@ -76,8 +89,12 @@ const Myproperties = () => {
         borderRadius: "24px",
       }}
     >
+      {console.log("/////////////////////",properties)}
       {properties.map((property) => (
-        <Card key={property._id} sx={{ marginLeft: "5rem", width: 420, height: 480 }}>
+        <Card
+          key={property._id}
+          sx={{ marginLeft: "5rem", width: 420, height: 480 }}
+        >
           <CardMedia
             component="img"
             height="200"
@@ -89,12 +106,9 @@ const Myproperties = () => {
               <h5>{property.name}</h5>
               <h5>{property.price} ETH</h5>
             </Flex2>
-            <div style={{ margin: "1rem 0" }}>
-              {property.owner_public_key}
-            </div>
+            <div style={{ margin: "1rem 0" }}>{property.owner_public_key}</div>
             <Flex2>
               <TextField
-                
                 onChange={(e) => setPrice(e.target.value)}
                 hiddenLabel
                 fullWidth
@@ -115,10 +129,11 @@ const Myproperties = () => {
           </CardContent>
           <CardActions>
             <Button
+              onClick={() => changePropertyLisiting(property._id)}
               variant="outlined"
               sx={{ width: "100%", m: 1, height: "2rem", fontWeight: "bold" }}
             >
-              List for Sale / Unlist
+              {property.listProperty ? "UNLIST" : "LIST"}
             </Button>
           </CardActions>
         </Card>

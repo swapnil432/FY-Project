@@ -105,7 +105,7 @@ contract RealEstateNFT {
         transactions[_propertyId].push(Transaction({
                 previousOwner: address(0),
                 newOwner: _seller,
-                price: 0,
+                price: _price,
                 timestamp: block.timestamp,
                 id: _propertyId
             }));

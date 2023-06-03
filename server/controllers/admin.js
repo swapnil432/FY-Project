@@ -31,7 +31,7 @@ export const login = (req, res) => {
 // Property
 
 export const getAllProperty = (req, res) => {
-  Property.find({}, (err, properties) => {
+  Property.find({status:0}, (err, properties) => {
     if (err || !properties) {
       return res.status(400).json({
         error: "No Properties found",

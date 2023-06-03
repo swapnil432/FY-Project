@@ -58,7 +58,7 @@ const PropertyVerify = ({ setPropertyID, showProperty, setShowProperty }) => {
           >
             <CardMedia
               component="img"
-              sx={{ width: "20rem", marginRight: "3rem" }}
+              sx={{ width: "20rem", height:"20rem", marginRight: "3rem", objectFit:"cover" }}
               image={`http://localhost:8000/resources/Images/property/${row.images[0].filename}`}
               alt="property"
             />
@@ -84,7 +84,7 @@ const PropertyVerify = ({ setPropertyID, showProperty, setShowProperty }) => {
                     fontFamily:"roboto",
                     fontSize: "34px",
                     fontWeight: "600",
-                  }}>₹ {row.price}/-</div>
+                  }}> {row.price} ETH</div>
                 </div>
 
                 <Button
