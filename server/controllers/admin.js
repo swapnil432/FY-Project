@@ -192,6 +192,18 @@ export const getAllUsers = (req, res) => {
     return res.status(200).json(users);
   });
 };
+export const getUserNamesById = (req, res) => {
+  const  id  = req.params.id;
+  User.findById(id, (err, user) => {
+    if (err || !user) {
+      return res.status(400).json({
+        error: "User not found",
+      });
+    }
+    const { name } = user;
+    return res.status(200).json({ name });
+  });
+};
 export const getCompleteUsers = (req, res) => {
   User.find({ is_complete: true }, (err, users) => {
     if (err) {
