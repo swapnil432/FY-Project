@@ -13,6 +13,7 @@ import {
   getProperty,
   downloadDocuments,
   rejectUser,
+  getUserNamesById
 } from "../controllers/admin";
 const router = express.Router();
 
@@ -21,6 +22,7 @@ router.get("/createZipFile/:id", downloadDocuments);
 router.get("/getallproperties", getAllProperty);
 router.get("/getproperty/:id", getProperty);
 router.get("/getallusers", getAllUsers);
+router.get("/getusernames/:id", getUserNamesById);
 router.get("/getcompleteusers", getCompleteUsers);
 router.get("/verifyproperty/:id", verifyProperty);
 router.post("/verifyuser/:id", verifyUser);
