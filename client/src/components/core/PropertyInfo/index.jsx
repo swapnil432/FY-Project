@@ -185,7 +185,7 @@ const PropertyInfo = () => {
               sx={{ m: 1, width: "100%" }}
             />
 
-            <UploadFile text={"Upload Property Documents"} setState={setPdf} />
+            <UploadFile text={"Upload Property Documents (Sale deed, Agreement of Sale, Share Certificate, Occupancy Certificate, Construction licence Certificate, Inscription, Description)*"} setState={setPdf} />
           </Grid>
           <Grid item xs={6}>
             <TextField

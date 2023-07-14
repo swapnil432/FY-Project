@@ -193,15 +193,17 @@ export const getAllUsers = (req, res) => {
   });
 };
 export const getUserNamesById = (req, res) => {
-  const  id  = req.params.id;
-  User.findById(id, (err, user) => {
+  const  public_key  = req.params.id.toLowerCase();
+  
+  User.findOne({ public_key: public_key }, (err, user) => {
     if (err || !user) {
-      return res.status(400).json({
-        error: "User not found",
-      });
-    }
-    const { name } = user;
-    return res.status(200).json({ name });
+        return res.status(400).json({
+          error: err,
+        });
+      }
+      const { name } = user;
+      console.log(user)
+      return res.status(200).json({ name });
   });
 };
 export const getCompleteUsers = (req, res) => {

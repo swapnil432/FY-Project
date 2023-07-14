@@ -19,6 +19,10 @@ const userSchema = new mongoose.Schema(
       type: Number,
       required: false,
     },
+    gender: {
+      type: String,
+      required: false
+    },
     aadhar: {
       type: Number,
       required: false,

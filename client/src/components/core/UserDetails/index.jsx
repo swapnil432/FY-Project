@@ -4,11 +4,9 @@ import UploadFile from "@/components/common/UploadFiles";
 import { Box, Button, Container, Grid, TextField } from "@mui/material";
 import axios from "axios";
 import { Context } from "@/Context";
-import { useRouter } from "next/router";
 import UploadImages from "@/components/common/UploadImages";
 
 const UserDetail = () => {
-  const router = useRouter();
   const [values, setValues] = useState({
     name: "",
     email: "",
@@ -26,12 +24,12 @@ const UserDetail = () => {
 
   useEffect(() => {
     if (
-      name === "" ||
-      email === "" ||
-      age === "" ||
-      phone === "" ||
-      gender === "" ||
-      aadhar === "" ||
+      values.name === "" ||
+      values.email === "" ||
+      values.age === "" ||
+      values.phone === "" ||
+      values.gender === "" ||
+      values.aadhar === "" ||
       image1 === "" ||
       image2 === ""
     ) {
@@ -39,7 +37,7 @@ const UserDetail = () => {
     } else {
       setDisabled(false);
     }
-  }, [name, email, age, phone, gender, aadhar, image1, image2]);
+  }, [values]);
   const [userId, setUserId] = useState("");
 
   const [profileImage, setProfileImage] = useState("");
@@ -64,17 +62,17 @@ const UserDetail = () => {
     console.log(image1, image2);
 
     const formData = new FormData();
-    formData.append("name", name);
-    formData.append("email", email);
-    formData.append("age", age);
-    formData.append("phone", phone);
-    formData.append("gender", gender);
-    formData.append("aadhar", aadhar);
+    formData.append("name", values.name);
+    formData.append("email", values.email);
+    formData.append("age", values.age);
+    formData.append("phone", values.phone);
+    formData.append("gender", values.gender);
+    formData.append("aadhar", values.aadhar);
     formData.append("image1", image1);
     formData.append("image2", image2);
 
     axios({
-      method: "POST",
+      method: "PUT",
       url: `/api/uploadUserInfo/${user._id}`,
       data: formData,
     })
@@ -94,8 +92,7 @@ const UserDetail = () => {
           phone: "",
           gender: "",
           aadhar: "",
-          image1: "",
-          image2: "",
+
         });
       })
       .catch((err) => {
@@ -107,8 +104,6 @@ const UserDetail = () => {
           phone: "",
           gender: "",
           aadhar: "",
-          image1: "",
-          image2: "",
         });
         alert("something wrong");
       });
@@ -133,6 +128,7 @@ const UserDetail = () => {
                 id="Name"
                 label="Name"
                 type="text"
+                value={values.name}
                 required
                 variant="outlined"
                 onChange={handelchange("name")}
@@ -143,6 +139,7 @@ const UserDetail = () => {
                 label="Age"
                 required
                 type="number"
+                value={values.age}
                 InputProps={{
                   inputProps: {
                     min: 1,
@@ -155,6 +152,7 @@ const UserDetail = () => {
               <TextField
                 id="Gender"
                 type="text"
+                value={values.gender}
                 label="Gender"
                 required
                 onChange={handelchange("gender")}
@@ -174,6 +172,7 @@ const UserDetail = () => {
                 id="Email"
                 label="Email id"
                 type="Email"
+                value={values.email}
                 required
                 onChange={handelchange("email")}
                 variant="outlined"
@@ -183,6 +182,7 @@ const UserDetail = () => {
                 id="Phone"
                 label="Phone"
                 type="number"
+                value={values.phone}
                 required
                 onChange={handelchange("phone")}
                 variant="outlined"
@@ -192,6 +192,7 @@ const UserDetail = () => {
                 id="Aadhar Card Number"
                 label="Aadhar Card Number"
                 required
+                value={values.aadhar}
                 type="number"
                 onChange={handelchange("aadhar")}
                 variant="outlined"

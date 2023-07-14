@@ -94,9 +94,11 @@ const Navbar = () => {
                   alignItems: "center",
                 }}
               >
-                <Image src={mypic} alt="Logo" width="50" />
                 <NavItem sx={{ marginLeft: 2 }}>
-                  <Link href="/">Home</Link>
+                
+                  <Link href="/">
+                  <Image src={mypic} alt="Logo" width="50" />
+                  </Link>
                 </NavItem>
                 <NavItem>
                 <Link href="/sellerOffer">Offers</Link>
@@ -106,6 +108,12 @@ const Navbar = () => {
                 </NavItem>
                 <NavItem>
                 <Link href="/myproperties">My Properties</Link>
+                </NavItem>
+                <NavItem  sx={{
+                  color:"#3859F7",
+                  fontWeight:"600",
+                }}>
+                <Link href="/propertyinfo">Upload Properties</Link>
                 </NavItem>
 
               </Stack>

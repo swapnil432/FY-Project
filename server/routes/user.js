@@ -29,7 +29,7 @@ const upload = multer({
 
 router.post("/registerPublicKey", getPublicKey);
 router.get("/logout", logout);
-router.post(
+router.put(
   "/uploadUserInfo/:id",
   upload.fields([
     { name: "image1", maxCount: 1 },

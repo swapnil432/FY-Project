@@ -10,6 +10,7 @@ import axios from "axios";
 
 const SellerOfferCard = () => {
   const [offerDetail, setofferDetail] = useState([]);
+  const [names, setNames] = useState([]);
   let seller;
   //get seller from local storage
 
@@ -38,6 +39,22 @@ const SellerOfferCard = () => {
         alert("something wrong");
       });
   };
+
+  const getAllUserName = async() =>{
+    let buyerNames = [];
+    await Promise.all(
+      offerDetail.map(async (offer) => {
+        try {
+          const response = await axios.get(`/api/getusernames/${offer.buyer_id}`);
+          buyerNames.push(response.data.name);
+        } catch (err) {
+          console.log(err);
+          alert("Something went wrong while fetching user names");
+        }
+      })
+    );
+    setNames(buyerNames)
+  }
 
   const createNotification = (index) => {
     axios({
@@ -96,6 +113,7 @@ const SellerOfferCard = () => {
     seller = window.localStorage.getItem("user");
     seller = JSON.parse(seller);
     getselleroffer();
+    getAllUserName()
   }, []);
 
   return (
@@ -105,6 +123,7 @@ const SellerOfferCard = () => {
         offerDetail.map((offer, index) => (
           <Card
             sx={{
+              marginTop: "1rem",
               display: "flex",
               height: "16rem",
               width: "100%",
@@ -137,7 +156,7 @@ const SellerOfferCard = () => {
                   component="div"
                   sx={{ marginBottom: "0.7rem" }}
                 >
-                  Buyer ID: <b>{offer.buyer_id}</b>
+                  Buyer ID: <b>{names[index]}</b>
                 </Typography>
                 <Typography variant="h5" component="div">
                   Current Price: <b>{offer.current_price}</b>
