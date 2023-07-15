@@ -90,7 +90,7 @@ export default function AdminUsers({ setShowDocument }) {
   };
   return (
     <div>
-      <Title>Documents Verification</Title>
+      <Title>User Verification</Title>
       <Container>
         <Table sx={{ width: "100%" }}>
           <TableHead>

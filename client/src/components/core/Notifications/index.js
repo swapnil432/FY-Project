@@ -135,7 +135,7 @@ const Notifications = () => {
                 flexDirection: "column",
               }}
             >
-              <h5>{notification.name}</h5>
+              <h5>{notification.name.substring(0,40)}...</h5>
               <div className="p-h6" style={{ margin: "1rem 0" }}>
                 {notification.property_id}
               </div>

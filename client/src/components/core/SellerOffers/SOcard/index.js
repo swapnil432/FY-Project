@@ -21,22 +21,35 @@ const SellerOfferCard = () => {
       url: `/api/getselloffer/${seller.public_key}`,
     })
       .then((response) => {
-        console.log(response.data.sell);
-        response.data.sell.map((properties, index) => {
-          allproperties.push({
-            id: index + 1,
-            buyer_id: properties.buyer_id,
-            seller_id: properties.seller_id,
-            current_price: properties.current_price,
-            property_id: properties.property_id,
-          });
+
+        response.data.sell.map((selleroffer, index) => {
+          axios({
+            method: "GET",
+            url: `/api/getproperty/${selleroffer.property_id}`,
+          })
+            .then((response) => {
+              console.log(response.data);
+              allproperties.push({
+                    id: index + 1,
+                    buyer_id: selleroffer.buyer_id,
+                    seller_id: selleroffer.seller_id,
+                    current_price: selleroffer.current_price,
+                    property_id: selleroffer.property_id,
+                    images: response.data.images[0].filename,
+                  });
+              setofferDetail(allproperties);
+            })
+            .catch((err) => {
+              console.log(err);
+              alert("something wrong in getting seller offers");
+            });
         });
         console.log("all prop", allproperties);
         setofferDetail(allproperties);
       })
       .catch((err) => {
         console.log(err);
-        alert("something wrong");
+        alert("hii something wrong");
       });
   };
 
@@ -133,7 +146,7 @@ const SellerOfferCard = () => {
             <CardMedia
               component="img"
               sx={{ width: "20rem", marginRight: "3rem" }}
-              image="/rectangle114.png"
+              image={`http://localhost:8000/resources/Images/property/${offer.images}`}
               alt="property"
             />
             <Box

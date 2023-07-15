@@ -168,7 +168,7 @@ export default function AdminNavbar() {
               color="#000000"
               sx={{ flexGrow: 1, ml: "1rem" }}
             >
-              Dashboard
+              Admin Dashboard
             </Typography>
             </div>
             <MetaMaskAdmin >Login</MetaMaskAdmin>

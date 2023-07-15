@@ -4,8 +4,8 @@ import { Box } from "@mui/material";
 
 const AdminPDheader = ({ children }) => {
   return (
-    <Box>
-      <h3>{children}</h3>
+    <Box  sx={{maxWidth:"70%"}}>
+      <h4>{children}</h4>
     </Box>
   );
 };

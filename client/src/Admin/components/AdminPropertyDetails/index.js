@@ -90,8 +90,8 @@ const AdminPropertyDetails = ({
     getproperty();
   }, []);
   return (
-    <Container sx={{ marginTop: "5rem", marginBottom: "4rem", width: "85%" }}>
-      <Flex1>
+    <Container sx={{ marginTop: "8rem", marginBottom: "4rem", width: "85%" }}>
+      <Flex1 >
         <APDheader>{rows.name}</APDheader>
         <Box>
           <Button
@@ -102,7 +102,7 @@ const AdminPropertyDetails = ({
               paddingLeft: "2rem",
               paddingRight: "2rem",
               marginTop: "2.5rem",
-              marginRight: "2rem",
+              marginRight: "1rem",
             }}
           >
             Approve
