@@ -1,17 +1,20 @@
 import { Context } from "@/Context";
 import { useContext, useEffect } from "react";
 import PropertyDetails from "@/components/core/PropertyInfo";
+import { useRouter } from "next/router";
 
 const propertyinfo = () => {
   const { state, dispatch } = useContext(Context);
+  const router = useRouter();
 
   useEffect(()=>{
-    if(state?.user){
-      console.log("from prop info "+ state.user.is_verified)
+    if (!window.localStorage.getItem("user")) {
+      router.push("/login");
     }
+
   },[state])
 
-  return <PropertyDetails />;
+  return window.localStorage.getItem("user")?<PropertyDetails />:<></>;
 };
 
 export default propertyinfo;

@@ -1,31 +1,34 @@
 import React, { useEffect, useState } from "react";
-import { styled, Typography, Button } from "@mui/material";
+import { styled, Typography, Button, Grid } from "@mui/material";
 import axios from "axios";
 
 const PriceCardContainer = styled("div")({
   marginTop: "5.3rem",
-  width: "53%",
-  height: "26.8rem",
+  width: "100%",
+  height: "100%",
   backgroundColor: "#E9ECFE",
   paddingTop: "3rem",
+  paddingBottom: "3rem",
   paddingLeft: "1.5rem",
   paddingRight: "1.5rem",
   borderRadius: "1.25rem",
+  boxShadow: " rgba(149, 157, 165, 0.2) 0px 4px 8px"
+
 });
 
 const ButtonContainer = styled("div")({
   display: "flex",
   flexDirection: "column",
-  marginTop: "1.8rem",
-  gap:"1rem"
+  marginTop: "2rem",
+  gap: "1rem",
 });
 
 const PriceCard = ({ propertyID, price, owner }) => {
   let user = window.localStorage.getItem("user");
   user = JSON.parse(user);
-  const [name, setname] = useState("")
+  const [name, setname] = useState("");
 
-  const getUserNameById = async ()=>{
+  const getUserNameById = async () => {
     try {
       const response = await axios.get(`/api/getusernames/${owner}`);
       setname(response.data.name);
@@ -33,7 +36,7 @@ const PriceCard = ({ propertyID, price, owner }) => {
       console.log(err);
       alert("Something went wrong while fetching user names");
     }
-  }
+  };
 
   const sendOffer = () => {
     axios({
@@ -55,25 +58,35 @@ const PriceCard = ({ propertyID, price, owner }) => {
   };
 
   useEffect(() => {
-    getUserNameById()
-  }, [owner])
-  
+    getUserNameById();
+  }, [owner]);
 
   return (
     <PriceCardContainer>
-      <Typography variant="h5"><b>ID:</b> {propertyID}</Typography>
+      <Grid container>
+        <Grid item xs={9}>
       <Typography variant="h5" sx={{ marginTop: 1 }}>
-        <b>Owner:</b> {name}
+        <b>Owner Name:</b> {name}
       </Typography>
-      <Typography variant="h6" sx={{ marginTop: 4 }}>
-        <b>Price</b>
+      </Grid>
+      <Grid item xs={3}>
+      <Typography variant="h5" sx={{ marginTop: 1 }}>
+        <b>Price:</b> <span style={{fontSize:"30px"}}>{price} </span>ETH
       </Typography>
-      <Typography variant="h4" sx={{ marginTop: 1 }}>
-        {price} ETH
+      </Grid>
+      </Grid>
+      <Typography variant="h5" sx={{ marginTop: 1 }}>
+        <b>Property ID:</b> {propertyID}
       </Typography>
+      <Typography variant="h5" sx={{ marginTop: 1 }}>
+        <b>Owner ID:</b> {owner}
+      </Typography>
+
       <ButtonContainer>
-        <Button onClick={sendOffer} variant="contained">Buy</Button>
-        <Button  variant="outlined">Request Documents</Button>
+        <Button onClick={sendOffer} sx={{ padding: 1 }} variant="contained">
+          Buy
+        </Button>
+        <Button sx={{ padding: 1 }} variant="outlined">Request Documents</Button>
       </ButtonContainer>
     </PriceCardContainer>
   );

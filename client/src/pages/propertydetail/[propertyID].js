@@ -8,6 +8,10 @@ const propertydetail = () => {
   const router = useRouter();
 
   useEffect(() => {
+    if (!window.localStorage.getItem("user")) {
+      router.push("/login");
+    }
+
     const { propertyID } = router.query;
     setpropId(propertyID);
   }, []);

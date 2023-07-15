@@ -4,7 +4,7 @@ import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import Image from "next/image";
 
 const UploadBox = styled(Button)({
-  margin: " 1rem 0",
+  margin: " 8px",
   height: "15rem",
   width: "100%",
   border: " 2px dashed #3859F7",

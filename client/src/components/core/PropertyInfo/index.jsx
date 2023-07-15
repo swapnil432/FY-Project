@@ -9,32 +9,46 @@ import { Context } from "@/Context";
 const PropertyInfo = () => {
   const [pdf, setPdf] = useState([]);
   const [images, setImages] = useState([]);
-  const { state, dispatch } = useContext(Context);
-  const { user } = state;
+  const { state: curr_state, dispatch } = useContext(Context);
+  const { user } = curr_state;
 
   const [values, setValues] = useState({
+    surveyNumber: "",
     name: "",
-    p_state: "",
+    state: "",
+    city: "",
+    district: "",
     bedroom: "",
-    kitchen: "",
     type: "",
     address: "",
     pincode: "",
     area: "",
     bathroom: "",
     price: "",
+    carpetArea: "",
+    maintenanceCharges: "",
+    noOfParking: "",
+    description: "",
+    ageOfBuilding: "",
   });
   const {
+    surveyNumber,
     name,
-    p_state,
+    state,
+    city,
+    district,
     bedroom,
-    kitchen,
     type,
     address,
     pincode,
     area,
     bathroom,
     price,
+    carpetArea,
+    maintenanceCharges,
+    noOfParking,
+    description,
+    ageOfBuilding,
   } = values;
   const handelchange = (text) => (e) => {
     setValues({ ...values, [text]: e.target.value });
@@ -42,16 +56,23 @@ const PropertyInfo = () => {
   const submitform = (e) => {
     e.preventDefault();
     const formData = new FormData();
+    formData.append("surveyNumber", surveyNumber);
     formData.append("name", name);
-    formData.append("state", p_state);
+    formData.append("state", state);
+    formData.append("city", city);
+    formData.append("district", district);
     formData.append("bedroom", bedroom);
-    formData.append("kitchen", kitchen);
     formData.append("type", type);
     formData.append("address", address);
     formData.append("pincode", pincode);
     formData.append("area", area);
     formData.append("bathroom", bathroom);
     formData.append("price", price);
+    formData.append("carpetArea", carpetArea);
+    formData.append("maintenanceCharges", maintenanceCharges);
+    formData.append("noOfParking", noOfParking);
+    formData.append("description", description);
+    formData.append("ageOfBuilding", ageOfBuilding);
 
     // Object.keys(images).forEach(function (key, index) {
     //   formData.append(`image`, key);
@@ -89,32 +110,46 @@ const PropertyInfo = () => {
           });
         setValues({
           ...values,
-          name:"",
-          p_state:"",
-          bedroom:"",
-          kitchen:"",
-          type:"",
-          address:"",
-          pincode:"",
-          area:"",
-          bathroom:"",
-          price:"",
+          surveyNumber: "",
+          name: "",
+          state: "",
+          city: "",
+          district: "",
+          bedroom: "",
+          type: "",
+          address: "",
+          pincode: "",
+          area: "",
+          bathroom: "",
+          price: "",
+          carpetArea: "",
+          maintenanceCharges: "",
+          noOfParking: "",
+          description: "",
+          ageOfBuilding: "",
         });
       })
       .catch((err) => {
         console.log(err);
         setValues({
           ...values,
-          name:"",
-          p_state:"",
-          bedroom:"",
-          kitchen:"",
-          type:"",
-          address:"",
-          pincode:"",
-          area:"",
-          bathroom:"",
-          price:"",
+          surveyNumber: "",
+          name: "",
+          state: "",
+          city: "",
+          district: "",
+          bedroom: "",
+          type: "",
+          address: "",
+          pincode: "",
+          area: "",
+          bathroom: "",
+          price: "",
+          carpetArea: "",
+          maintenanceCharges: "",
+          noOfParking: "",
+          description: "",
+          ageOfBuilding: "",
         });
         alert("something wrong");
       });
@@ -145,15 +180,38 @@ const PropertyInfo = () => {
               sx={{ m: 1, width: "100%" }}
             />
             <TextField
-              id="State"
-              value={values.p_state}
-              label="State"
-              type="text"
+              id="Property Survey Number"
+              value={values.surveyNumber}
+              label="Property Survey Number"
+              type="number"
               required
-              onChange={handelchange("p_state")}
+              onChange={handelchange("surveyNumber")}
               variant="outlined"
               sx={{ m: 1, width: "100%" }}
             />
+            <TextField
+              hidden
+              id="Property  Price"
+              value={values.price}
+              type="number"
+              required
+              onChange={handelchange("price")}
+              label="Property  price"
+              variant="outlined"
+              sx={{ m: 1, width: "100%" }}
+            />
+
+            <TextField
+              id="Maitenance Charges"
+              value={values.maintenanceCharges}
+              label="Maintenance Charges"
+              type="number"
+              required
+              onChange={handelchange("maintenanceCharges")}
+              variant="outlined"
+              sx={{ m: 1, width: "100%" }}
+            />
+
             <TextField
               id="Number of Bedroom"
               value={values.bedroom}
@@ -165,12 +223,23 @@ const PropertyInfo = () => {
               sx={{ m: 1, width: "100%" }}
             />
             <TextField
-              id="Number of Kitchen"
-              value={values.kitchen}
-              label="Number of Kitchen"
+              id="Number of Bathroom"
+              value={values.bathroom}
+              label="Number of Bathroom"
               type="number"
               required
-              onChange={handelchange("kitchen")}
+              onChange={handelchange("bathroom")}
+              variant="outlined"
+              sx={{ m: 1, width: "100%" }}
+            />
+
+            <TextField
+              id="No of Parking"
+              value={values.noOfParking}
+              label="No Of Parking"
+              type="number"
+              required
+              onChange={handelchange("noOfParking")}
               variant="outlined"
               sx={{ m: 1, width: "100%" }}
             />
@@ -185,7 +254,7 @@ const PropertyInfo = () => {
               sx={{ m: 1, width: "100%" }}
             />
 
-            <UploadFile text={"Upload Property Documents (Sale deed, Agreement of Sale, Share Certificate, Occupancy Certificate, Construction licence Certificate, Inscription, Description)*"} setState={setPdf} />
+            <UploadFile text={"Upload Property Documents"} setState={setPdf} />
           </Grid>
           <Grid item xs={6}>
             <TextField
@@ -209,9 +278,40 @@ const PropertyInfo = () => {
               sx={{ m: 1, width: "100%" }}
             />
             <TextField
-              id="Property  Area"
+              id="City"
+              value={values.city}
+              label="City"
+              type="text"
+              required
+              onChange={handelchange("city")}
+              variant="outlined"
+              sx={{ m: 1, width: "100%" }}
+            />
+
+            <TextField
+              id="District"
+              value={values.district}
+              label="District"
+              type="text"
+              required
+              onChange={handelchange("district")}
+              variant="outlined"
+              sx={{ m: 1, width: "100%" }}
+            />
+            <TextField
+              id="State"
+              value={values.state}
+              label="State"
+              type="text"
+              required
+              onChange={handelchange("state")}
+              variant="outlined"
+              sx={{ m: 1, width: "100%" }}
+            />
+            <TextField
+              id="Super Built Up Area"
               value={values.area}
-              label="Property  Area"
+              label="Super Built Up Area"
               type="number"
               required
               onChange={handelchange("area")}
@@ -219,23 +319,22 @@ const PropertyInfo = () => {
               sx={{ m: 1, width: "100%" }}
             />
             <TextField
-              id="Number of Bathroom"
-              value={values.bathroom}
-              label="Number of Bathroom"
+              id="Carpet Area"
+              value={values.carpetArea}
+              label="Carpet Area"
               type="number"
               required
-              onChange={handelchange("bathroom")}
+              onChange={handelchange("carpetArea")}
               variant="outlined"
               sx={{ m: 1, width: "100%" }}
             />
             <TextField
-              hidden
-              id="Property  Price"
-              value={values.price}
+              id="Age of Building"
+              value={values.ageOfBuilding}
+              label="Age Of Building"
               type="number"
               required
-              onChange={handelchange("price")}
-              label="Property  price"
+              onChange={handelchange("ageOfBuilding")}
               variant="outlined"
               sx={{ m: 1, width: "100%" }}
             />
@@ -248,6 +347,20 @@ const PropertyInfo = () => {
               setState={setImages}
               // setState2={setImage1}
               // srcUrl={profileImage}
+            />
+          </Grid>
+          <Grid item xs = {12}>
+          <TextField
+          multiline
+          rows={6}
+              id="Description"
+              value={values.description}
+              label="Description"
+              type="text"
+              required
+              onChange={handelchange("description")}
+              variant="outlined"
+              sx={{ m: 1, width: "100%" }}
             />
           </Grid>
         </Grid>

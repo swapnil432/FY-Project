@@ -1,12 +1,21 @@
 import Notifications from '@/components/core/Notifications'
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useRouter } from "next/router";
 
 const notifications = () => {
-  return (
-    <div>
-        <Notifications/>
-    </div>
-  )
+  const router = useRouter();
+
+  
+  useEffect(() => {
+    if (!window.localStorage.getItem("user")) {
+      router.push("/login");
+    }
+
+  }, []);
+
+  return window.localStorage.getItem("user")?<Notifications/>:<></>;
+  
+  
 }
 
 export default notifications

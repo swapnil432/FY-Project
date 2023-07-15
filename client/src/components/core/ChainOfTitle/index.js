@@ -45,6 +45,8 @@ const MainContainer = styled("div")({
   paddingRight: "2rem",
   paddingBottom: "3.1rem",
   marginBottom: "5rem",
+  boxShadow: " rgba(149, 157, 165, 0.2) 0px 4px 8px"
+
 });
 function unixTimeToDate(unixTime) {
   const date = new Date(unixTime * 1000);

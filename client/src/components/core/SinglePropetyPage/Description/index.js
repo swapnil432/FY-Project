@@ -9,22 +9,24 @@ const DescriptionContainer = styled("div")({
   borderWidth: "0.06rem",
   borderColor: "#B2BEB5",
   paddingTop: "3.1rem",
-  paddingLeft: "5rem",
-  paddingRight: "5rem",
+  paddingLeft: "2rem",
+  paddingRight: "2rem",
   paddingBottom: "3.1rem",
-  marginBottom: "5rem"
+  marginBottom: "5rem",
+  boxShadow: " rgba(149, 157, 165, 0.2) 0px 4px 8px"
+
 });
 
 
 
-const Description = () => {
+const Description = ({description}) => {
   return (
     <DescriptionContainer>
-      <Typography variant="h3" sx={{ marginBottom: 2 }}>
+      <Typography variant="h4" sx={{ marginBottom: 2 }}>
         Description
       </Typography>
       <Typography variant="body1">
-      It's a new launch property where you can have 2 bhk or 3 bhk with 3 club house. 
+      {description}
       </Typography>
 
     </DescriptionContainer>

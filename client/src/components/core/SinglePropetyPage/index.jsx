@@ -9,11 +9,6 @@ import axios from "axios";
 import ChainofTitle from "../ChainOfTitle";
 
 
-const CardsContainer = styled("div")({
-  display: "flex",
-  justifyContent: "space-between",
-});
-
 const DetailOffer = ({ propertyID }) => {
   const [propertyData, setpropertyData] = useState(null);
 
@@ -44,11 +39,20 @@ const DetailOffer = ({ propertyID }) => {
         <Container sx={{ marginTop: "8rem" }}>
           <PropertyHeader name={propertyData.name} />
           <ImageGallery propertyID={propertyID} />
-          <CardsContainer>
+          
             <Overview
+              surveyNumber = {propertyData.surveyNumber}
+
               area={propertyData.area}
+
               bathroom={propertyData.bathroom}
               bedroom={propertyData.bedroom}
+              noOfParking={propertyData.noOfParking}
+
+              ageOfBuilding={propertyData.ageOfBuilding}
+              maintenanceCharges = {propertyData.maintenanceCharges}
+
+              city = {propertyData.city}
               state={propertyData.state}
             />
             <PriceCard
@@ -56,8 +60,8 @@ const DetailOffer = ({ propertyID }) => {
               price={propertyData.price}
               owner={propertyData.owner_public_key}
             />
-          </CardsContainer>
-          <Description /*description={propertyData.description}?*/ />
+    
+          <Description description={propertyData.description} />
           <ChainofTitle propertyID={propertyID} />
         </Container>
       ) : (

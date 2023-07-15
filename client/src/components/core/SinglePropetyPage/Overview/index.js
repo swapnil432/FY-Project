@@ -10,14 +10,17 @@ import OpacityOutlinedIcon from "@mui/icons-material/OpacityOutlined";
 
 const OverView = styled("div")({
   marginTop: "5.3rem",
-  width: "45%",
+  width: "100%",
   borderRadius: "1.25rem",
   borderStyle: "solid",
   borderWidth: "0.06rem",
   borderColor: "#B2BEB5",
-  paddingTop: "3.1rem",
+  paddingTop: "3rem",
+  paddingBottom: "2rem",
   paddingLeft: "2rem",
   paddingRight: "2rem",
+  boxShadow: " rgba(149, 157, 165, 0.2) 0px 4px 8px"
+
 });
 
 const OverViewSingle = styled("div")({
@@ -33,100 +36,85 @@ const IconImage = styled("div")({
   width: "2.3rem",
 });
 
-const Overview = ({area, bathroom, bedroom, state}) => {
+const Overview = ({ surveyNumber, area, bathroom, bedroom,noOfParking,ageOfBuilding,maintenanceCharges, city, state }) => {
   return (
     <OverView>
       {/* <Typography variant="h4" sx={{ marginBottom: 4 }}>
         Overview
       </Typography> */}
       <Grid container spacing={3} sx={{ marginBottom: 3 }}>
-        <Grid item xs={6}>
+        <Grid item xs={4}>
           <OverViewSingle>
-            <IconImage>
-              {/* <img
-                src="/home-work.svg"
-                alt="bathtub"
-                style={{ height: "100%", width: "100%" }}
-              /> */}
-              <HomeOutlinedIcon
-                sx={{ color: "#3859F7", height: "100%", width: "100%" }}
-              />
-            </IconImage>
-            <Typography variant="h5">Furnished</Typography>
+            <Typography variant="h6">
+              <strong>Survey No</strong>: {surveyNumber}
+            </Typography>
           </OverViewSingle>
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={4}>
           <OverViewSingle>
-            <IconImage>
-              {/* <img
-                src="/distance.svg"
-                alt="bathtub"
-                style={{ height: "100%", width: "100%" }}
-              /> */}
-              <LocationOnOutlinedIcon
-                sx={{ color: "#3859F7", height: "100%", width: "100%" }}
-              />
-            </IconImage>
-            <Typography variant="h5">{state}</Typography>
+            <Typography variant="h6">
+              <strong>City</strong>: {city}
+            </Typography>
+          </OverViewSingle>
+        </Grid>
+        <Grid item xs={4}>
+          <OverViewSingle>
+            <Typography variant="h6">
+              <strong>State</strong>: {state}
+            </Typography>
           </OverViewSingle>
         </Grid>
       </Grid>
 
       <Grid container spacing={3} sx={{ marginBottom: 3 }}>
-        <Grid item xs={6}>
+        <Grid item xs={4}>
           <OverViewSingle>
-            <IconImage>
-              <BathtubOutlinedIcon
-                sx={{ color: "#3859F7", height: "100%", width: "100%" }}
-              />
-            </IconImage>
-            <Typography variant="h5">{bedroom} bedroom</Typography>
+            <Typography variant="h6">
+              <strong>Bedrooms</strong>: {bedroom}
+            </Typography>
           </OverViewSingle>
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={4}>
           <OverViewSingle>
-            <IconImage>
-              <BathtubOutlinedIcon
-                sx={{ color: "#3859F7", height: "100%", width: "100%" }}
-              />
-            </IconImage>
-            <Typography variant="h5">{bathroom} Bathroom</Typography>
+            <Typography variant="h6">
+              <strong>Bathrooms</strong>: {bathroom}
+            </Typography>
+          </OverViewSingle>
+        </Grid>
+        <Grid item xs={4}>
+          <OverViewSingle>
+            <Typography variant="h6">
+              <strong>Parking </strong>: {noOfParking}
+            </Typography>
           </OverViewSingle>
         </Grid>
       </Grid>
 
       <Grid container spacing={3} sx={{ marginBottom: 3 }}>
-        <Grid item xs={6}>
+        <Grid item xs={4}>
           <OverViewSingle>
-            <IconImage>
-              {/* <img
-                src="/door-sliding.svg"
-                alt="bathtub"
-                style={{ height: "100%", width: "100%" }}
-              /> */}
-              <SquareFootIcon
-                sx={{ color: "#3859F7", height: "100%", width: "100%" }}
-              />
-            </IconImage>
-            <Typography variant="h5">{area} sqmt</Typography>
+            <Typography variant="h6">
+              <strong>Built Up Area</strong>: {area}
+            </Typography>
           </OverViewSingle>
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={4}>
           <OverViewSingle>
-            <IconImage>
-              {/* <img
-                src="/home-work.svg"
-                alt="bathtub"
-                style={{ height: "100%", width: "100%" }}
-              /> */}
-              <OpacityOutlinedIcon
-                sx={{ color: "#3859F7", height: "100%", width: "100%" }}
-              />
-            </IconImage>
-            <Typography variant="h5">Floor no. 3</Typography>
+            <Typography variant="h6">
+              <strong>Maintenance</strong> : {maintenanceCharges}/-
+            </Typography>
+          </OverViewSingle>
+        </Grid>
+        <Grid item xs={4}>
+          <OverViewSingle>
+            <Typography variant="h6">
+              <strong>Building Age</strong>: {ageOfBuilding}
+            </Typography>
           </OverViewSingle>
         </Grid>
       </Grid>
+
+
     </OverView>
   );
 };

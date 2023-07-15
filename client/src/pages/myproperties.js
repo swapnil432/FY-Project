@@ -1,12 +1,23 @@
 import Myproperties from '@/components/core/Myproperties'
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useRouter } from "next/router";
 
 const myproperties = () => {
-  return (
+  const router = useRouter();
+
+  
+  useEffect(() => {
+    if (!window.localStorage.getItem("user")) {
+      router.push("/login");
+    }
+
+  }, []);
+
+  return window.localStorage.getItem("user")? (
     <div>
         <Myproperties/>
     </div>
-  )
+  ):<></>
 }
 
 export default myproperties

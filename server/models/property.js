@@ -6,6 +6,10 @@ const propertySchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    surveyNumber: {
+      type: String,
+      required: false,
+    },
     name: {
       type: String,
       required: false,
@@ -14,11 +18,15 @@ const propertySchema = new mongoose.Schema(
       type: String,
       required: false,
     },
-    bedroom: {
-      type: Number,
+    city: {
+      type: String,
       required: false,
     },
-    kitchen: {
+    district: {
+      type: String,
+      required: false,
+    },
+    bedroom: {
       type: Number,
       required: false,
     },
@@ -35,7 +43,7 @@ const propertySchema = new mongoose.Schema(
       required: false,
     },
     area: {
-      type: String,
+      type: Number,
       required: false,
     },
     bathroom: {
@@ -46,7 +54,26 @@ const propertySchema = new mongoose.Schema(
       type: Number,
       required: false,
     },
-
+    carpetArea: {
+      type: Number,
+      required: false,
+    },
+    maintenanceCharges: {
+      type: Number,
+      required: false,
+    },
+    noOfParking: {
+      type: Number,
+      required: false,
+    },
+    description: {
+      type: String,
+      required: false,
+    },
+    ageOfBuilding: {
+      type: Number,
+      required: false,
+    },
     is_verified: {
       type: Boolean,
       default: false,

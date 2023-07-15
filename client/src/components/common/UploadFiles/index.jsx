@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 
 const UploadBox = styled(Button)({
-  margin: " 1rem 0",
+  margin: " 8px",
   minHeight: "15rem",
   width: "100%",
   border: " 2px dashed #3859F7",
