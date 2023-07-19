@@ -2,9 +2,10 @@ import jwt from "jsonwebtoken";
 import Admin from "../models/admin";
 import Property from "../models/property";
 import User from "../models/user";
-const fs = require("fs");
 const archiver = require("archiver");
-const path = require("path");
+// import zip from 'zip-local';
+import fs from "fs";
+import path from "path";
 
 const JWT_SECRET = "34513HJKK34IJKBKHN9429GBJUND3JDQLL";
 
@@ -31,7 +32,7 @@ export const login = (req, res) => {
 // Property
 
 export const getAllProperty = (req, res) => {
-  Property.find({status:0}, (err, properties) => {
+  Property.find({ status: 0 }, (err, properties) => {
     if (err || !properties) {
       return res.status(400).json({
         error: "No Properties found",
@@ -155,7 +156,10 @@ export const downloadDocuments = (req, res) => {
         error: "No Properties found",
       });
     }
-    property.pdf.map(({ destination, filename }) => pdfs.push(`${filename}`));
+    property.pdf.map(({ destination, filename }) => {
+      console.log("file name ",filename);
+      pdfs.push(`${filename}`);
+    });
     const zipFilename = "pdfs.zip";
 
     const output = fs.createWriteStream(zipFilename);
@@ -181,6 +185,28 @@ export const downloadDocuments = (req, res) => {
   });
 };
 
+// export const downloadDocuments = (req, res) => {
+//   const id = req.params.id;
+//   const pdfs = [];
+
+//   Property.findOne({ _id: id }, (err, property) => {
+//     if (err || !property) {
+//       return res.status(400).json({
+//         error: 'No Properties found',
+//       });
+//     }
+
+//     property.pdf.forEach(({ filename }) => {
+//       const pdfUrl = `http://localhost:8000/resources/doc/${filename}`; // Replace with the actual URL to access the PDF file
+//       pdfs.push(pdfUrl);
+//     });
+
+//     res.json({ pdfs }); // Send the list of PDF URLs to the client
+//   });
+// };
+
+
+
 //users
 export const getAllUsers = (req, res) => {
   User.find({}, (err, users) => {
@@ -193,17 +219,17 @@ export const getAllUsers = (req, res) => {
   });
 };
 export const getUserNamesById = (req, res) => {
-  const  public_key  = req.params.id.toLowerCase();
-  
+  const public_key = req.params.id.toLowerCase();
+
   User.findOne({ public_key: public_key }, (err, user) => {
     if (err || !user) {
-        return res.status(400).json({
-          error: err,
-        });
-      }
-      const { name } = user;
-      console.log(user)
-      return res.status(200).json({ name });
+      return res.status(400).json({
+        error: err,
+      });
+    }
+    const { name } = user;
+    console.log(user);
+    return res.status(200).json({ name });
   });
 };
 export const getCompleteUsers = (req, res) => {

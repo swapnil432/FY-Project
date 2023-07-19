@@ -38,7 +38,7 @@ const docconfig = multer.diskStorage({
     callback(null, "public/doc");
   },
   filename: (req, file, callback) => {
-    callback(null, `PropertyDoc-${Date.now()}.${file.originalname}`);
+    callback(null, `PropertyDoc-${Date.now()}-${file.originalname.replace(/\s+/g, '')}`);
   },
 });
 
