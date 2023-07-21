@@ -13,7 +13,7 @@ const myproperties = () => {
 
   }, []);
 
-  return window.localStorage.getItem("user")? (
+  return typeof window !== "undefined" && window.localStorage.getItem("user")? (
     <div>
         <Myproperties/>
     </div>

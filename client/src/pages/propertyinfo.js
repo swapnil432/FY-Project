@@ -14,7 +14,7 @@ const propertyinfo = () => {
 
   },[state])
 
-  return window.localStorage.getItem("user")?<PropertyDetails />:<></>;
+  return typeof window !== "undefined" && window.localStorage.getItem("user")?<PropertyDetails />:<></>;
 };
 
 export default propertyinfo;

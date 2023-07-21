@@ -30,7 +30,7 @@ const AdminLogin = () => {
           JSON.stringify(response.data.token)
         );
         alert("Hello");
-        // router.push("/admin/dashboard");
+        router.push("/admin");
       })
       .catch((err) => {
         console.log(err);

@@ -11,7 +11,7 @@ const sellerOffer = () => {
     }
 
   },[])
-  return window.localStorage.getItem("user")? <SellerOffers />:<></>
+  return typeof window !== "undefined" && window.localStorage.getItem("user")? <SellerOffers />:<></>
 }
 
 export default sellerOffer

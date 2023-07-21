@@ -4,7 +4,6 @@ import { useRouter } from "next/router";
 
 const notifications = () => {
   const router = useRouter();
-
   
   useEffect(() => {
     if (!window.localStorage.getItem("user")) {
@@ -13,7 +12,7 @@ const notifications = () => {
 
   }, []);
 
-  return window.localStorage.getItem("user")?<Notifications/>:<></>;
+  return typeof window !== "undefined" && window.localStorage.getItem("user")?<Notifications/>:<></>;
   
   
 }

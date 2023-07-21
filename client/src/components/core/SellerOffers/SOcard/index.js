@@ -21,22 +21,21 @@ const SellerOfferCard = () => {
       url: `/api/getselloffer/${seller.public_key}`,
     })
       .then((response) => {
-
+        // Collect all the property details in allproperties array
         response.data.sell.map((selleroffer, index) => {
           axios({
             method: "GET",
             url: `/api/getproperty/${selleroffer.property_id}`,
           })
             .then((response) => {
-              console.log(response.data);
               allproperties.push({
-                    id: index + 1,
-                    buyer_id: selleroffer.buyer_id,
-                    seller_id: selleroffer.seller_id,
-                    current_price: selleroffer.current_price,
-                    property_id: selleroffer.property_id,
-                    images: response.data.images[0].filename,
-                  });
+                id: index + 1,
+                buyer_id: selleroffer.buyer_id,
+                seller_id: selleroffer.seller_id,
+                current_price: selleroffer.current_price,
+                property_id: selleroffer.property_id,
+                images: response.data.images[0].filename,
+              });
               setofferDetail(allproperties);
             })
             .catch((err) => {
@@ -44,16 +43,18 @@ const SellerOfferCard = () => {
               alert("something wrong in getting seller offers");
             });
         });
-        console.log("all prop", allproperties);
-        setofferDetail(allproperties);
       })
       .catch((err) => {
         console.log(err);
         alert("hii something wrong");
+      })
+      .finally(() => {
+        // Call getAllUserName after the offerDetail state is updated
+        getAllUserName();
       });
   };
 
-  const getAllUserName = async() =>{
+  const getAllUserName = async () => {
     let buyerNames = [];
     await Promise.all(
       offerDetail.map(async (offer) => {
@@ -66,8 +67,8 @@ const SellerOfferCard = () => {
         }
       })
     );
-    setNames(buyerNames)
-  }
+    setNames(buyerNames);
+  };
 
   const createNotification = (index) => {
     axios({
@@ -79,7 +80,7 @@ const SellerOfferCard = () => {
       },
     })
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         alert(response.data.message);
       })
       .catch((err) => {
@@ -95,7 +96,7 @@ const SellerOfferCard = () => {
       url: `/api/deleteselloffer/${property_id}`,
     })
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         alert("Deleted seller offer");
       })
       .catch((err) => {
@@ -107,18 +108,17 @@ const SellerOfferCard = () => {
   const approveBuyer = (propertyId, buyer, seller, index) => {
     approveSale(propertyId, buyer, seller)
       .then((response) => {
-        console.log(response)
+        // console.log(response)
 
-        if(!response){
+        if (!response) {
           createNotification(index);
           deleteSellerOffer(propertyId);
-          location.reload()
+          location.reload();
         }
-
       })
       .catch((error) => {
         console.log(error);
-        alert("Error Occured While Approving Buyer");
+        alert("Error Occurred While Approving Buyer");
       });
   };
 
@@ -126,15 +126,19 @@ const SellerOfferCard = () => {
     seller = window.localStorage.getItem("user");
     seller = JSON.parse(seller);
     getselleroffer();
-    getAllUserName()
   }, []);
+
+  useEffect(() => {
+    // Fetch buyer names whenever offerDetail state changes
+    getAllUserName();
+  }, [offerDetail]);
 
   return (
     <Container sx={{ marginTop: "3rem" }}>
-      {console.log("offer detail", offerDetail)}
       {offerDetail.length > 0 ? (
         offerDetail.map((offer, index) => (
           <Card
+            key={offer.id}
             sx={{
               marginTop: "1rem",
               display: "flex",
@@ -169,7 +173,7 @@ const SellerOfferCard = () => {
                   component="div"
                   sx={{ marginBottom: "0.7rem" }}
                 >
-                  Buyer ID: <b>{names[index]}</b>
+                  Buyer Name: <b>{names[index]}</b>
                 </Typography>
                 <Typography variant="h5" component="div">
                   Current Price: <b>{offer.current_price}</b>

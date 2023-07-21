@@ -14,23 +14,28 @@ const Details = (props) => {
   const id = props.info._id;
   const downloadDocs = () => {
     axios({
-      method: "GET",
+      method: 'GET',
       url: `/api/createZipFile/${id}`,
+      responseType: 'arraybuffer', // Set the response type to 'arraybuffer'
     })
       .then((response) => {
-        const url = window.URL.createObjectURL(new Blob([response.data]));
-        const link = document.createElement("a");
+        const blob = new Blob([response.data], { type: 'application/zip' }); // Create a blob from the response data
+        const url = window.URL.createObjectURL(blob); // Create a URL for the blob
+        const link = document.createElement('a');
         link.href = url;
-        link.setAttribute("download", `Property-${id}.zip`);
+        link.setAttribute('download', `Property-${id}.zip`);
         document.body.appendChild(link);
         link.click();
-        alert("Download complete");
+        document.body.removeChild(link); // Remove the link element after download
+        window.URL.revokeObjectURL(url); // Release the object URL
+        alert('Download complete');
       })
       .catch((err) => {
         console.log(err);
-        alert("something wrong");
+        alert('Something went wrong');
       });
   };
+  
 
   return (
     <Box>
